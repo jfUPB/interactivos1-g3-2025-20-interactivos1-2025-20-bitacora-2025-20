@@ -16,7 +16,7 @@ Un sistema físico interactivo es un conjunto de componentes capaz de generar ob
 
 Del computador chiquito El cable usb puede ser tanto input como output, dependiendo de si estamos usando " send love ", o si estamos presionando un boton o usando el acelerometro. Boton y acelerometro también funcionan como inputs, el display es un output
 
-Del pc, el input tambien es el cable usb ( serial ), los output pueden ser tanto la pantalla como el usb
+Del pc, el input tambien es el cable usb y el boton de send love( serial ), los output pueden ser tanto la pantalla como el usb
 
 
 
