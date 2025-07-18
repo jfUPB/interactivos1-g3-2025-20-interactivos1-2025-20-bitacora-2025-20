@@ -18,6 +18,6 @@ Del computador chiquito El cable usb puede ser tanto input como output, dependie
 
 Del pc, el input tambien es el cable usb y el boton de send love( serial ), los output pueden ser tanto la pantalla como el usb
 
-
+[Mi código](https://www.youtube.com/watch?v=OgZzUJud3Q4)
 
 
