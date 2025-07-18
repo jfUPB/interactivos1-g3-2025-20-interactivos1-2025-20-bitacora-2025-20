@@ -20,13 +20,22 @@ Es una práctica utilizada por ejemplo por artistas y diseñadores que consiste 
 
 ### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
 
-En la ingeniería en diseño de entretenimiento digital, considero que el diseño generativo permite crear contenido dinámico e interactivo mediante algoritmos y reglas definidas. Se puede aplicar en videojuegos para generar niveles o personajes de forma procedural (un ejemplo es que algunos juegos utilizan una "semilla para generar el mundo), en animaciones para automatizar movimientos, y en narrativas interactivas que responden al usuario o algún sonido (tal como se mostró en clase con el logo que variaba según la canción). Este enfoque combina creatividad y programación locual es bastante usado en la carrera y será necesario a futuro, ademas permite desarrollar experiencias personalizadas y escalables sin diseñar cada elemento manualmente.
+En la ingeniería en diseño de entretenimiento digital, considero que el diseño generativo permite crear contenido dinámico e interactivo mediante algoritmos y reglas definidas. Se puede aplicar en videojuegos para generar niveles o personajes de forma procedural (un ejemplo es que algunos juegos utilizan una "semilla" para generar el mundo), en animaciones para automatizar movimientos, y en narrativas interactivas que responden al usuario o algún sonido (tal como se mostró en clase con el logo que variaba según la canción). Este enfoque combina creatividad y programación locual es bastante usado en la carrera y será necesario a futuro, ademas permite desarrollar experiencias personalizadas y escalables sin diseñar cada elemento manualmente.
 
 
 ### Actividad 03  
 
-### En este sistemas físico interactivo identifica los inputs, outputs y el proceso.  
+### Inputs:  
+Microbit: A y B (Botones), Aceleron, Puerto USB y el Display
+Computador: Puerto USB
 
+### Outputs:  
+MicroBit: Puerto USB (Serial)
+Computador: Cable, Boton "Send love" y Pantalla
+
+### Proceso:    
+MicroBit: lee los inputs
+Computador: Datos enviados por el puerto USB y la pantalla
 
 
 ### Actividad 04  
