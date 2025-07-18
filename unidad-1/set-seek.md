@@ -26,14 +26,14 @@ Se refiere a cualquier práctica del ámbito artistico en el que el artista hace
 
 #### Inputs (Entradas)
 
-##### micro:bit
+**micro:bit:**
 - Botón A
 - Botón B 
 - Sensor de acelerómetro (cuando se detecta el gesto de sacudir - shake)
 - Puerto de comunicación (USB)
 - Botón "Send Love" en la interfaz de p5.js
 
-##### Computador
+**Computador**
 - Serial (USB)
 
 #### Proceso
@@ -48,14 +48,18 @@ Se refiere a cualquier práctica del ámbito artistico en el que el artista hace
 
 #### Outputs (Salidas):
 
-##### micro:bit
+**micro:bit:**
   - Puerto de comunicación (USB)
 
-##### En p5.js
+**p5.js:**
 - Cambio del color del círculo central
 - Texto con el carácter recibido en el centro del círculo
 
-##### Computador
+**Computador:**
 - Display
 - Datos enviados por el serial
+
+### Actividad 04
+
+
 
