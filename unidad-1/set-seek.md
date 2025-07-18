@@ -14,4 +14,10 @@
 
 ## Actividad 3, inputs, outpus, proceso
 
-## R/: botones, acelerometro son los outputs.  los leds y la pantalla del pc son los outputs, y los procesos están dados por el codigo en ambas apps (p5.js y Micro:bit) 
+## R/: Del computador chiquito El cable usb puede ser tanto input como output, dependiendo de si estamos usando " send love ", o si estamos presionando un boton o usando el acelerometro. Boton y acelerometro también funcionan como inputs, el display es un output
+
+Del pc, el input tambien es el cable usb ( serial ), los output pueden ser tanto la pantalla como el usb
+
+
+
+
