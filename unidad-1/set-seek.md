@@ -2,7 +2,7 @@
 
 ## 🔎 Fase: Set + Seek
 
-### Actividad 1 - 2025-07-16
+### Actividad 1 - 16/07/2025
 
 #### ¿Qué es un sistema físico interactivo?
 
