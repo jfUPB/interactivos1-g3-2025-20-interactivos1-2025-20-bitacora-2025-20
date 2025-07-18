@@ -16,12 +16,11 @@ Como estudiante de Ingeniería en Diseño de Entretenimiento Digital, este tipo 
 
 ### ¿Qué es el diseño/arte generativo?  
 
-algoritmos reglas se usa sistema autonomo  diseño generativo se usa en marketing (entreg una aplicacion para que se aplique el sistema en diferentes tipos de piezas
-
-Es una práctica utilizada por ejemplo por artistas y diseñadores que consiste en emplear un sistema autónomo para la creación de una obra. En este enfoque, se utiliza un programa que ejecuta la pieza deseada de forma independiente. El creador diseña el proceso (código), mientras que el sistema autónomo genera el resultado.  
+Es una práctica utilizada por ejemplo por artistas y diseñadores que consiste en emplear un sistema autónomo para la creación de una obra. En este enfoque, se utiliza un programa que ejecuta la pieza deseada de forma independiente. El creador diseña el proceso (código), mientras que el sistema autónomo genera el resultado.En este está presenta la aleatoriedad, algoritmos y reglas y este puede ser usado en marcketing.  
 
 ### ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
 
+En la ingeniería en diseño de entretenimiento digital, considero que el diseño generativo permite crear contenido dinámico e interactivo mediante algoritmos y reglas definidas. Se puede aplicar en videojuegos para generar niveles o personajes de forma procedural (un ejemplo es que algunos juegos utilizan una "semilla para generar el mundo), en animaciones para automatizar movimientos, y en narrativas interactivas que responden al usuario o algún sonido (tal como se mostró en clase con el logo que variaba según la canción). Este enfoque combina creatividad y programación locual es bastante usado en la carrera y será necesario a futuro, ademas permite desarrollar experiencias personalizadas y escalables sin diseñar cada elemento manualmente.
 
 
 ### Actividad 03  
