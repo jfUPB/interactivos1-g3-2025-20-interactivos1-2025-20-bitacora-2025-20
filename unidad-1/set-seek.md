@@ -16,3 +16,7 @@
 ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
 - Se podria aplicar para generar arte en base a estos algoritmos y aplicarlos a experiencias interactivas, videojuegos, etc...
 
+### Actividad 3
+Input: botones a y b, acelerometro, serial/usb
+output: Datos del pc, display
+
