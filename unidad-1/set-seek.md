@@ -26,17 +26,17 @@ Se podría aplicar de una infinidad de formas, sabiendo ya que puede ser un conc
 
 ## Inputs
 
-Depende de como se mire, del Microbit los inputs son los botones, el puerto y el acelerometro.
+Depende de como se mire, del Microbit los inputs son los botones, el puerto y el acelerometro.  
 Mientras que para el computador es el puerto USB.
 
 ## Outputs
 
-Del Microbit son el puerto y el display.
+Del Microbit son el puerto y el display.  
 Del computador es el Cable, el boton de "Send love" y la pantalla.
 
 ## Proceso
 
-El Microbit lee los inputs.
+El Microbit lee los inputs.  
 Del computador son los datos enviados por el puerto USB y la pantalla
 
 ## Actividad 4
