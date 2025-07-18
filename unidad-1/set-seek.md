@@ -10,3 +10,8 @@
 
 ## como usarlo en mi perfil profesional? 
 ## R/: Podría aprender de los algoritmos que usan para agregar un componente de aletoriedad manteniendo ciertas reglas, lo cual siento que puede ser util para juegos estilo rogue-like ( que los escenarios se van creando proceduralmente/aletoriamente, con ciertas reglas ). Y en tema de diseño de cinterfaces puede dar ideas interesantes para diferentes necsidades, O incluso para elementos que respondan con la interacción del usuario 
+
+
+## Actividad 3, inputs, outpus, proceso
+
+## R/: botones, acelerometro son los outputs.  los leds y la pantalla del pc son los outputs, y los procesos están dados por el codigo en ambas apps (p5.js y Micro:bit) 
