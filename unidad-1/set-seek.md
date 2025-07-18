@@ -24,4 +24,38 @@ Se refiere a cualquier práctica del ámbito artistico en el que el artista hace
 
 ### Actividad 03
 
-#### Inputs, outputs y proceso
+#### Inputs (Entradas)
+
+##### micro:bit
+- Botón A
+- Botón B 
+- Sensor de acelerómetro (cuando se detecta el gesto de sacudir - shake)
+- Puerto de comunicación (USB)
+- Botón "Send Love" en la interfaz de p5.js
+
+##### Computador
+- Serial (USB)
+
+#### Proceso
+
+- El programa en la micro:bit detecta si se presionan los botones A o B, o si se sacude el dispositivo.
+- Según el evento detectado, la micro:bit envía un carácter por el USB al computador:  
+  - `'A'` si se presiona el botón A  
+  - `'B'` si se presiona el botón B  
+  - `'C'` si se sacude
+- En el navegador, p5.js recibe este dato a través del puerto serial y cambia el color de un círculo en pantalla dependiendo del valor recibido.
+
+
+#### Outputs (Salidas):
+
+##### micro:bit
+  - Puerto de comunicación (USB)
+
+##### En p5.js
+- Cambio del color del círculo central
+- Texto con el carácter recibido en el centro del círculo
+
+##### Computador
+- Display
+- Datos enviados por el serial
+
