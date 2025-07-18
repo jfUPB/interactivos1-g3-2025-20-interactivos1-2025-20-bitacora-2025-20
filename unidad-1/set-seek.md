@@ -34,8 +34,8 @@ MicroBit: Puerto USB (Serial)
 Computador: Cable, Boton "Send love" y Pantalla
 
 ### Proceso:    
-MicroBit: lee los inputs
-Computador: Datos enviados por el puerto USB y la pantalla
+MicroBit: lee los inputs  
+Computador: Datos enviados por el puerto USB y la pantalla  
 
 
 ### Actividad 04  
