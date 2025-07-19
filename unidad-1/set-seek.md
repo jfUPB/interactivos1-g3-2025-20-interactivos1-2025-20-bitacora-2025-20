@@ -37,6 +37,7 @@ Browser:
   - Inputs: Los botones y e acelerometro (del browser), writes, USB (puerto), Display
   - output: el cable (USB) - (Browser)
   - Proceso: el código que lee esas acciones y decide qué hacer con ellas.
+    
 Computador:  
   - Input: Puerto (el serial), el Boton "send love"
   - Output: Datos y pantalla del computador
