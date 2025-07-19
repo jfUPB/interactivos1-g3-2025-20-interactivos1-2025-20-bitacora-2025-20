@@ -45,6 +45,30 @@ Computador:
 
 ### Actividad 4
 Markdown
-[mi codigo]()
-COmo se inserta el codigo 
-LA imagen del resultado
+[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)
+```javascript
+function setup() {
+  createCanvas(500, 500);
+  background(230, 200, 255); // fondo inicial más bonito
+}
+
+function draw() {
+  
+  fill(1080, 200, 255, 20);
+  noStroke();
+  rect(0, 0, width, height);
+
+  let x = 100 * cos(frameCount * 0.05) + 200;
+  let y = 50 * sin(frameCount * 0.1) + 200;
+
+  let w = 20 + 5 * sin(frameCount * 0.2);
+  let h = 10 + 2.5 * sin(frameCount * 0.2);
+
+  
+  fill(255, 90, 200, 200); // rosa fuerte
+  noStroke();
+  ellipse(x, y, w, h);
+}
+```
+Imagen:  
+<img width="695" height="711" alt="image" src="https://github.com/user-attachments/assets/2045bbc1-4ea1-4e8d-a1be-8a647613ade4" />
