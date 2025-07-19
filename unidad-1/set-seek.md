@@ -73,4 +73,6 @@ function draw() {
 ```
 
 Imagen:  
-<img width="695" height="711" alt="image" src="https://github.com/user-attachments/assets/2045bbc1-4ea1-4e8d-a1be-8a647613ade4" />
+
+<img width="627" height="650" alt="image" src="https://github.com/user-attachments/assets/7c0455d1-67e7-4921-9565-fdda558ad639" />
+
