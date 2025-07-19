@@ -7,13 +7,14 @@
 ¿Qué es un sistema físico interactivo?  
 
    Es un objeto que al sentir una acción o interaccion del usuario, lo procesa y lo convierte en una proyección.
-   Tiene una entrada física que se denomina input, un procesador y una salida denominada output.
+   Tiene una entrada física que se denomina input, un procesador y una salida denominada output. ósea, Es un sistema que responde a una acción que uno hace. Por ejemplo, cuando uno toca algo,
+   mueve un sensor o presiona un botón, el sistema lo detecta (eso sería el input), lo procesa con un código o una lógica, y luego hace algo como mostrar una luz, cambiar de color o hacer un sonido (eso sería el output).
    
 ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
    
-   Cualquier experincia de diseño o animación que realize como profesional podra darle una inmersión más profunda, 
-   generando una conexion más fuerte con el usuario y un toque diferencial a otros proyectos.
-
+En diseño gráfico o como ingeniera de entretenimiento digital, estos sistemas pueden hacer que las experiencias sean más inmersivas.
+Por ejemplo, puedo crear una instalación donde las ilustraciones se crren a partir de la interacción de alguien, o una animación que reaccione cuando el público interactúe. 
+Eso haría que mi trabajo conecte más con las personas y tenga un toque único, generando mayor capacidad de recordaciòn en las personas o publicos.
 
 ### Actividad 2  
 
@@ -25,20 +26,21 @@ Este proceso, relativamente autónomo, le da un toque único y distintivo a la o
 se crea si lo es, teniendo una nueva forma de diseñar con la ventaja de tener miles de posibilidades ´para las obras de diseño o arte.
 
 ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
-Es un enfoque diferente de lo que se tiene acostumbrado hasta el moneto, por lo tanto seria un efecto diferenciador en cada uno de mis trabajos, ya que al ser tambíen diseñadora grafica, 
-se ampliaran la cantidad de trabajos que se pueden generar con un codigo que haga.
+Como diseñadora, puedo usar esto para crear patrones, fondos, ilustraciones o animaciones que no se repiten y se vean diferentes cada vez. 
+Esto me ayudaría a ofrecer cosas más creativas y distintas en mis proyectos, usando herramientas nuevas como el código para crear diseño.
+facilitando la creación de piezas graficas o interacciones mas dinamicas y emocionantes.
 
 ### Actividad 3  
 
-Cuales son los inputs, outputs y el proceso:
-Browser:
+Cuales son los inputs, outputs y el proceso:  
+Browser:  
   - Inputs: Los botones y e acelerometro (del browser), writes, USB (puerto), Display
   - output: el cable (USB) - (Browser)
-  - Proceso: la parte del codigo, el codigo para los dos botones y el sensor que generan los outputs
-Computador:
+  - Proceso: el código que lee esas acciones y decide qué hacer con ellas.
+Computador:  
   - Input: Puerto (el serial), el Boton "send love"
   - Output: Datos y pantalla del computador
-  - Proceso: ... 
+  - Proceso: el código que está en el computador recibe eso, lo entiende y reacciona.
 
 ### Actividad 4
 Markdown
