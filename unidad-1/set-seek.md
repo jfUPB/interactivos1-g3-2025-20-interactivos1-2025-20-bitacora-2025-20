@@ -44,8 +44,9 @@ Computador:
   - Proceso: el código que está en el computador recibe eso, lo entiende y reacciona.
 
 ### Actividad 4
-Markdown
-[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)
+
+[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)  
+
 ```javascript
 function setup() {
   createCanvas(500, 500);
@@ -70,5 +71,6 @@ function draw() {
   ellipse(x, y, w, h);
 }
 ```
+
 Imagen:  
 <img width="695" height="711" alt="image" src="https://github.com/user-attachments/assets/2045bbc1-4ea1-4e8d-a1be-8a647613ade4" />
