@@ -34,12 +34,12 @@ facilitando la creación de piezas graficas o interacciones mas dinamicas y emoc
 
 Cuales son los inputs, outputs y el proceso:  
 Browser:  
-  - Inputs: Los botones y e acelerometro (del browser), writes, USB (puerto), Display
-  - output: el cable (USB) - (Browser)
+  - Inputs: Los botones y el acelerometro, writes, el cable (USB) , Display
+  - output: el cable (USB) 
   - Proceso: el código que lee esas acciones y decide qué hacer con ellas.
     
 Computador:  
-  - Input: Puerto (el serial), el Boton "send love"
+  - Input: el cable (USB) , el Boton "send love"
   - Output: Datos y pantalla del computador
   - Proceso: el código que está en el computador recibe eso, lo entiende y reacciona.
 
