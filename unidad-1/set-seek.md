@@ -50,7 +50,7 @@ Computador:
 ```javascript
 function setup() {
   createCanvas(500, 500);
-  background(230, 200, 255); // fondo inicial más bonito
+  background(230, 200, 255); 
 }
 
 function draw() {
@@ -66,7 +66,7 @@ function draw() {
   let h = 10 + 2.5 * sin(frameCount * 0.2);
 
   
-  fill(255, 90, 200, 200); // rosa fuerte
+  fill(255, 90, 200, 200); 
   noStroke();
   ellipse(x, y, w, h);
 }
