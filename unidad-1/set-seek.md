@@ -47,7 +47,9 @@ Computador:
 
 Enlace  
 
-[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)  
+[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)   
+
+Codigo:  
 
 ```javascript
 function setup() {
