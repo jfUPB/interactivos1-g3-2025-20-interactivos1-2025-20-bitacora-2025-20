@@ -138,8 +138,7 @@ function dibujarFigura(x, y, tipo, size) {
     )
   ];
   noStroke();
-  formas[tipo % 3]();
-´´´
+  formas[tipo % 3]();´´´
 
 #### GIF del resultado final
 
