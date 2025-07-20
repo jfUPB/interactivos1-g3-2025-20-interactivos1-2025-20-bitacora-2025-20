@@ -61,5 +61,87 @@ Se refiere a cualquier práctica del ámbito artistico en el que el artista hace
 
 ### Actividad 04
 
+[Enlace al editor](https://editor.p5js.org/Valengp2006/sketches/OSpyB6vzc)
 
+#### Animación con figuras que cambian de forma, color y dirección
+
+Este sketch en **p5.js** implementa un sistema visual interactivo que simula el movimiento de dos figuras que rebotan dentro del lienzo, cambian de color de forma progresiva y modifican su forma cada vez que colisionan con los bordes del lienzo.
+
+#### Código
+
+```javascript
+// Figura 1
+let x1 = 100, y1 = 100, dx1 = 2, dy1 = 1.5, tipo1 = 0, size1 = 50;
+let r1 = 100, g1 = 150, b1 = 255;
+
+// Figura 2
+let x2 = 300, y2 = 200, dx2 = -2, dy2 = 2.2, tipo2 = 1, size2 = 40;
+let r2 = 255, g2 = 100, b2 = 180;
+
+function setup() {
+  createCanvas(400, 400);
+  background(220); 
+}
+
+function draw() {
+  noStroke();
+  fill(220, 50);
+  rect(0, 0, width, height);
+
+  // Dibujar figura 1
+  fill(r1, g1, b1);
+  dibujarFigura(x1, y1, tipo1, size1);
+
+  // Dibujar figura 2
+  fill(r2, g2, b2);
+  dibujarFigura(x2, y2, tipo2, size2);
+
+  // Rebote y cambio de forma (figura 1)
+  let reboteX1 = (x1 <= 0 || x1 >= width) * 1;
+  let reboteY1 = (y1 <= 0 || y1 >= height) * 1;
+  dx1 *= 1 - 2 * reboteX1;
+  dy1 *= 1 - 2 * reboteY1;
+  tipo1 = (reboteX1 + reboteY1) * int(random(3)) + tipo1 * (1 - (reboteX1 + reboteY1));
+
+  // Rebote y cambio de forma (figura 2)
+  let reboteX2 = (x2 <= 0 || x2 >= width) * 1;
+  let reboteY2 = (y2 <= 0 || y2 >= height) * 1;
+  dx2 *= 1 - 2 * reboteX2;
+  dy2 *= 1 - 2 * reboteY2;
+  tipo2 = (reboteX2 + reboteY2) * int(random(3)) + tipo2 * (1 - (reboteX2 + reboteY2));
+
+  // Movimiento
+  x1 += dx1;
+  y1 += dy1;
+  x2 += dx2;
+  y2 += dy2;
+
+  // Cambio de color constante
+  r1 = (r1 + 1) % 256;
+  g1 = (g1 + 2) % 256;
+  b1 = (b1 + 3) % 256;
+
+  r2 = (r2 + 3) % 256;
+  g2 = (g2 + 2) % 256;
+  b2 = (b2 + 1) % 256;
+}
+
+// Función para dibujar una figura según su tipo
+function dibujarFigura(x, y, tipo, size) {
+  let formas = [
+    () => ellipse(x, y, size),
+    () => rectMode(CENTER) || rect(x, y, size, size),
+    () => triangle(
+      x, y - size / 2,
+      x - size / 2, y + size / 2,
+      x + size / 2, y + size / 2
+    )
+  ];
+  noStroke();
+  formas[tipo % 3]();
+}
+
+#### GIF del resultado final
+
+![Grabación-de-pantalla-2025-07-20-a-la_s_-10 32 44 a m](https://github.com/user-attachments/assets/04033afd-f2fa-47ac-880e-6ed7474d8eca)
 
