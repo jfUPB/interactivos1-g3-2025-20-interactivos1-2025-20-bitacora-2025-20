@@ -139,9 +139,10 @@ function dibujarFigura(x, y, tipo, size) {
   ];
   noStroke();
   formas[tipo % 3]();
-}
+´´´
 
 #### GIF del resultado final
 
-![Grabación-de-pantalla-2025-07-20-a-la_s_-10 32 44 a m](https://github.com/user-attachments/assets/04033afd-f2fa-47ac-880e-6ed7474d8eca)
+
+![Resultado final](https://github.com/user-attachments/assets/e2aeffd9-b771-4bbe-9a54-b979cbe66cae)
 
