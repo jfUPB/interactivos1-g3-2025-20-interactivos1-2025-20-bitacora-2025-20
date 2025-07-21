@@ -84,9 +84,6 @@ function setup() {
 }
 
 function draw() {
-  noStroke();
-  fill(220, 50);
-  rect(0, 0, width, height);
 
   // Dibujar figura 1
   fill(r1, g1, b1);
@@ -139,10 +136,10 @@ function dibujarFigura(x, y, tipo, size) {
   ];
   noStroke();
   formas[tipo % 3]();
+}
 ```
 
 #### GIF del resultado final
 
-
-![Resultado final](https://github.com/user-attachments/assets/e2aeffd9-b771-4bbe-9a54-b979cbe66cae)
+![Resultado final]([https://github.com/user-attachments/assets/e2aeffd9-b771-4bbe-9a54-b979cbe66ca](https://github.com/user-attachments/assets/b6bb9845-f138-417d-887f-2ad1426caf81)
 
