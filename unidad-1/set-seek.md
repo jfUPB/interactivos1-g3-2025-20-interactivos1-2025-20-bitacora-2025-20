@@ -141,5 +141,5 @@ function dibujarFigura(x, y, tipo, size) {
 
 #### GIF del resultado final
 
-![Resultado final]([https://github.com/user-attachments/assets/e2aeffd9-b771-4bbe-9a54-b979cbe66ca](https://github.com/user-attachments/assets/b6bb9845-f138-417d-887f-2ad1426caf81)
+![Resultado final](https://github.com/user-attachments/assets/5cf643a9-8c3c-434f-a1e1-3caea7ac1a3d)
 
