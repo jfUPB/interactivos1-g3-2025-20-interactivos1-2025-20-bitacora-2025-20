@@ -40,6 +40,32 @@ Computador: Datos enviados por el puerto USB y la pantalla
 
 ### Actividad 04  
 
-Escribe el enlace a tu programa en el editor de p5.js.  
-Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).  
-Muestra una captura de pantalla del resultado de tu programa.  
+* Escribe el enlace a tu programa en el editor de p5.js.  
+https://editor.p5js.org/Ayepes2402/sketches/VXM4SUZSL
+* Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+```
+function setup() {
+  createCanvas(600, 400);
+  background(255);
+  noStroke();
+}
+
+function draw() {
+  let x = random(width);
+  let y = random(height);
+
+ 
+  let r = sin(frameCount * 0.01) * 127 + 128;
+  let g = cos(frameCount * 0.01) * 127 + 128;
+  let b = random(100, 255);
+  fill(r, g, b, 100);
+
+  
+  let size = random(10, 30);
+  ellipse(x, y, size, size);
+}
+```
+
+* Muestra una captura de pantalla del resultado de tu programa.  
+  <img width="448" height="298" alt="image" src="https://github.com/user-attachments/assets/83a57549-72de-455d-b7fb-e70fd63dea1c" />
+
