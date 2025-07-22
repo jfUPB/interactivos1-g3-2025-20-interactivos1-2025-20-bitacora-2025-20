@@ -43,6 +43,55 @@ Del computador son los datos enviados por el puerto USB y la pantalla
 
 ## Escribe el enlace a tu programa en el editor de p5.js.
 
-## Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+https://editor.p5js.org/alejogonzdav41/sketches/lhBSbsggE
 
+## Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+```
+let t = 0;
+
+function setup() {
+  createCanvas(600, 400);
+  background(240);
+  frameRate(10);
+  noStroke();
+}
+
+function draw() {
+  dibujarFiguraAleatoria();
+  t += 0.1;
+}
+
+function dibujarFiguraAleatoria() {
+  let tipo = int(random(3));
+
+  let col = color(
+    127 + 127 * sin(t + random(PI)),
+    127 + 127 * cos(t + random(PI)),
+    127 + 127 * sin(t + random(TWO_PI)),
+    random(100, 255)
+  );
+  fill(col);
+
+  let x = width / 2 + cos(t + random(-PI, PI)) * random(50, width / 2);
+  let y = height / 2 + sin(t + random(-PI, PI)) * random(50, height / 2);
+
+  let size = 20 + 30 * abs(sin(t + random(PI)));
+  
+  switch (tipo) {
+    case 0:
+      ellipse(x, y, size, size);
+      break;
+    case 1:
+      rect(x, y, size, size);
+      break;
+    case 2:
+      triangle(
+        x, y,
+        x + size, y,
+        x + size / 2, y - size
+      );
+      break;
+  }
+}
+```
 ## Muestra una captura de pantalla del resultado de tu programa.
