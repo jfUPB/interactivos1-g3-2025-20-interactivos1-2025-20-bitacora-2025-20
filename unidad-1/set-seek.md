@@ -95,3 +95,6 @@ function dibujarFiguraAleatoria() {
 }
 ```
 ## Muestra una captura de pantalla del resultado de tu programa.
+
+<img width="746" height="493" alt="image" src="https://github.com/user-attachments/assets/e5270c4c-00ed-4a67-8385-e71e3454403e" />
+
