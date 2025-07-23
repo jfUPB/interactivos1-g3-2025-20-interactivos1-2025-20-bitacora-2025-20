@@ -19,36 +19,27 @@ El diseño, o tambien llamado arte generativo, es la practica artistica en la qu
 
 Otro caso es el del logotipo de Philharmonie Louxembourg, el cual no hace uso de piezas estaticas como uno pensaria, sino que por medio de un sistema, logra que haya volumen en el logotipo al ritmo de la musica o cancion que este tocando el artista, teniendo variaciones, como si de los LEDS de un DJ se tratara, siendo algo que generalmente o en muchos casos, un diseñador grafico no llegaria a ese nivel.
 
-
-
-//Plotter es el que pinta, por medio de las indicaciones que le da el codigo (programa), y al introducir en ciertas partes IA o algoritmo, hace que la pinturas se vean diferentes, en el arte contemporaneo, el arte generativo toma pieza, ya no es modelar . Es desarollar un algoritmo, o las reglas, las obras son el codigo. 
-//Patrick Hubner
-//no hace piezas estaticas, como el logo de philharmonie louxembourg
-//cualquier practica artisticca en la que el artista utiliza un sistema, como un conjunto de reglas de lenguaje natural, un programa informaico, una maquina u otra invención procedimental, que se pone en marcha con cierto grado de autonomia, contribuyendo hasta una obra de arte terminada o dando resultado ella.
-//La practican artistas y diseñadores
-
-Algortimos, reglas, variabilidad, aleatoridad, sistema autonomo
-
 ¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
 
-//Desarollo de experiencias interactivas
+En un perfil profesional como el de un Ingeniero en Diseño de Entretenimiento Digital (IDED), el cual es mi caso por ejemplo, gracias a la ayuda de algoritmos y sistemas como fueron mostrados en los ejemplos de clase como el Plotter, permite crear y experimentar con las obras que yo pueda hacer, ya sea para volverlas más dinámicas o acelerar un proceso que puede llegar a ser tardío, pasando de estar demasiadas horas probando combinaciones de por ejemplo replicar un cuadro pero con diferencias notables, a tenerlo listo en cuestión de minutos o menos horas.
 
 ### Actividad 3
 
 En este sistemas físico interactivo identifica los inputs, outputs y el proceso
 
-//preguntar a que se refiere el proceso
+INPUTS:
 
-INPUT: microchip: Los botones y el acelerometro del micro chip y el mismo puerto de comunicación usb, el boton send love
+- Microchip: Los botones y el acelerometro del micro chip, asi como el mismo puerto de comunicación USB, además del botón de "Send love".
+- Computador: El serial/USB.
 
-del computador: El serial/usb
+OUTPUTS:
 
-OUTPUT: microchip: el puerto de comunicación USB, display (reacciona al input con el send love para mandar info)
+- Microchip: El puerto de comunicación USB, el display (en este caso, reacciona al input con el boton de send love para mandar información).
+- Computador: Los datos que el usuario envie por el serial y lo que muestra el computador.
 
-computador: los datos que envie por el serial y lo que muestra el computador.
+PROCESO:
 
-Proceso: MICRO CHIP LEE LOS INPUTS Y LA PAGINA RESPONDE A ESOS IMPUTS 
-es la parte del imput que generan los outputs
+El micro chip lee los inputs y la pagina responde a esos inputs. Tambien es la parte en la que el input generan los outputs.
 
 ### Actividad 4
 
