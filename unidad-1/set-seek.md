@@ -18,6 +18,75 @@ Del computador chiquito El cable usb puede ser tanto input como output, dependie
 
 Del pc, el input tambien es el cable usb y el boton de send love( serial ), los output pueden ser tanto la pantalla como el usb
 
-[Mi código](https://www.youtube.com/watch?v=OgZzUJud3Q4)
+[Mi código](https://www.youtube.com/watch?v=OgZzUJud3Q4 
+
+ ``` let balls = [];
+let speedSlider, ballInput, applyButton;
+
+function setup() {
+  createCanvas(600, 400);
+  angleMode(RADIANS);
+
+  // velocidad
+  speedSlider = createSlider(0.01, 0.2, 0.05, 0.01);
+  speedSlider.position(10, height + 10);
+  speedSlider.style('width', '120px');
+
+  //  cantidad de bolas
+  ballInput = createInput('5', 'number');
+  ballInput.position(150, height + 10);
+  ballInput.size(50);
+
+  applyButton = createButton('Aplicar');
+  applyButton.position(210, height + 10);
+  applyButton.mousePressed(resetBalls);
+
+  resetBalls();
+}
+
+function draw() {
+  background(30);
+  let speed = speedSlider.value();
+
+  for (let ball of balls) {
+    ball.update(speed);
+    ball.display();
+  }
 
 
+  fill(255);
+  noStroke();
+  text('Velocidad', 10, height + 40);
+  text('Cantidad', 150, height + 40);
+}
+
+function resetBalls() {
+  let count = int(ballInput.value());
+  balls = [];
+
+  for (let i = 0; i < count; i++) {
+    balls.push(new OscillatingBall(random(width), random(height), random(20, 40)));
+  }
+}
+
+class OscillatingBall {
+  constructor(x, y, radius) {
+    this.x0 = x;
+    this.y0 = y;
+    this.r = radius;
+    this.angle = random(TWO_PI);
+    this.radiusOffset = random(30, 100);
+  }
+
+  update(speed) {
+    this.angle += speed;
+  }
+
+  display() {
+    let x = this.x0 + cos(this.angle) * this.radiusOffset;
+    let y = this.y0 + sin(this.angle) * this.radiusOffset;
+    fill(100, 200, 255);
+    noStroke();
+    ellipse(x, y, this.r);
+  }
+}```
