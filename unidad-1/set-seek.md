@@ -12,6 +12,10 @@ Algunos ejemplos son Mario Kart Home Circuit, siendo un sistema que permite usar
 
 Otro ejemplo similar es el de ProCreate in Ipad, aquí el input, la tablet desde la app de ProCreate, mientras que el usuario dibuja líneas o círculos (las acciones del usuario también cuentan como input), el output, es decir, la pantalla del computador, mostrará lo que haya hecho el usuario de una forma diferente, pasando de ver solo líneas curvas y círculos, tallos de una flor junto a los mismos pétalos, moviéndose de forma animada.
 
+¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
+
+Dentro de mi perfil profesional, los sistemas físicos interactivos pueden ser de utilidad para aplicar mejoras o de plano tener una mejor capacidad de hacer prototipos de un proyecto, aunque a primera vista da la impresión de que solo serviria en la línea de Experiencias interactivas, en casos como los de Mario Kart y ProCreate estos sistemas también son de mucha utilidad en Videojuegos o Animación digital, incluso son bastante útiles yo en un futuro darle al usuario una experiencia más dinámica y especial.
+
 ### Actividad 2
 
 ¿Qué es el diseño/arte generativo?
@@ -45,5 +49,10 @@ El microchip lee los inputs y la página responde a esos inputs. También es la 
 ### Actividad 4
 
 Escribe el enlace a tu programa en el editor de p5.js.
+
+[Mi código de p5.js]https://editor.p5js.org/pinwinasio480/sketches/pIeeSax4q
+
 Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
 Muestra una captura de pantalla del resultado de tu programa
+
+
