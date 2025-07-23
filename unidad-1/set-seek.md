@@ -26,6 +26,7 @@ Cuando sacudo el micro:bit, el círculo se pone verde.
 Cuando presiono el botón Send Love en la interfaz, el micro:bit muestra un corazón y luego una carita feliz.
 
 ### Actividad 04
+CODIGO:
 
 ```
 function setup() {
@@ -49,7 +50,5 @@ function draw() {
 
 <img width="406" height="396" alt="image" src="https://github.com/user-attachments/assets/b98a8b9b-b383-4ae7-9c79-f44d0446e8d8" />
 
-
-### Actividad 05
 
 
