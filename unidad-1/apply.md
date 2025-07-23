@@ -7,9 +7,9 @@ Si oprimo el cuadro en el canva esta blanco y al conctarse al micro:bit se vuelv
 
 - Imput: botón A, información del serial
 - Output: Programa, lo visual
-- Procesador:  si recibo un A lo pinto rojo si dejo de hundir esta verde
+- Procesador:  si recibo un A lo pinto rojo si dejo de hundir esta verde (programa)
 
-### Actividad 
+### Actividad 6
 [codigo p5](https://editor.p5js.org/mafora12/sketches/lXU1OAV6-)  
 
 Codigo p5:  
