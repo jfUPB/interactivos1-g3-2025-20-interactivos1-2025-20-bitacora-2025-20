@@ -2,6 +2,17 @@
 
 ## 🛠 Fase: Apply
 
+## Actividad 5
+
+* Input Microbit: Boton A
+* Output Microbit: Mensaje
+* Proceso: Cuando se presiona el boton A se envia el mensaje
+* Input p5: Boton, informacion serial
+* Output p5: Boton, cuadro que cambia entre verde y rojo
+* Proceso: Si recibe algo de un "A" cambia el color
+
+  El codigo se utiliza para cambiar el color del recuadro al presionar el boton
+
 ## Actividad 6
 
 # Escribe el enlace a tu programa en el editor de p5.js.
