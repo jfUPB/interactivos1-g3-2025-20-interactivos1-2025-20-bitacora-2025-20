@@ -50,7 +50,7 @@ El microchip lee los inputs y la página responde a esos inputs. También es la 
 
 Escribe el enlace a tu programa en el editor de p5.js.
 
-[Mi código de p5.js] https://editor.p5js.org/pinwinasio480/sketches/pIeeSax4q
+[Mi código de p5.js](https://editor.p5js.org/pinwinasio480/sketches/pIeeSax4q)
 
 Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
 Muestra una captura de pantalla del resultado de tu programa
