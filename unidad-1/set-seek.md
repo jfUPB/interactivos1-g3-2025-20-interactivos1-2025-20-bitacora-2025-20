@@ -99,3 +99,10 @@ class OscillatingBall {
 
 ## Outputs:
 * Pantalla
+
+
+https://github.com/user-attachments/assets/db06497d-0a3a-40ac-9929-db1baf866a4b
+
+
+
+
