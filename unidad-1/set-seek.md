@@ -89,4 +89,13 @@ class OscillatingBall {
     noStroke();
     ellipse(x, y, this.r);
   }
-}```
+}
+```
+
+
+## Inputs:
+* Boton para cambiar la cantidad de bolas
+* Slide para cambiar la velocidad
+
+## Outputs:
+* Pantalla
