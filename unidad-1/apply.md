@@ -78,7 +78,7 @@ let circleX = 200;
 
 Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
 
-
+```Python
 
 from microbit import *
 
