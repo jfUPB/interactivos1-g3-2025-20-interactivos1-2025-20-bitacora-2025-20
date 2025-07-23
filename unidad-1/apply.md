@@ -79,7 +79,7 @@ function connectBtnClick() {
 ```
 
 Codigo micro:bit :  
-```javascript
+```py
 from microbit import *
 
 uart.init(baudrate=115200)
