@@ -3,8 +3,8 @@
 ## 🔎 Fase: Set + Seek
 
 
-#Actividad 6
-### Link:https://editor.p5js.org/n4ndeZzz/sketches/Cz1YTku9Q  
+### Actividad 6
+Enlace a mi proyecto en p5.js [aquí](https://editor.p5js.org/n4ndeZzz/sketches/Cz1YTku9Q)  
 
 ```javascript
 let port;
@@ -55,9 +55,9 @@ function connectBtnClick() {
     port.close();
   }
 }
+```
 
-
-```python
+```py
 from microbit import *
 
 uart.init(baudrate=115200)
@@ -72,6 +72,4 @@ while True:
 
 
     sleep(100)
-
-
-
+```
