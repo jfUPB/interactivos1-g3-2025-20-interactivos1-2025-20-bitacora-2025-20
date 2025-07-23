@@ -18,3 +18,38 @@ El diseño y arte generativos son formas de crear cosas usando sistemas. Es un p
 En mi perfil profesional, podría aplicar el diseño y arte generativos para crear soluciones más creativas y originales, por ende mas utiles y exitosas.
 
 ### Actividad 03
+Herramientas y tecnologías
+
+¿Qué observé?
+Cuando presiono los botones A o B en el micro:bit, el círculo en la pantalla cambia de color.
+Cuando sacudo el micro:bit, el círculo se pone verde.
+Cuando presiono el botón Send Love en la interfaz, el micro:bit muestra un corazón y luego una carita feliz.
+
+### Actividad 04
+
+```
+function setup() {
+  createCanvas(400, 400);
+  background(240);
+  noLoop();
+}
+
+function draw() {
+  for (let i = 0; i < 30; i++) {
+    let x = random(width);
+    let y = random(height);
+    let w = random(20, 60);
+    let h = random(20, 60);
+    fill(random(255), random(255), random(255), 150);
+    noStroke();
+    rect(x, y, w, h);
+  }
+}
+```
+
+<img width="406" height="396" alt="image" src="https://github.com/user-attachments/assets/b98a8b9b-b383-4ae7-9c79-f44d0446e8d8" />
+
+
+### Actividad 05
+
+
