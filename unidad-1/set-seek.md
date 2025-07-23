@@ -53,6 +53,24 @@ Escribe el enlace a tu programa en el editor de p5.js.
 [Mi código de p5.js](https://editor.p5js.org/pinwinasio480/sketches/pIeeSax4q)
 
 Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(120, 10);
+  square(random(100, 250), random(150,350), random(25,50));
+  ellipse(random(50, 50), random(200,250), random(50,75));
+  point(random(350, 350), random(200,250), random(50,75));
+  let x = 100 * cos(frameCount * 0.05) + 180;
+  let y = 50;
+  line(75, y, x, y);
+  circle(x, y, 20);
+}
+
 Muestra una captura de pantalla del resultado de tu programa
+
+<img width="497" height="497" alt="image" src="https://github.com/user-attachments/assets/8abb448f-636b-45a7-94eb-cbe8015655f4" />
 
 
