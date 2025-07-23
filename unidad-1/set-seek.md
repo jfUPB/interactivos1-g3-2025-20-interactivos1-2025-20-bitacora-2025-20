@@ -2,8 +2,11 @@
 
 ## 🔎 Fase: Set + Seek
 
-### Actividad 1
+### Actividad 1  
+*¿Qué es un sistema físico interactivo?*  
+Un sistema físico interactivo es el que tiene inputs que se envían a un programa, sistema o proceso en tiempo real; el respectivo programa y outputs, los cuales segun los inputs generaran una respuesta específica  
 
+¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
 
 ### Actividad 2
 
