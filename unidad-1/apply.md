@@ -10,7 +10,7 @@ Usando condicionales y ciclos, en el lado del software de dibujo, se logra que l
 
 Por otro lado, es posible verificar si el micro:bit esta conectado al equipo mirando el color del cuadrado proyectadfo en la pantalla, ya que mientras esté desconectado este será de color blanco.
 
-#### Código micro:bit.editor
+#### Código en micro:bit editor
 
 ```python
 from microbit import *
@@ -25,4 +25,57 @@ while True:
         uart.write('B')
 ```
 
+#### Código en p5.js
 
+```javascript
+let port;
+let connectBtn;
+let connectionInitialized = false;
+let x = 100;
+
+function setup() {
+  createCanvas(400, 400);
+  background(220);
+  port = createSerial();
+  connectBtn = createButton("Connect to micro:bit");
+  connectBtn.position(80, 300);
+  connectBtn.mousePressed(connectBtnClick);
+}
+
+function draw() {
+  background(220);
+
+  if (port.opened() && !connectionInitialized) {
+    port.clear();
+    connectionInitialized = true;
+  }
+
+  if (port.availableBytes() > 0) {
+    let dataRx = port.read(1);
+    if (dataRx == "A") {
+      x -= 10;
+    } else if (dataRx == "B") {
+      x += 10;
+    }
+  }
+
+  ellipseMode(CENTER);
+  fill("red");
+  ellipse(x, height / 2, 50, 50);
+
+  if (!port.opened()) {
+    connectBtn.html("Connect to micro:bit");
+  } else {
+    connectBtn.html("Disconnect");
+  }
+}
+
+function connectBtnClick() {
+  if (!port.opened()) {
+    port.open("MicroPython", 115200);
+    connectionInitialized = false;
+  } else {
+    port.close();
+  }
+}
+```
