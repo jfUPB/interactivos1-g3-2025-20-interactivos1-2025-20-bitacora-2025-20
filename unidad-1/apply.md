@@ -15,7 +15,7 @@ Link programa en el editor de p5.js:
 https://editor.p5js.org/SANTISDVSF/sketches/n1Ptt6Huk
 
 CODIGO DEL PROGRAMA:
-#### 🧾 Código del micro:bit (Python)
+#### Código del micro:bit (Python)
 
 ```
 from microbit import *
