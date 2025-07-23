@@ -2,6 +2,21 @@
 
 ## 🔎 Fase: Set + Seek
 
+### Actividad 1
+
+
+### Actividad 2
+
+
+### Actividad 3
+
+
+### Actividad 4
+
+
+### Actividad 5
+
+
 
 ### Actividad 6
 Enlace a mi proyecto en p5.js [aquí](https://editor.p5js.org/n4ndeZzz/sketches/Cz1YTku9Q)  
