@@ -106,6 +106,8 @@ https://github.com/user-attachments/assets/db06497d-0a3a-40ac-9929-db1baf866a4b
 
 ## Actividad 4
 
+[Mi código](https://editor.p5js.org/)
+
 p5.js
 ```
 let port;
@@ -160,6 +162,7 @@ x=200
 
 microbit
 
+ 
 ```
 from microbit import *
  
