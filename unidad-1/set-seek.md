@@ -47,4 +47,4 @@ Especfíficamente yo que tengo interes en el área de experiencias interactivas 
      }
    }
      ```
-3) ![Captura](Captura de pantalla.png)
+3) ![Captura del resultado](unidad-1/captura.png)
