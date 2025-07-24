@@ -46,5 +46,5 @@ Especfíficamente yo que tengo interes en el área de experiencias interactivas 
     ellipse(x, y, 15, 15);
      }
    }
-   ```
-3) 
+     ```
+3) ![Captura](Captura de pantalla.png)
