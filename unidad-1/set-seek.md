@@ -29,22 +29,22 @@ Especfíficamente yo que tengo interes en el área de experiencias interactivas 
 
 ### Actividad 4  
 1) [Link al programa](https://editor.p5js.org/n4ndeZzz/sketches/SF-1L0ZGs)
-2)
-   function setup() {
-  createCanvas(600, 400);
-  background(255);
-  noStroke();
-}
+2) 
+     ```javascript  
+     function setup() {
+     createCanvas(600, 400);
+     background(255);
+     noStroke();
+   }
 
-function draw() {
-  background(255);
-  fill(100, 150, 255);
+   function draw() {
+     background(255);
+     fill(100, 150, 255);
 
-  for (let x = 0; x < width; x += 20) {
+     for (let x = 0; x < width; x += 20) {
     let y = height / 2 + sin(x * 0.05 + frameCount * 0.05) * 50;
     ellipse(x, y, 15, 15);
-  }
-}
-
-
-
+     }
+   }
+   ```
+3) 
