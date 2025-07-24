@@ -75,6 +75,7 @@ let circleX = 200;
       port.close();
     }
   }
+```
 
 Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
 
@@ -93,4 +94,5 @@ while True:
         uart.write('B')
 
     sleep(100)
+```
       
