@@ -19,9 +19,32 @@ Son piezas gráficas que se generan mediante sistemas físicos interactivos, hay
 Especfíficamente yo que tengo interes en el área de experiencias interactivas tengo demasiadas poisibilidades para usar esto, ya que todos los sistemas que funcionen de esta forma pueden ser usados para cualquier tipo de experiencia, sea para usarla por un tercero o por mi persona en la generación de piezas gráficas
 
 ### Actividad 3  
+*En este sistemas físico interactivo identifica los inputs, outputs y el proceso.*  
+| Elemento    | Descripción                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| **Inputs**  | Botones A y B, gesto "shake", clic en "Send Love"                       |
+| **Proceso** | Enviar/recibir datos por comunicacion serial y cambiar estados          |
+| **Outputs** | Círculo de colores (p5.js), íconos en micro\:bit display                |
 
 
 ### Actividad 4  
+1) [Link al programa](https://editor.p5js.org/n4ndeZzz/sketches/SF-1L0ZGs)
+2)
+   function setup() {
+  createCanvas(600, 400);
+  background(255);
+  noStroke();
+}
+
+function draw() {
+  background(255);
+  fill(100, 150, 255);
+
+  for (let x = 0; x < width; x += 20) {
+    let y = height / 2 + sin(x * 0.05 + frameCount * 0.05) * 50;
+    ellipse(x, y, 15, 15);
+  }
+}
 
 
 
