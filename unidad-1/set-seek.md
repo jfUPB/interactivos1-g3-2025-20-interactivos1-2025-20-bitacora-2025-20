@@ -19,7 +19,6 @@ Del computador chiquito El cable usb puede ser tanto input como output, dependie
 Del pc, el input tambien es el cable usb y el boton de send love( serial ), los output pueden ser tanto la pantalla como el usb
 
 [Mi código](https://editor.p5js.org/Juandavid1612/sketches/pIJ7XDj5n)
-
  ``` let balls = [];
 let speedSlider, ballInput, applyButton;
 
@@ -173,4 +172,11 @@ while True:
           uart.write('A')
           uart.write('B')
 ```
-
+Input Microbit: Boton A
+Output Microbit: Mensaje
+Proceso: Cuando se presiona el boton A se envia el mensaje
+Input p5: Boton, informacion serial
+Output p5: Boton, cuadro que cambia entre verde y rojo
+Proceso: Si recibe algo de un "A" cambia el color
+El codigo se utiliza para cambiar el color del recuadro al presionar el boton
+ 
