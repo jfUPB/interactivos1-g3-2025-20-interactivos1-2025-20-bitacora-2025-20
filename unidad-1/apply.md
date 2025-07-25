@@ -3,7 +3,9 @@
 ## 🛠 Fase: Apply
 
 ### Actividad 5  
+Este sistema físico interactivo conecta un microcontrolador (micro:bit) con un programa visual hecho en p5.js. Cuando la persona presiona el botón A en el micro:bit, este envía una señal por puerto serial a la computadora. El programa en p5.js recibe esa señal y cambia el color de un cuadrado en la pantalla dependiendo de si el botón está presionado o no.
 
+Gracias a que el micro:bit envía constantemente el estado del botón (presionado o no), la comunicación es continua. Esto permite que la interfaz visual responda en tiempo real al accionar físico del usuario.  
 
 
 ### Actividad 6
