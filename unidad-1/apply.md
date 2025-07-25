@@ -6,15 +6,15 @@ Actividad 5
 
 En tu bitácora: explica cómo funciona el sistema físico interactivo que acabamos de crear.
 
-inpuit: boton, informacion serial
-output: botom , lo visual
-proceso: si recibo a, el cuadrado pinta roja, pero al oprimir n, el cuadro se pone verde
-microbit, indicar el boton oprimido y dar cool down para cada mensaje
+Antes de explicar el funcionamiento del sistema interactivo visto en clase, es importante destacar cuales son los inputzs y outputs del mismo:
 
-procesamiento: ver si el bootn se esta oprimiendo y el output responde
+Inputs: El boton que oprime el usuario ("A"), y la información serial.
+Outputs: El boton de "Connect to micro:bit/Disconnect" y lo visual (color del cuadrado).
 
-cada que enviamos, lo detecta una vez
- CONSIDERANDO TIMING Y POSIBLES PROBLEMAS
+Ya con esto, el funcionamiento es simple, cuando se activa el sistema, aparecera un cuadrado blanco, al conectar el micro:bit, si el usuario oprime el boton a
+el cuadrado se volvera rojo e indicara que se hizo con una 'A', al hacer algo opuesto a esto, se señalara con una 'N' mientras el cuadrado se vuelve verde,
+en si, se encarga de indicar el boton oprimido, evidenciarlo con el color del cuadrado (el output da respuesta) y dar cool down para cada mensaje, debido a que, cada que enviamos 
+una acción con el botón o contrario, el sistema lo detecta una vez, considerando timing y posibles problemas.
 
 Actividad 6
 
