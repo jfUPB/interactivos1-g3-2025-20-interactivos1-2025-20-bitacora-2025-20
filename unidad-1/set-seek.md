@@ -26,7 +26,7 @@ En la ingeniería en diseño de entretenimiento digital, considero que el diseñ
 
 ### Actividad 03  
 
-**Inputs:**  }
+**Inputs:**  
 Microbit: A y B (Botones), Aceleron, Puerto USB y el Display
 Computador: Puerto USB
 
