@@ -2,7 +2,7 @@
 
 ## 🛠 Fase: Apply
 
-Actividad 5
+### Actividad 5
 
 En tu bitácora: explica cómo funciona el sistema físico interactivo que acabamos de crear.
 
@@ -16,7 +16,7 @@ el cuadrado se volvera rojo e indicara que se hizo con una 'A', al hacer algo op
 en si, se encarga de indicar el boton oprimido, evidenciarlo con el color del cuadrado (el output da respuesta) y dar cool down para cada mensaje, debido a que, cada que enviamos 
 una acción con el botón o contrario, el sistema lo detecta una vez, considerando timing y posibles problemas.
 
-Actividad 6
+### Actividad 6
 
 Escribe el enlace a tu programa en el editor de p5.js.
 
