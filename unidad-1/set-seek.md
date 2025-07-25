@@ -47,4 +47,9 @@ Especfíficamente yo que tengo interes en el área de experiencias interactivas 
      }
    }
      ```
-3) ![Captura del resultado](unidad-1/captura.png)
+
+3)      
+
+<img width="1853" height="524" alt="image" src="https://github.com/user-attachments/assets/8bc8bbeb-6eff-4b41-ba5b-16fbf7cf7fb8" />
+
+
