@@ -76,22 +76,19 @@ while True:
 ```
 
 - Estados:  
-  El semáforo tiene 3 estados principales, que representan el color actual encendido:
-  
+  El semáforo tiene 3 estados principales, que representan el color actual encendido:  
   RED: el semáforo muestra la luz roja.  
   GREEN: el semáforo muestra la luz verde.  
   YELLOW: el semáforo muestra la luz amarilla.  
 
 - Eventos:  
-  Los eventos están relacionados con el paso del tiempo:
-  
+  Los eventos están relacionados con el paso del tiempo:  
   Si el semáforo está en RED y han pasado 2 segundos, cambia a GREEN.  
   Si está en GREEN y han pasado 2 segundos, cambia a YELLOW.  
   Si está en YELLOW y ha pasado 1 segundo, cambia a RED.
 
 - Acciónes:  
-  Cada vez que se entra a un estado, se ejecuta una acción específica:
-  
+  Cada vez que se entra a un estado, se ejecuta una acción específica:  
   En RED: se limpia la pantalla y se enciende el LED superior (posición 2,0).  
   En GREEN: se limpia la pantalla y se enciende el LED inferior (posición 2,4).  
   En YELLOW: se limpia la pantalla y se enciende el LED central (posición 2,2).  
@@ -104,7 +101,6 @@ while True:
   Entre cada cambio de estado, el micro:bit espera el tiempo correspondiente antes de pasar al siguiente.
 
 - Lógica:
-  
   Se utiliza una clase llamada "TrafficLight" que guarda el estado actual y el tiempo del último cambio.  
   En el método "update()" se verifica si ha pasado suficiente tiempo desde el último cambio de color.  
   Si se cumple el tiempo, se cambia de estado y se actualiza la pantalla con el LED correspondiente.  
