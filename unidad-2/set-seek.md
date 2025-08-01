@@ -68,9 +68,9 @@ while True:
 **Estados, eventos y acciones**
 
 **Estados**
-- "RED": Se enciende el LED superior (rojo).
-- "GREEN": Se enciende el LED del medio (verde).
-- "YELLOW": Se enciende el LED inferior (amarillo).
+- `"RED"`: Se enciende el LED superior (rojo).
+- `"GREEN"`: Se enciende el LED del medio (verde).
+- `"YELLOW"`: Se enciende el LED inferior (amarillo).
 
 **Eventos / Inputs**
 - Tiempo transcurrido en cada estado.
@@ -85,6 +85,7 @@ while True:
 - Reiniciar el contador de tiempo.
  
 ### Actividad 03 - 01/08/2025
+
 
 
 
