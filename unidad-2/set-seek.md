@@ -152,10 +152,15 @@ while True:
 
 *1. Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.*
 
-
+Por que no solo el programa cambia de manera consecutiva las caras con un contador, sino que tambien el usuario puede oprimr el boton 'a' para hacer manualmente el cambio de rostros.
 
 *2. Identifica los estados, eventos y acciones en el programa.*
 
+Estados: Happy, Smile, Sad
 
+Eventos: El coold down de tiempo entre los cambios de rostros
+
+Acción: Oprimir el botón 'a' para cambiar
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
+
