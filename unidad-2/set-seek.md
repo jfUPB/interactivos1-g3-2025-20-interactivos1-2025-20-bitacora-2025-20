@@ -50,15 +50,17 @@ while True:
 
 *1. Describe detalladamente cómo funciona este ejemplo.*
 
-
+En el ejemplo, el programa lo que hace es que desde el MicroBit prende ciertos leds del mismo con un cooldown.
    
 *2. ¿Cuáles son los estados en el programa?*
 
-
+Los dos estados con los que cuenta el programa son Init y TimeWithout
 
 *3. ¿Cuáles son los eventos/inputs en el programa?*
 
+Eventos: 
 
+Inputs: 
   
 *4. ¿Cuáles son las acciones en el programa?*
 
@@ -67,13 +69,17 @@ while True:
 ### Implementando un semáforo con máquina de estados
 #### Implementemos juntos un semáforo simple (rojo, amarillo, verde) utilizando una máquina de estados en Micropython. Representaremos cada color del semáforo con un LED del display del micro:bit.
 
-*Escribe el código que soluciona este problema en tu bitácora.*
+*1. Escribe el código que soluciona este problema en tu bitácora.*
 
 
 
-*Identifica los estados, eventos y acciones en tu código.*
+*2. Identifica los estados, eventos y acciones en tu código.*
 
+Estados:
 
+Eventos:
+
+Acciones
 
 ### Actividad 3
 
