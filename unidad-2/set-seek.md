@@ -35,6 +35,47 @@ Cada vez que se cambia el estado del pixel, se actualiza startTime para medir el
 Mantenerse en el estado "WaitTimeout":
 Una vez inicializado, el objeto permanece en este estado ejecutando las acciones anteriores en cada ciclo de actualizacion.
 
+## CODIGO DE CLASE 
+´´´
+from microbit import *
+import utime
+
+STATE_INIT = 0
+STATE_HAPPY = 1 
+STATE_SMILE = 2
+STATE_SAD = 3 
+TIME_IN_HAPPY = 1500
+
+
+currentState = STATE_INIT
+
+
+def tarea1():
+    global currentState
+    global startTime
+    global interval
+    
+    if currentState == STATE_INIT: 
+        display.show(Image.HAPPY) 
+        startTime = utime.ticks_ms()
+        interval = TIME_IN_HAPPY 
+        currentState = STATE_HAPPY
+        
+    elif currentState == STATE_HAPPY: 
+        if utime.ticks_diff(utime.ticks_ms(),startTime) > interval:
+            pass
+    elif currentState == STATE_SMILE: 
+        pass
+    elif currentState == STATE_SAD: 
+        pass 
+    else: 
+        pass
+
+while True: 
+    tarea1()
+´´´
+
+
 
 
 
