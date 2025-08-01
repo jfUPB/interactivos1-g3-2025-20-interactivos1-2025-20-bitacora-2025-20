@@ -4,9 +4,11 @@
 
 ### Actividad 1.  
 
-Al revisar el código trabajado en clase sobre el parpadeo de píxeles con micro:bit, me concentré en entender el funcionamiento interno del programa a partir de tres aspectos clave: los estados, los eventos/entradas y las acciones. 
+#### 1.  
+Este programa fue desarrollado para la placa micro:bit y utiliza una máquina de estados para manejar el parpadeo de dos píxeles en la pantalla LED. A través de una clase llamada Pixel, se crean dos objetos que representan píxeles ubicados en posiciones diferentes: uno en la esquina superior izquierda (0,0) y otro en la esquina inferior derecha (4,4). Cada uno parpadea a una velocidad distinta: uno cada 1000 milisegundos (1 segundo) y el otro cada 500 milisegundos (0.5 segundos).
+El programa usa una lógica de estados para controlar el tiempo y el comportamiento visual de cada píxel. La idea es que cada píxel alterne entre encendido y apagado después de cierto intervalo de tiempo.
 
-#### 1. Estados del programa.  
+#### 2. Estados del programa.  
 
 El objeto "Pixel", creado dentro del programa, funciona como una pequeña máquina de estados. Cada objeto tiene dos estados principales:  
 
@@ -16,7 +18,24 @@ El objeto "Pixel", creado dentro del programa, funciona como una pequeña máqui
 
 Cada pixel tiene sus propios estados de forma independiente.  
 
-#### 2.
+#### 3. Los eventos del programa:   
+Los eventos que determinan cuándo cambiar de estado o realizar una acción son:  
+
+- Inicio del programa: cuando se crea el objeto Pixel, este empieza en el estado "Init".
+
+- Paso del tiempo: se utiliza la función utime.ticks_diff(...) > self.interval para verificar si ya pasó el tiempo necesario desde la última acción. Si el tiempo ha pasado, se ejecuta la acción de cambio de brillo.  
+
+#### 3. Acciones en el programa  
+Dependiendo del estado y del evento, se ejecutan distintas acciones:  
+- En el estado "Init": Se guarda el tiempo actual con "utime.ticks_ms()" y se actualiza el estado a "WaitTimeout" tambvien, se enciende el píxel con el valor inicial (en este caso, 0 que significa apagado).  
+- En el estado "WaitTimeout": Si ha pasado el intervalo de tiempo definido, se alterna el valor del brillo del píxel:  
+  - Si está en 9 (encendido), se cambia a 0 (apagado).  
+  - Si está en 0, se cambia a 9.  
+- Se actualiza visualmente el píxel usando display.set_pixel(...).  
+- Se actualiza el tiempo de referencia para comenzar a contar nuevamente el intervalo.  
+
+
+#### Actividad 2.
 Codigo semaforo:
 
 ```javascript
@@ -110,3 +129,4 @@ while True:
 
 
   
+
