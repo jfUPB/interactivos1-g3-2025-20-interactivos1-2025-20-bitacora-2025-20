@@ -86,6 +86,60 @@ while True:
  
 ### Actividad 03 - 01/08/2025
 
+**Descripción del comportamiento del sistema**
+
+Este programa implementa una máquina de estados que alterna entre diferentes expresiones faciales en el display de la micro:bit (feliz, sonriente y triste) siguiendo un **ciclo de tiempo predefinido**. Adicionalmente, el sistema puede **interrumpir este ciclo en cualquier momento** si el usuario presiona el botón A, y cambiar la imagen mostrada según el estado actual.
+
+**¿Por qué decimos que este programa maneja tareas de forma concurrente?**
+
+Decimos que este programa maneja tareas de forma concurrente porque el programa supervisa continuamente dos tipos de eventos simultáneamente de la siguiente forma:
+
+1. El `paso del tiempo`, para cambiar automáticamente la expresión en pantalla según el intervalo establecido.
+2. La `presión del botón A`, que interrumpe ese ciclo para cambiar la imagen de manera inmediata, sin esperar a que termine el intervalo.
+
+Ambos eventos se verifican en cada iteración del ciclo while True, simulando una concurrencia cooperativa.
+
+**Estados del sistema**
+
+- `STATE_INIT:` Estado inicial de configuración, transiciona inmediatamente a STATE_HAPPY.
+- `STATE_HAPPY:` Muestra Image.HAPPY.
+- `STATE_SMILE:` Muestra Image.SMILE.
+- `STATE_SAD:` Muestra Image.SAD.
+  
+**Eventos / Entradas**
+
+- Presión del botón A.
+- Paso del tiempo definido para cada estado.
+
+**Acciones**
+
+- Mostrar una imagen en el display.
+- Cambiar de estado.
+- Reiniciar el temporizador.
+- Establecer nuevo intervalo.
+
+**Vectores de prueba**
+
+**Vector de prueba 1: Transición automática por tiempo (sin botón)**
+
+- Condición inicial: El sistema se encuentra en STATE_HAPPY.
+- Evento generado: Pasan 1500 ms sin presionar ningún botón.
+- Resultado esperado: El sistema cambia a STATE_SMILE y muestra la imagen Image.SMILE.
+- Resultado obtenido: El sistema cambió correctamente a STATE_SMILE.
+
+**Vector de prueba 2: Interrupción desde estado feliz con botón A**
+
+- Condición inicial: El sistema se encuentra en STATE_HAPPY.
+- Evento generado: Se presiona el botón A antes de que pasen los 1500 ms.
+- Resultado esperado: El sistema cambia a STATE_SAD inmediatamente.
+- Resultado obtenido: El sistema mostró Image.SAD y cambió a STATE_SAD sin esperar al tiempo.
+
+**Vector de prueba 3: Interrupción desde estado triste con botón A**
+
+- Condición inicial: El sistema se encuentra en STATE_SAD.
+- Evento generado: Se presiona el botón A.
+- Resultado esperado: El sistema cambia a STATE_SMILE y muestra Image.SMILE.
+- Resultado obtenido: La transición ocurrió correctamente.
 
 
 
