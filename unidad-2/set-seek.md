@@ -68,23 +68,24 @@ while True:
 **Estados, eventos y acciones**
 
 **Estados**
-	•	"RED": Se enciende el LED superior (rojo).
-	•	"GREEN": Se enciende el LED del medio (verde).
-	•	"YELLOW": Se enciende el LED inferior (amarillo).
+- "RED": Se enciende el LED superior (rojo).
+- "GREEN": Se enciende el LED del medio (verde).
+- "YELLOW": Se enciende el LED inferior (amarillo).
 
 **Eventos / Inputs**
-	•	Tiempo transcurrido en cada estado.
-	•	Cambia de rojo a verde después de 3 s.
-	•	Cambia de verde a amarillo después de 3 s.
-	•	Cambia de amarillo a rojo después de 1.5 s.
+- Tiempo transcurrido en cada estado.
+- Cambia de rojo a verde después de 3 s.
+- Cambia de verde a amarillo después de 3 s.
+- Cambia de amarillo a rojo después de 1.5 s.
 
 **Acciones**
-	•	Borrar el display.
-	•	Encender el LED correspondiente según el estado.
-	•	Cambiar de estado tras cumplirse el intervalo de tiempo.
-	•	Reiniciar el contador de tiempo.
+- Borrar el display.
+- Encender el LED correspondiente según el estado.
+- Cambiar de estado tras cumplirse el intervalo de tiempo.
+- Reiniciar el contador de tiempo.
  
 ### Actividad 03 - 01/08/2025
+
 
 
 
