@@ -36,6 +36,7 @@ Mantenerse en el estado "WaitTimeout":
 Una vez inicializado, el objeto permanece en este estado ejecutando las acciones anteriores en cada ciclo de actualizacion.
 
 ## CODIGO DE CLASE 
+
 ´´´
 from microbit import *
 import utime
@@ -74,6 +75,7 @@ def tarea1():
 while True: 
     tarea1()
 ´´´
+
 
 
 
