@@ -35,3 +35,34 @@ Se espera a que pase el tiempo o sea la hora de prender/apagar.
 - this. en c# es self. en python.  
 - Para funciones en python utilizamos def.  
 - El evento es cuando debo esperar algo para que pase algo.
+
+### Actividad 3
+
+####  Identifica los estados, eventos y acciones en el programa.
+- pseudoestado init (no espera nada), estado happy, estado smile y estado sad.
+- Eventos ciclo "normal":
+1. De happy a smile: 
+```python 
+if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+```
+2. De smile a sad: 
+```python 
+if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+```
+3. De sad a happy: 
+```python 
+if utime.ticks_diff(utime.ticks_ms(), start_time) > interval:
+``` 
+- Condiciones que cambian el ciclo normal:
+1. De happy a sad: 
+```python 
+if button_a.was_pressed(): 
+``` 
+2. De smile a happy:
+```python 
+ if button_a.was_pressed(): 
+```
+3. De sad a smile: 
+```python 
+if button_a.was_pressed(): 
+``` 
