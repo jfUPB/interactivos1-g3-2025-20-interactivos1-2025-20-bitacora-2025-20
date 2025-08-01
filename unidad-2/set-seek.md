@@ -35,7 +35,7 @@ Dependiendo del estado y del evento, se ejecutan distintas acciones:
 - Se actualiza el tiempo de referencia para comenzar a contar nuevamente el intervalo.  
 
 
-#### Actividad 2.
+### Actividad 2.
 Codigo semaforo:
 
 ```javascript
@@ -124,9 +124,56 @@ while True:
   En el método "update()" se verifica si ha pasado suficiente tiempo desde el último cambio de color.  
   Si se cumple el tiempo, se cambia de estado y se actualiza la pantalla con el LED correspondiente.  
 
+### Actividad 3.
+
+#### 1. ¿Por qué decimos que este programa permite realizar de manera concurrente varias tareas?  
+
+Decimos que este programa permite realizar varias tareas de manera concurrente porque no se queda esperando de forma pasiva a que el usuario presione un botón o a que pase un intervalo de tiempo. En cada ciclo del "while True", el sistema:  
+
+- Verifica si se ha presionado el botón A, y al mismo tiempo.  
+- Verifica si ya pasó el intervalo de tiempo para cambiar de imagen.  
+
+Estas dos verificaciones ocurren al mismo tiempo, sin que una bloquee a la otra. Así, la micro:bit puede responder a eventos externos (como un botón presionado) y también realizar cambios de estado basados en el tiempo, todo en un solo flujo continuo.
+
+Esto simula un comportamiento multitarea o concurrente, aunque técnicamente solo haya un hilo de ejecución.
+
+#### 2. Estados, eventos y acciones en el programa
+
+1. Estados:  
+   STATE_INIT → Estado inicial (pseudoestado, no se repite)  
+   STATE_HAPPY → Se muestra la imagen HAPPY   
+   STATE_SMILE → Se muestra la imagen SMILE  
+   STATE_SAD → Se muestra la imagen SAD  
+   
+3. Eventos  
+   - Presión del botón A (button_a.was_pressed())  
+   - Paso del tiempo (utime.ticks_diff(...) > intervalo)
+     
+4. Acciones  
+Dependiendo del estado y del evento, se realizan las siguientes acciones:
+
+- En STATE_INIT:
+  Mostrar imagen HAPPY  
+  Guardar tiempo actual  
+  Cambiar a STATE_HAPPY  
+  Establecer intervalo de 1500 ms  
+
+- En STATE_HAPPY:   
+  Si se presiona botón A → mostrar SAD, cambiar a STATE_SAD, nuevo tiempo e intervalo 2000 ms  
+  Si pasa el tiempo → mostrar SMILE, cambiar a STATE_SMILE, intervalo 1000 ms  
+
+- En STATE_SMILE:  
+  Si se presiona botón A → mostrar HAPPY, cambiar a STATE_HAPPY, intervalo 1500 ms  
+  Si pasa el tiempo → mostrar SAD, cambiar a STATE_SAD, intervalo 2000 ms   
+
+- En STATE_SAD:
+  Si se presiona botón A → mostrar SMILE, cambiar a STATE_SMILE, intervalo 1000 ms   
+  Si pasa el tiempo → mostrar HAPPY, cambiar a STATE_HAPPY, intervalo 1500 ms  
+
 
 
 
 
   
+
 
