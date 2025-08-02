@@ -125,7 +125,7 @@ El programa revisa constantemente, en cada vuelta del ciclo, si pasó el tiempo 
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Pasan 1500 ms sin presionar ningún botón.
 - Resultado esperado: El sistema cambia a STATE_SMILE y muestra la imagen Image.SMILE.
-- Resultado obtenido: El sistema cambió correctamente al estado Smile correctamente luego de los 1,5 segundos sin presionar ningún botón.
+- Resultado obtenido: El sistema cambió correctamente al estado Smile correctamente luego de los 1.5 segundos sin presionar ningún botón.
 - Código:
 ```python
 from microbit import *
@@ -183,6 +183,7 @@ while True:
         display.show(Image.SMILE)
         break
 ```
+
 
 
 
