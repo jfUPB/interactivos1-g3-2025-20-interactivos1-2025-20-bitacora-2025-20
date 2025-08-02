@@ -142,7 +142,7 @@ display.show(Image.SMILE)
 
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Se presiona el botón A antes de que pasen los 1500 ms.
-- Resultado esperado: El sistema cambia a STATE_SAD inmediatamente después de presionar el botón A, si no se presiona antes de 1,5 segundos pasa a STATE_SMILE.
+- Resultado esperado: El sistema cambia a STATE_SAD inmediatamente después de presionar el botón A, si no se presiona antes de 1.5 segundos pasa a STATE_SMILE.
 - Resultado obtenido: El sistema mostró la imagen de la cara triste al presionar el botón A. En la segundo prueba se dejó pasar el tiempo y funcionó igual al vector 1, cambiando automáticamente a SMILE después de haber pasado el tiempo.
 - Código:
 ```python
@@ -183,6 +183,7 @@ while True:
         display.show(Image.SMILE)
         break
 ```
+
 
 
 
