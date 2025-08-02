@@ -97,7 +97,7 @@ Decimos que este programa maneja tareas de forma concurrente porque el programa 
 1. El `paso del tiempo`, para cambiar automáticamente la expresión en pantalla según el intervalo establecido.
 2. La `presión del botón A`, que interrumpe ese ciclo para cambiar la imagen de manera inmediata, sin esperar a que termine el intervalo.
 
-Ambos eventos se verifican en cada iteración del ciclo while True, simulando una concurrencia cooperativa.
+El programa revisa constantemente, en cada vuelta del ciclo, si pasó el tiempo o si se presionó el botón, lo que permite que reaccione a diferentes eventos al mismo tiempo sin que uno bloquee al otro.
 
 **Estados del sistema**
 
@@ -125,21 +125,65 @@ Ambos eventos se verifican en cada iteración del ciclo while True, simulando un
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Pasan 1500 ms sin presionar ningún botón.
 - Resultado esperado: El sistema cambia a STATE_SMILE y muestra la imagen Image.SMILE.
-- Resultado obtenido: El sistema cambió correctamente a STATE_SMILE.
+- Resultado obtenido: El sistema cambió correctamente al estado Smile correctamente luego de los 1,5 segundos sin presionar ningún botón.
+- Código:
+```python
+from microbit import *
+import utime
 
+# Mostrar cara feliz
+display.show(Image.HAPPY)
+utime.sleep_ms(1500)
+
+# Transición automática a sonrisa
+display.show(Image.SMILE)
+```
 **Vector de prueba 2: Interrupción desde estado feliz con botón A**
 
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Se presiona el botón A antes de que pasen los 1500 ms.
-- Resultado esperado: El sistema cambia a STATE_SAD inmediatamente.
-- Resultado obtenido: El sistema mostró Image.SAD y cambió a STATE_SAD sin esperar al tiempo.
+- Resultado esperado: El sistema cambia a STATE_SAD inmediatamente después de presionar el botón A, si no se presiona antes de 1,5 segundos pasa a STATE_SMILE.
+- Resultado obtenido: El sistema mostró la imagen de la cara triste al presionar el botón A. En la segundo prueba se dejó pasar el tiempo y funcionó igual al vector 1, cambiando automáticamente a SMILE después de haber pasado el tiempo.
+- Código:
+```python
+from microbit import *
+import utime
+
+display.show(Image.HAPPY)
+start_time = utime.ticks_ms()
+
+while True:
+    if button_a.was_pressed():
+        # Interrupción esperada
+        display.show(Image.SAD)
+        break
+    if utime.ticks_diff(utime.ticks_ms(), start_time) > 1500:
+        # Si no se presionó el botón a tiempo
+        display.show(Image.SMILE)
+        break
+```
 
 **Vector de prueba 3: Interrupción desde estado triste con botón A**
 
 - Condición inicial: El sistema se encuentra en STATE_SAD.
 - Evento generado: Se presiona el botón A.
 - Resultado esperado: El sistema cambia a STATE_SMILE y muestra Image.SMILE.
-- Resultado obtenido: La transición ocurrió correctamente.
+- Resultado obtenido: El micro:bit mostró la cara SAD, luego de presionar el botón A pasó a mostrar la cara Smile.
+- Código:
+```python
+from microbit import *
+import utime
+
+# Iniciar directamente en estado triste
+display.show(Image.SAD)
+
+while True:
+    if button_a.was_pressed():
+        # Si se presiona A desde el estado SAD
+        display.show(Image.SMILE)
+        break
+```
+
 
 
 
