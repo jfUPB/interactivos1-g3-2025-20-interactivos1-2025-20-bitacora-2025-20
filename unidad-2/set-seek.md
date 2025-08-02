@@ -118,9 +118,9 @@ El programa revisa constantemente, en cada vuelta del ciclo, si pasó el tiempo 
 - Reiniciar el temporizador.
 - Establecer nuevo intervalo.
 
-**Vectores de prueba**
+**Vectores de prueba:**
 
-**Vector de prueba 1: Transición automática por tiempo (sin botón)**
+**1) Transición automática por tiempo (sin botón)**
 
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Pasan 1500 ms sin presionar ningún botón.
@@ -138,7 +138,7 @@ utime.sleep_ms(1500)
 # Transición automática a sonrisa
 display.show(Image.SMILE)
 ```
-**Vector de prueba 2: Interrupción desde estado feliz con botón A**
+**2) Interrupción desde estado feliz con botón A**
 
 - Condición inicial: El sistema se encuentra en STATE_HAPPY.
 - Evento generado: Se presiona el botón A antes de que pasen los 1500 ms.
@@ -163,7 +163,7 @@ while True:
         break
 ```
 
-**Vector de prueba 3: Interrupción desde estado triste con botón A**
+**3) Interrupción desde estado triste con botón A**
 
 - Condición inicial: El sistema se encuentra en STATE_SAD.
 - Evento generado: Se presiona el botón A.
@@ -183,6 +183,7 @@ while True:
         display.show(Image.SMILE)
         break
 ```
+
 
 
 
