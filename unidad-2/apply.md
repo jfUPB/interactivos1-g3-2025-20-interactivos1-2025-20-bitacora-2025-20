@@ -91,6 +91,9 @@ while True:
             countdown_time = 20
 ```
 
+**Vectores de prueba**
+
+- 
 
 
 
