@@ -170,7 +170,7 @@ Dependiendo del estado y del evento, se realizan las siguientes acciones:
   Si se presiona botón A → mostrar SMILE, cambiar a STATE_SMILE, intervalo 1000 ms   
   Si pasa el tiempo → mostrar HAPPY, cambiar a STATE_HAPPY, intervalo 1500 ms
 
-#### 4. Vectores de prueba:
+#### 3. Vectores de prueba:
 - Vector de prueba 1
   Condición inicial: el sistema está en STATE_HAPPY  
   Evento generado: presiono el botón A.  
@@ -204,6 +204,7 @@ Dependiendo del estado y del evento, se realizan las siguientes acciones:
 
 
   
+
 
 
 
