@@ -206,3 +206,4 @@ Dependiendo del estado y del evento, se realizan las siguientes acciones:
 
 
 
+
