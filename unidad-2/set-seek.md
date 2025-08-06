@@ -62,7 +62,9 @@ El programa en cuestión cuenta con dos estados: Init y Timeout, siendo Init un 
 
 Eventos: El evento que logro apreciar prbando el codigo en micro:bit editor, es la espera de prendida de cada pixel posicionado, esto gracias a la linea:
 
-```Python utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:" ``` 
+```Python 
+utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:"
+``` 
 
 En donde utime.ticks_diff mide el tiempo, y cuando pasa el tiempo del interval, se apaga y prende los pixeles.
 
@@ -218,6 +220,7 @@ Eventos: El coold down de tiempo entre los cambios de rostros
 Acción: Oprimir el botón 'a' para cambiar
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
+
 
 
 
