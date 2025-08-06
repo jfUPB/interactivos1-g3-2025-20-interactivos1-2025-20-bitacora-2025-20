@@ -97,6 +97,4 @@ while True:
 
 
 
-            state = CONFIG
-            countdown_time = 20
-```
+
