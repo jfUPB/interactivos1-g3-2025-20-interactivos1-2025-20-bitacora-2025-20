@@ -35,6 +35,80 @@ Cada vez que se cambia el estado del pixel, se actualiza startTime para medir el
 Mantenerse en el estado "WaitTimeout":
 Una vez inicializado, el objeto permanece en este estado ejecutando las acciones anteriores en cada ciclo de actualizacion.
 
+# Actividad 2
+
+  ### *1. Codigo del semaforo*  
+  
+python
+from microbit import *
+import utime
+
+class Pixel:
+    def __init__(self, pixelX, pixelY):
+        self.pixelX = pixelX
+        self.pixelY = pixelY
+
+    def on(self):
+        display.set_pixel(self.pixelX, self.pixelY, 9)
+
+    def off(self):
+        display.set_pixel(self.pixelX, self.pixelY, 0)
+
+rojo = Pixel(2, 3)
+amarillo = Pixel(2, 2)
+verde = Pixel(2, 1)
+#yo sigma
+while True:
+    rojo.on()
+    amarillo.off()
+    verde.off()
+    sleep(3000)
+
+    rojo.off()
+    amarillo.on()
+    verde.off()
+    sleep(1000)
+
+    rojo.off()
+    amarillo.off()
+    verde.on()
+    sleep(3000)
+
+### **2. los estados, eventos y acciones del codigo
+
+### Estados
+El sistema tiene tres estados principales, uno por cada luz del semáforo:
+
+- *Rojo*: LED rojo encendido
+- *Amarillo*: LED amarillo encendido
+- *Verde*: LED verde encendido
+
+### Eventos
+Los cambios de estado se dan por eventos de tiempo:
+
+- Después de *3 segundos* → pasa de *Rojo* a *Amarillo*
+- Después de *1 segundo* → pasa de *Amarillo* a *Verde*
+- Después de *3 segundos* → pasa de *Verde* a *Rojo*
+
+### Acciones
+Cada estado enciende un LED y apaga los otros:
+
+- *Rojo*:  
+  - rojo.on()
+  - amarillo.off()
+  - verde.off()
+
+- *Amarillo*:  
+  - amarillo.on()  
+  - rojo.off()  
+  - verde.off()
+
+- *Verde*:  
+  - verde.on()  
+  - rojo.off()  
+  - amarillo.off()
+
+    
 ## CODIGO DE CLASE 
 
 ´´´
@@ -75,6 +149,7 @@ def tarea1():
 while True: 
     tarea1()
 ´´´
+
 
 
 
