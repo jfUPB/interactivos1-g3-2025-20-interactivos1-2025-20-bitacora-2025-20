@@ -124,9 +124,29 @@ self.dibujar()                       # Dibuja el nuevo color en la micro:bit
 ````
 
 
+### ACTIVIDAD 3
 
+¿Por qué este programa permite realizar tareas concurrentes?
+R// Aunque el microbit solo puede hacer una cosa a la vez, este programa está diseñado para que parezca que hace varias al mismo tiempo. El programa revisa todo el tiempo dos cosas, primero si ya es hora de cambiar la imagen y si el botón A fue presionado. Esto permite que el microbit muestre una secuencia de imágenes y al mismo tiempo esté atento a la interacción del usuario. Si el botón se presiona, el programa puede interrumpir lo que estaba haciendo y responder de inmediato, entonces aunque todo se hace paso a paso, el resultado se siente como si las tareas ocurrieran en paralelo.
 
+Identifica los estados, eventos y acciones en el programa.
+R// Primero tenemos varios estados, el primero es "STATE_INIT" que es el estado inicial del sistema. Aquí se muestra la cara feliz y se inicializa el temporizador. Luego tenemos "STATE_HAPPY", que es donde el microbit muestra una cara feliz. Permanece en este estado durante un intervalo definido, a menos que ocurra un evento (como la pulsación del botón A). En tercer lgar esta "STATE_SMILE" que es cuando el microbit muestra una cara sonriente, se permanece en este estado durante un intervalo definido, a menos que ocurra un evento. Y por ultimo tenemso "STATE_SAD", que es cuando el microbit muestra una cara triste.
 
+Ahora ya viendo los eventos, tenemos la expiracion del tiempo del estado y cuando se pulsa el boton A, son los dos eventos. La expiración del tiempo del estado ocurre cuando el tiempo transcurrido en el estado actual supera el intervalo asignado. y la pulsación del botón A ocurre claramente cuando el usuario presiona el botón A y dependiendo del estado en el que se encuentre el sistema, la pulsación del botón A puede causar una transición diferente.
 
+Y ya por ultimo las acciones que vendrian siendo mostrar una imagen como primera accion, tambien reiniciar el temporizador que es otra accion, actualizar el intervalo es otra accion que es cuando se asigna el valor del intervalo correspondiente al nuevo estado y por ultimo la transición de estado que es cuando se actualiza la variable current_state para reflejar el nuevo estado en el que se encuentra el sistema.
 
+Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.
+
+R// VECTOR 1 DE PRUEBA: De STATE_HAPPY a STATE_SAD
+
+El estado inicial es "STATE_HAPPY" - Luego se realiza el evento el cual es presionar el boton A, luego el sistema muestra la imagen SAD, cambia al estado STATE_SAD y reinicia el tiempo, ademas de cambiar al intervalo a SAD_INTERVAL.
+
+VECTOR 2 DE PRUEBA: De STATE_SAD a STATE_SMILE
+
+El estado inicial es "STATE_SAD" - Luego se cumple el intervalo de tiempo, luego el sistema muestra la imagen SMILE, cambia al estado STATE_SMILE y reinicia el tiempo, ademas de cambiar al intervalo a SMILE_INTERVAL.
+
+VECTOR 3 DE PRUEBA: De STATE_SMILE a STATE_HAPPY
+
+El estado inicial es "STATE_SMILE" - Luego se cumple el intervalo de tiempo, luego el sistema muestra la imagen HAPPY, cambia al estado STATE_HAPPY y reinicia el tiempo, ademas de cambiar al intervalo a HAPPY_INTERVAL.
 
