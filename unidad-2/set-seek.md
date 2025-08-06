@@ -221,7 +221,7 @@ Acción: Además del apagado y prendido de los LEDs que corresponde a cada rostr
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
 
-Voy a intentar responde resto en base a lo que entiendo de este punto, porque no recuerdo si habia que modificar el codigo de la actividad o describirlo en base al codigo ofrecido, en este caso, vot a describirlo en base a lo que hay.
+Voy a intentar responder esto en base a lo que entiendo de este punto, porque no recuerdo si habia que modificar el codigo de la actividad o describirlo en base al codigo ofrecido, en este caso, vot a describirlo en base a lo que hay.
 
 Vector 1:
 
@@ -254,3 +254,4 @@ Evento: Al igual que el primer vector, cambio de rostro al oprimir el botón 'a'
 Resultado esperado: happy -> si presiono 'a' (if button_a.was_pressed()), mostrar happy (image.HAPPY).
 
 Resultado obtenido: El sistema nuevamente pasa el vector de prueba.
+
