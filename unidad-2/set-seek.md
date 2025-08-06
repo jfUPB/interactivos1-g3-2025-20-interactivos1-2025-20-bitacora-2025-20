@@ -71,15 +71,64 @@ Inputs:
 
 *1. Escribe el código que soluciona este problema en tu bitácora.*
 
+``` Python
+from microbit import *
+import utime
 
+STATE_INIT = 0
+STATE_RED = 1
+STATE_GREEN = 2
+STATE_YELLOW = 3
+
+TIME_IN_RED = 3000
+TIME_IN_GREEN = 2000
+TIME_IN_YELLOW = 1000
+
+current_state = STATE_INIT
+start_time = 0
+interval = 0
+
+while True:
+
+    if current_state == STATE_INIT:
+        display.set_pixel (2, 0, 9)
+        start_time = utime.ticks_ms()
+        interval = TIME_IN_RED
+        current_state = STATE_RED
+
+    elif current_state == STATE_RED:
+        if utime. ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()    
+            display.set_pixel(2, 4, 9)
+            start_time = utime.ticks_ms()
+            interval = TIME_IN_GREEN
+            current_state = STATE_GREEN
+
+    elif current_state == STATE_GREEN:
+        if utime. ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()    
+            display.set_pixel(2, 2, 9)
+            start_time = utime.ticks_ms()
+            interval = TIME_IN_YELLOW
+            current_state = STATE_YELLOW
+
+    elif current_state == STATE_YELLOW:
+        if utime. ticks_diff(utime.ticks_ms(), start_time) > interval:
+            display.clear()    
+            display.set_pixel(2, 0, 9)
+            start_time = utime.ticks_ms()
+            interval = TIME_IN_RED
+            current_state = STATE_RED
+```
+Voy a hacer una aclaración. Aunque esta parte de la actividad 2 solo pide el codigo (a juzgar por el enunciado) prefiero mencionar un comentario aqui, dado que tuve demasiadas dificultades para hacer esta parte, y tomando como consejo lo que menciono el profesor sobre que la actividad 3 puede servir para entender mejor esta segunda actividad, use de referencia el codigo de esa actividad para comprobar si era posible simular el semaforo, lo cual sirvio debido a que previamente me estaba complicando demasiado, incluso me atrevo a decir que estuve como tres horas mirando en el editor de micro:bit si se podia cambiar el color de los leds a amarillo y verde para simular un semaforo de verdad, pero no, no es posible, o por lo menos dentro de lo que estuve revisando no se puede.
 
 *2. Identifica los estados, eventos y acciones en tu código.*
 
-Estados:
+Estados: En este caso aunque coloque cuatro estados (si contamos el de INIT que es con el que comienza el micro:bit), seria cada uno de los colores del semaforo. El primero es el estado rojo, es decir, el de freno. Aqui el usuario esta esperando a que ese color pase a verde (o bueno, en este caso, que la luz del LED cambie de posición porque a fin de cuentas ahi todos los LEDs son rojos xD) y debe esperar un determinado tiempo, en el codigo coloque 3000 dado que en la vida real los semaforos rojos suelen ser máx durareros. Luego cuando cambia a verde el usuario debe esperar a que pase algo más, teniendo un tiempo intermedio de 2000, y cuando cambia a amarillo, ahi es donde se debe esperar a que pase un poco más de tiempo para que pase a rojo, y cuando cambia a rojo el proceso que mencione previamente se repite. Para no ser más rebuscado de lo que ya estoy siendo, se puede resumir que los estados en este programa son los tiempos de espera de cada LED.
 
-Eventos:
+Eventos: En el programa solo hay un evento presente, siendo este, la espera entre cambios de LEDs, o en otros terminos, la espera de cada cambio de color.
 
-Acciones
+Acciones: Las unicas acciones que tiene el programa en cuestión, es el de apagar y prender cada LED transcurrido el tiempo que se le haya asignado a cada uno de los LEDS, no es necesario oprimir algun botón como 'a' o 'b' del micro:bit, agitarlo u otra acción diferente.
 
 ### Actividad 3
 
@@ -163,4 +212,5 @@ Eventos: El coold down de tiempo entre los cambios de rostros
 Acción: Oprimir el botón 'a' para cambiar
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
+
 
