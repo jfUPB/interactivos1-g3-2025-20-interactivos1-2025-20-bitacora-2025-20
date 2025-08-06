@@ -50,17 +50,23 @@ while True:
 
 *1. Describe detalladamente cómo funciona este ejemplo.*
 
+Si hablamos de inicio a final, lo más esencial es que importa la librería utime para que se pueda hacer uso de algunas líneas para medir el tiempo que se determine, siguiendo con el código, se crea una clase Pixel dentro la cual se almacena un constructor en donde se almacenan las coordenadas X y Y (self.pixelX y self.pixelY), su brillo inicial (self.pixelState) y un intervalo de prendido y apagado (o parpadeo, tambien referido como self.interval). Cuando pasamos al update(), este actua con dos estados. Siendo Init el de primera vez y WaitTimeout, y ya que hablamos de la primera vez, este entra en un if (ubicado en la linea 15) en donde de paso se guada el tiempo, apartir de la segunda llamda, con display.set_pixel se dibuja en el micro:bit el LED. Asi mismo, hay que destacar que la linea 20 me permite saber si ingreso a ese dato, mientras que al mismo tiempo la linea 21 dice que ya ha pasado un cierto intervalo de tiempo.
+
 En el ejemplo, el programa lo que hace es que desde el MicroBit prende ciertos leds del mismo con un cooldown.
    
 *2. ¿Cuáles son los estados en el programa?*
 
-Los dos estados con los que cuenta el programa son Init y TimeWithout
+El programa en cuestión cuenta con dos estados: Init y Timeout, siendo Init un seudoestado, dado a que este solo se utiliza al inicio del programa para establecer tiempo de referencia, la posición/coordenadas de los pixeles y mostrar el estado sus estados, mientras que WaitTimeout se encarga de los ciclos de espera. 
 
 *3. ¿Cuáles son los eventos/inputs en el programa?*
 
-Eventos: 
+Eventos: El evento que logro apreciar prbando el codigo en micro:bit editor, es la espera de prendida de cada pixel posicionado, esto gracias a la linea:
 
-Inputs: 
+```Python utime.ticks_diff(utime.ticks_ms(),self.startTime) > self.interval:" ``` 
+
+En donde utime.ticks_diff mide el tiempo, y cuando pasa el tiempo del interval, se apaga y prende los pixeles.
+
+Inputs: Dado a los ejercicios de la primera unidad, me habia acostumbrado a tomar como base los inputs fisicos del micro:bit, pero dado a que no se esta haciendo uso de un micro:bit fisico (sino del digital que ofrece el editor), y de lo que recuerdo que es un Input (si es que mi cerebro no me juega una mala jugada), ya que lo que recuerdo es que la información de entrada, vendrian siendo los datos asignados a los objetos pixel1 y pixel2 de la clase Pixel.
   
 *4. ¿Cuáles son las acciones en el programa?*
 
@@ -212,5 +218,6 @@ Eventos: El coold down de tiempo entre los cambios de rostros
 Acción: Oprimir el botón 'a' para cambiar
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
+
 
 
