@@ -49,3 +49,84 @@ R// En este programa los cambios de estado ocurren automáticamente sin necesida
 ## ¿Cuáles son las acciones en el programa?
 R// Cuando ocurre un cambio dentro del programa, este realiza varias acciones de forma automática. Por ejemplo, primero reinicia el temporizador para empezar a contar el tiempo nuevamente, despues actualiza el estado del LED, indicando si debe esperar o cambiar. Y luego enciende o apaga el LED en su lugar correspondiente dentro de la matriz del microbit. Y por ultimo ajusta el brillo del LED, poniéndolo en 9 si está encendido o en 0 si está apagado para que se vea claramente el parpadeo.
 
+### ACTIVIDAD 2
+
+Codigo que soluciona el problema:
+
+````
+
+from microbit import *
+import utime
+
+class Semaforo:
+    def __init__(self, x):
+        self.x = x
+        self.estado = 0  # 0: rojo, 1: amarillo, 2: verde
+        self.tiempos = [2000, 1000, 2000]  # ms para cada color
+        self.ultimo_cambio = utime.ticks_ms()
+        self.dibujar()
+
+    def dibujar(self):
+        # Apaga todos
+        for y in range(3):
+            display.set_pixel(self.x, y, 0)
+        # Enciende el color correspondiente
+        if self.estado == 0:
+            display.set_pixel(self.x, 0, 9)  # Rojo arriba
+        elif self.estado == 1:
+            display.set_pixel(self.x, 1, 9)  # Amarillo medio
+        elif self.estado == 2:
+            display.set_pixel(self.x, 2, 9)  # Verde abajo
+
+    def update(self):
+        ahora = utime.ticks_ms()
+        if utime.ticks_diff(ahora, self.ultimo_cambio) > self.tiempos[self.estado]:
+            self.estado = (self.estado + 1) % 3
+            self.ultimo_cambio = ahora
+            self.dibujar()
+
+semaforo = Semaforo(2)  # Columna central
+
+while True:
+    semaforo.update()
+
+````
+
+Explicacion e identificación de estados, eventos y acciones:
+
+R// En este codigo el estado representa en que color esta el semaforo en cada momento, en este codigo se guardo en la variable self.estado dentro de la clase Semaforo. 
+
+````
+
+self.estado = 0  # 0: rojo, 1: amarillo, 2: verde
+
+````
+
+El estado cambia para indicar el color actual del semáforo.
+
+R// Ahora, el evento es lo que provoca que el estado cambie. En el codigo el evento seria el paso del tiempo, Cada vez que pasa el tiempo necesario para cada color , ocurre el evento de cambio de color. Esto se controla en el metodo update.
+
+````
+
+if utime.ticks_diff(ahora, self.ultimo_cambio) > self.tiempos[self.estado]:
+    # Aquí ocurre el evento: ha pasado el tiempo necesario
+
+````
+
+Por ultimo, la acción es lo que hace el semáforo cuando ocurre el evento. En este caso la acción es cambiar al siguiente color y mostrarlo en la micro:bi
+
+````
+
+self.estado = (self.estado + 1) % 3  # Cambia al siguiente estado
+self.ultimo_cambio = ahora           # Actualiza el tiempo del último cambio
+self.dibujar()                       # Dibuja el nuevo color en la micro:bit
+
+````
+
+
+
+
+
+
+
+
