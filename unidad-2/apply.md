@@ -93,8 +93,33 @@ while True:
 
 **Vectores de prueba**
 
-- 
+**1) Aumentar el tiempo de configuración:**
 
+- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 20 segundos.
+- Evento generado: Presionar el botón A.
+- Resultado esperado: El tiempo aumenta a 21 segundos y la pantalla muestra el número 21 luego de presionar una sola vez el botón A.
+- Resultado obtenido: El tiempo aumento de 20 a 21 segundos luego de presionar el botón; este número también se ve en la pantalla.
+
+**2) Disminuir el tiempo de configuración:**
+
+- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 20 segundos.
+- Evento generado: Presionar el botón B.
+- Resultado esperado: El tiempo disminuye a 19 segundos y la pantalla muestra el número 19 luego de presionar una sola vez el botón B.
+- Resultado obtenido: El tiempo disminuyó de 20 a 19 segundos luego de presionar el botón; este número también se ve en la pantalla.
+
+**3) No disminuir el tiempo por debajo del mínimo**
+
+- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 10 segundos.
+- Evento generado: Presionar varias veces el botón B.
+- Resultado esperado: El tiempo no baja de 10 segundos.
+- Resultado obtenido: No se muestra cambio alguno a un número menor a 10.
+
+**4) Iniciar cuenta regresiva:**
+
+- Condición inicial: El sistema está en el estado CONFIG con tiempo de 20 segundos
+- Evento generado: Agitar ek micro:bit (shake).
+- Resultado esperado: Se inicia la cuenta regresiva.
+- Resultado obtenido: Aparece cada segundo en pantalla de forma descendente hasta llegar a 0, luego "explota".
 
 
 
