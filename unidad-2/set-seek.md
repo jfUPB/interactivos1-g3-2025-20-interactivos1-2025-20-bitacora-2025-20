@@ -170,30 +170,32 @@ Dependiendo del estado y del evento, se realizan las siguientes acciones:
   Si se presiona botón A → mostrar SMILE, cambiar a STATE_SMILE, intervalo 1000 ms   
   Si pasa el tiempo → mostrar HAPPY, cambiar a STATE_HAPPY, intervalo 1500 ms
 
-  5. vectores de prueba:
-     -  Vector de prueba 1
-        Condición inicial: el sistema está en STATE_HAPPY  
-        Evento generado: presiono el botón A.  
-        Resultado esperado:  
-           -Imagen cambia a SAD.   
-           -Estado cambia a STATE_SAD  
-           -Intervalo queda en 2000 ms
-    - Vector de prueba 2
-      Condición inicial: el sistema está en STATE_SMILE
-      Evento generado: pasa 1 segundo (tiempo > intervalo)
-      Resultado esperado:  
-        - Imagen cambia a SAD  
-        - Estado cambia a STATE_SAD  
-        - Intervalo cambia a 2000 ms  
-      Resultado obtenido: Al cumplirse el tiempo, muestra SAD y cambia correctamente el estado → prueba superada
-    - Vector de prueba 3:
-      Condición inicial: el sistema está en STATE_SAD
-      Evento generado: presiono botón A
-      Resultado esperado:
-        - Imagen cambia a SMILE
-        - Estado cambia a STATE_SMILE
-        - Intervalo cambia a 1000 ms
-      Resultado obtenido: Se actualiza todo correctamente según lo esperado → prueba superada
+#### vectores de prueba:
+- Vector de prueba 1
+  Condición inicial: el sistema está en STATE_HAPPY  
+  Evento generado: presiono el botón A.  
+  Resultado esperado:  
+    -Imagen cambia a SAD.   
+    -Estado cambia a STATE_SAD  
+    -Intervalo queda en 2000 ms
+  Resultado obtenido: El sistema muestra SAD, actualiza el estado y el tiempo → prueba superada
+- Vector de prueba 2
+  Condición inicial: el sistema está en STATE_SMILE
+  Evento generado: pasa 1 segundo (tiempo > intervalo)
+  Resultado esperado:  
+    - Imagen cambia a SAD  
+    - Estado cambia a STATE_SAD  
+    - Intervalo cambia a 2000 ms  
+  Resultado obtenido: Al cumplirse el tiempo, muestra SAD y cambia correctamente el estado → prueba superada
+
+- Vector de prueba 3:
+  Condición inicial: el sistema está en STATE_SAD
+  Evento generado: presiono botón A
+  Resultado esperado:
+    - Imagen cambia a SMILE
+    - Estado cambia a STATE_SMILE
+    - Intervalo cambia a 1000 ms
+  Resultado obtenido: Se actualiza todo correctamente según lo esperado → prueba superada
 
 
 
@@ -202,6 +204,7 @@ Dependiendo del estado y del evento, se realizan las siguientes acciones:
 
 
   
+
 
 
 
