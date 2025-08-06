@@ -75,4 +75,27 @@ while True:
 **Identifica los estados, eventos y acciones en tu código.**  
 * **Estados:** Init y WaitTimeou, ademas de estar "YELLOW" "RED" "GREEN"  
 * **Eventos:** El evento sería un Timeout el cual se encarga de que el tiempo asignado se cumpla.  
-* **Acciones en tu código:** Limpiar pantalla, encender el LED correspondiente al color, configurar el tiempo de espera y cambiar al siguiente color cuando el tiempo se cumpla.  
+* **Acciones en tu código:** Limpiar pantalla, encender el LED correspondiente al color, configurar el tiempo de espera y cambiar al siguiente color cuando el tiempo se cumpla.
+
+### Actividad 3  
+**Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.**  
+
+No se queda pendiente de una sola cosa, porque puede estar atenta tanto al botón A como al tiempo que pasa.  
+
+**Identifica los estados, eventos y acciones en el programa.**
+
+**Estados:**  
+* **STATE_INIT:** cuando inicia.    
+* **STATE_HAPPY:** muestra la carita feliz.  
+* **STATE_SMILE:** muestra una sonrisa.  
+* **STATE_SAD:** muestra la carita triste.  
+
+**Eventos:**
+* Cuando se unde el botón A.  
+* Cuando pasa cierto tiempo.
+
+**Acciones:**
+* Cuando se muestra la imagen de la carita feliz, triste, etc.
+* Cuando se reinicia el tiempo.  
+
+**Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.**
