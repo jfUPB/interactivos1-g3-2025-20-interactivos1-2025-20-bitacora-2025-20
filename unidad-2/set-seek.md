@@ -132,7 +132,7 @@ Voy a hacer una aclaración. Aunque esta parte de la actividad 2 solo pide el co
 
 *2. Identifica los estados, eventos y acciones en tu código.*
 
-Estados: En este caso aunque coloque cuatro estados (si contamos el de INIT que es con el que comienza el micro:bit), seria cada uno de los colores del semaforo. El primero es el estado rojo, es decir, el de freno. Aqui el usuario esta esperando a que ese color pase a verde (o bueno, en este caso, que la luz del LED cambie de posición porque a fin de cuentas ahi todos los LEDs son rojos xD) y debe esperar un determinado tiempo, en el codigo coloque 3000 dado que en la vida real los semaforos rojos suelen ser máx durareros. Luego cuando cambia a verde el usuario debe esperar a que pase algo más, teniendo un tiempo intermedio de 2000, y cuando cambia a amarillo, ahi es donde se debe esperar a que pase un poco más de tiempo para que pase a rojo, y cuando cambia a rojo el proceso que mencione previamente se repite. Para no ser más rebuscado de lo que ya estoy siendo, se puede resumir que los estados en este programa son los tiempos de espera de cada LED.
+Estados: En este caso aunque coloque cuatro estados (si contamos el de INIT que es con el que comienza el micro:bit), aunque si no tomamos en cuenta INIT, seria cada uno de los colores del semaforo, es decir, tres estados. El primero es el estado rojo, es decir, el de freno. Aqui el usuario esta esperando a que ese color pase a verde (o bueno, en este caso, que la luz del LED cambie de posición porque a fin de cuentas ahi todos los LEDs son rojos xD) y debe esperar un determinado tiempo, en el codigo coloque 3000 dado que en la vida real los semaforos rojos suelen ser máx durareros. Luego cuando cambia a verde el usuario debe esperar a que pase algo más, teniendo un tiempo intermedio de 2000, y cuando cambia a amarillo, ahi es donde se debe esperar a que pase un poco más de tiempo para que pase a rojo, y cuando cambia a rojo el proceso que mencione previamente se repite. Para no ser más rebuscado de lo que ya estoy siendo, se puede resumir que los estados en este programa son los tiempos de espera de cada LED.
 
 Eventos: En el programa solo hay un evento presente, siendo este, la espera entre cambios de LEDs, o en otros terminos, la espera de cada cambio de color.
 
@@ -209,18 +209,48 @@ while True:
 
 *1. Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.*
 
-Por que no solo el programa cambia de manera consecutiva las caras con un contador, sino que tambien el usuario puede oprimr el boton 'a' para hacer manualmente el cambio de rostros.
+Se dice que realiza varias maneras tareas porque el programa no solo cambia de manera consecutiva las caras con un contador, sino que tambien el usuario puede oprimir el botón 'a' para hacer manualmente el cambio de rostros en lugar de esperar el tiempo entre rostros.
 
 *2. Identifica los estados, eventos y acciones en el programa.*
 
-Estados: Happy, Smile, Sad
+Estados: Aqui hay tres estados, nuevamente, si no tomamos en cuenta STATE_INIT, vendrian siendo las tres caras que el micro:bit enseña: Happy, Smile y Sad (STATE_HAPPY, STATE_SMILE, STATE_SAD).
 
-Eventos: El coold down de tiempo entre los cambios de rostros
+Eventos: Por lo que puedo apreciar, el evento que esta presente es la espera de tiempo en el cambio de cada rostro.
 
-Acción: Oprimir el botón 'a' para cambiar
+Acción: Además del apagado y prendido de los LEDs que corresponde a cada rostro, por parte del mismo usuario, cuando se oprime el botón 'a' para cambiar los rostros, tambien se esta llevando a cabo una acción.
 
 *3. Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.*
 
+Voy a intentar responde resto en base a lo que entiendo de este punto, porque no recuerdo si habia que modificar el codigo de la actividad o describirlo en base al codigo ofrecido, en este caso, vot a describirlo en base a lo que hay.
 
+Vector 1:
 
+Condicion Inicial: Cara Happy (Image.HAPPY).
 
+Evento: Cambio de rostro al oprimir el botón 'a'.
+
+Resultado esperado: happy -> si presiono 'a' (if button_a.was_pressed()), mostrar sad (image.SAD).
+
+Resultado obtenido: El sistema pasa el vector de prueba
+
+Vector 2:
+
+Condicion Inicial: Cara Sad (Image.SAD).
+
+Evento: Cambio de rostro al transcurrir el tiempo asignado en el intervalo.
+
+Resultado esperado: sad, si paso 2 segundos (2000) -> mostrar happy (image.HAPPY)
+
+Resultado obtenido: El sistema pasa el vector de prueba también.
+
+PD: No ironicamente cronometre el tiempo para verificar que si se cumpliera.
+
+Vector 3:
+
+Condicion Inicial: Cara Smile (Image.SMILE).
+
+Evento: Al igual que el primer vector, cambio de rostro al oprimir el botón 'a'.
+
+Resultado esperado: happy -> si presiono 'a' (if button_a.was_pressed()), mostrar happy (image.HAPPY).
+
+Resultado obtenido: El sistema nuevamente pasa el vector de prueba.
