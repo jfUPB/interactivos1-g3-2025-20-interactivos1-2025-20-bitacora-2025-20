@@ -104,3 +104,95 @@ __2) Identifica los estados, eventos y acciones en tu código.__
 
 
 ______________________________________________________________________________________________________  
+
+
+
+### Avtividad #3:
+
+
+__1) Explica por qué decimos que este programa permite realizar de manera concurrente varias tareas.__  
+
+*Hay 2 razones principales:*    
+
+a) Aunque en MicroPython no hay múltiples hilos de ejecución, este código simula concurrencia al manejar eventos (como la pulsación de un botón) y temporizadores en un solo ciclo while True.  
+  
+b) El programa supervisa constantemente dos tipos de eventos:  
+
+- Entrada del usuario (botón A).  
+- Paso del tiempo (medido con utime.ticks_diff()).  
+
+Esto significa que, por ejemplo, mientras se espera que pasen 1500 ms, también se puede detectar si el botón fue presionado.  
+Así, ambas "tareas" (esperar tiempo y revisar botón) se están gestionando dentro del mismo bucle, como si fueran concurrentes, aunque se ejecutan de forma secuencial pero rápida.  
+
+
+
+__2) Identifica los estados, eventos y acciones en el programa.__  
+
+*Estados:*  
+
+- STATE_INIT: Estado inicial.  
+- STATE_HAPPY: Estado en el que se muestra una cara feliz.  
+- STATE_SMILE: Estado en el que se muestra una sonrisa.  
+- STATE_SAD: Estado en el que se muestra una cara triste.  
+
+*Eventos:*  
+Los eventos que pueden ocurrir y disparar cambios de estado son:  
+
+- Presión del botón A: Detectado con button_a.was_pressed().  
+- Transcurso de un intervalo de tiempo: Detectado con:   
+```py  
+utime.ticks_diff(utime.ticks_ms(), start_time) > interval  
+```
+
+*Acciones:*  
+Las acciones son las operaciones que el programa realiza al ocurrir un evento:  
+
+- Mostrar una imagen (display.show(...))  
+- Actualizar el tiempo de inicio (start_time = utime.ticks_ms())  
+- Cambiar el estado actual  
+- Asignar un nuevo intervalo  
+
+
+__3) Describe y aplica al menos 3 vectores de prueba para el programa. Para definir un vector de prueba debes llevar al sistema a un estado, generar los eventos y observar el estado siguiente y las acciones que ocurrirán. Por tanto, un vector de prueba tiene unas condiciones iniciales del sistema, unos resultados esperados y los resultados realmente obtenidos. Si el resultado obtenido es igual al esperado entonces el sistema pasó el vector de prueba, de lo contrario el sistema puede tener un error.__  
+
+__Vector de prueba 1__  
+*Condiciones iniciales:*  
+El programa comienza en STATE_INIT.  
+
+*Evento generado:*  
+Sin presionar botones, solo dejar pasar el tiempo.  
+
+*Resultado esperado:*  
+Se muestra Image.HAPPY.    
+
+- Después de 1500 ms, cambia a Image.SMILE y estado STATE_SMILE.  
+
+- Resultado observado: Correcto, el sistema pasa automáticamente del estado INIT → HAPPY → SMILE al cumplirse el tiempo.  
+
+__Vector de prueba 2__  
+*Condiciones iniciales:*  
+El sistema está en STATE_HAPPY (cara feliz mostrada).  
+
+*Evento generado:*  
+Se presiona el botón A antes de que pasen 1500 ms.  
+
+*Resultado esperado:*  
+Se muestra Image.SAD, se actualiza el tiempo y cambia a STATE_SAD.  
+
+- Resultado observado: Al presionar A, efectivamente cambia a SAD.  
+
+
+__Vector de prueba 3__  
+*Condiciones iniciales:*  
+El sistema está en STATE_SAD (cara triste).  
+
+*Evento generado:*  
+Se deja pasar el tiempo (2000 ms) sin presionar botones.  
+
+*Resultado esperado:*  
+Se muestra Image.HAPPY, se actualiza tiempo, y cambia a STATE_HAPPY.  
+
+- Resultado observado: Funciona correctamente: el estado cambia tras los 2000 ms.  
+
+
+
