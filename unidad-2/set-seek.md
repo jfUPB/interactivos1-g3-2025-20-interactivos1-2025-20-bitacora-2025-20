@@ -108,49 +108,114 @@ Cada estado enciende un LED y apaga los otros:
   - rojo.off()  
   - amarillo.off()
 
-    
-## CODIGO DE CLASE 
 
-´´´
-from microbit import *
-import utime
+# Actividad 3
+## 1. ¿Por qué decimos que este programa permite realizar de manera concurrente varias tareas?
 
-STATE_INIT = 0
-STATE_HAPPY = 1 
-STATE_SMILE = 2
-STATE_SAD = 3 
-TIME_IN_HAPPY = 1500
+Aunque MicroPython en Micro:bit no ejecuta tareas en paralelo real, este programa simula concurrencia porque:
 
+Usa una máquina de estados para cambiar entre estados según eventos (botón A) y tiempo transcurrido.
 
-currentState = STATE_INIT
+Mientras espera el tiempo definido por interval, no bloquea el ciclo principal, por lo que puede:
 
+Revisar continuamente si el botón A fue presionado.
 
-def tarea1():
-    global currentState
-    global startTime
-    global interval
-    
-    if currentState == STATE_INIT: 
-        display.show(Image.HAPPY) 
-        startTime = utime.ticks_ms()
-        interval = TIME_IN_HAPPY 
-        currentState = STATE_HAPPY
-        
-    elif currentState == STATE_HAPPY: 
-        if utime.ticks_diff(utime.ticks_ms(),startTime) > interval:
-            pass
-    elif currentState == STATE_SMILE: 
-        pass
-    elif currentState == STATE_SAD: 
-        pass 
-    else: 
-        pass
+Revisar si ya pasó el tiempo para cambiar de estado.
 
-while True: 
-    tarea1()
-´´´
+Es decir, parece que monitorea el tiempo y la entrada del botón al mismo tiempo, aunque en realidad se hace de forma secuencial en un while True rápido.
 
+## 2. Estados, eventos y acciones del programa
 
+Estados definidos:
+
+STATE_INIT → estado inicial, muestra cara feliz por primera vez.
+
+STATE_HAPPY → muestra Image.HAPPY.
+
+STATE_SMILE → muestra Image.SMILE.
+
+STATE_SAD → muestra Image.SAD.
+
+Eventos que generan cambios de estado:
+
+Presionar botón A (button_a.was_pressed()).
+
+Cumplir el tiempo del intervalo (utime.ticks_diff(...) > interval).
+
+Acciones que realiza el sistema:
+
+Mostrar una imagen en la matriz LED (display.show(Image.XXX)).
+
+Reiniciar el temporizador (start_time = utime.ticks_ms()).
+
+Ajustar el nuevo intervalo (interval = XXX_INTERVAL).
+
+## 3. Vectores de prueba del programa
+
+### Vector de prueba 1: Cambio automático HAPPY → SMILE
+Condiciones iniciales:
+
+Micro:bit recién encendido.
+
+Estado actual: STATE_HAPPY (después de STATE_INIT).
+
+Evento:
+
+Dejar pasar 1.5 segundos sin presionar ningún botón.
+
+Resultado esperado:
+
+Pasa a STATE_SMILE.
+
+Acciones: mostrar Image.SMILE y reiniciar temporizador a 1 s.
+
+Resultado real:
+
+ Image.SMILE se muestra en pantalla.
+
+ Intervalo actualizado a SMILE_INTERVAL.
+
+### Vector de prueba 2: Presionar botón A en estado SMILE
+Condiciones iniciales:
+
+Estado actual: STATE_SMILE.
+
+Evento:
+
+Presionar botón A.
+
+Resultado esperado:
+
+Pasa a STATE_HAPPY.
+
+Acciones: muestra Image.HAPPY y reinicia temporizador a 1.5 s.
+
+Resultado real:
+
+ La cara feliz aparece.
+
+ Se reinicia el conteo de tiempo.
+
+### Vector de prueba 3: Cambio automático SMILE → SAD
+Condiciones iniciales:
+
+Estado actual: STATE_SMILE.
+
+Evento:
+
+Dejar pasar 1 segundo sin presionar botón.
+
+Resultado esperado:
+
+Pasa a STATE_SAD.
+
+Acciones: mostrar Image.SAD y reiniciar temporizador a 2 s.
+
+Resultado real:
+
+ La cara triste aparece.
+
+ Se reinicia el temporizador correctamente.
 
 
 
