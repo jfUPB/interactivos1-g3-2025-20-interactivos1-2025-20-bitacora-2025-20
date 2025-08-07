@@ -97,39 +97,47 @@ while True:
     Evento: Presionar el botón A  
     Resultado esperado: El valor del temporizador aumenta en 1 unidad  
     Acción esperada: El valor mostrado en pantalla se actualiza; si se supera el valor máximo (60), se mantiene en 60  
-  
+    Resultado obtenido: El sistema aumenta correctamente el tiempo en 1 segundo por cada pulsación. Al llegar a 60, no permite incrementos mayores. La pantalla muestra el valor actualizado.
+    
 - Vector de Prueba 2 – Disminuir el tiempo con botón B  
     Estado Inicial: STATE_CONFIG  
     Evento: Presionar el botón B  
     Resultado esperado: El valor del temporizador disminuye en 1 unidad  
     Acción esperada: El valor mostrado en pantalla se actualiza; si se baja del mínimo (10), se mantiene en 10  
-
+    Resultado obtenido: El sistema disminuye el valor del temporizador correctamente. Si se intenta bajar de 10, se mantiene en ese valor sin errores.
+  
 -  Vector de Prueba 3 – Activar la bomba con el gesto shake  
     Estado Inicial: STATE_CONFIG  
     Evento: Realizar el gesto “shake” con el micro:bit   
     Resultado esperado: Cambio al estado STATE_ARMED  
-    Acción esperada: Se limpia la pantalla y se inicia la cuenta regresiva desde el valor configurado  
+    Acción esperada: Se limpia la pantalla y se inicia la cuenta regresiva desde el valor configurado
+    Resultado obtenido: Al agitar el micro:bit, el sistema cambia correctamente al estado armado, limpia el display e inicia la cuenta regresiva desde el tiempo seleccionado    
 
 - Vector de Prueba 4 – Cuenta regresiva en estado armado  
     Estado Inicial: STATE_ARMED  
     Evento: Paso de 1 segundo (tick de reloj)  
     Resultado esperado: Decremento de countdown_time en 1 unidad cada segundo  
-    Acción esperada: Se muestra el nuevo valor en pantalla correctamente, reflejando el paso del tiempo  
+    Acción esperada: Se muestra el nuevo valor en pantalla correctamente, reflejando el paso del tiempo
+    Resultado obtenido: El conteo disminuye de 1 en 1 cada segundo. La pantalla muestra correctamente los valores intermedios del temporizador.   
 
 - Vector de Prueba 5 – Explosión al llegar a cero  
     Estado Inicial: STATE_ARMED  
     Evento: countdown_time llega a 0  
     Resultado esperado: Ejecución de la función explode()  
-    Acción esperada: Se muestra una calavera en pantalla y suena un tono de alerta; el estado cambia a STATE_EXPLODED  
+    Acción esperada: Se muestra una calavera en pantalla y suena un tono de alerta; el estado cambia a STATE_EXPLODED
+    Resultado obtenido: Al llegar a 0, el sistema muestra la imagen de calavera y reproduce el sonido de explosión. El estado se actualiza correctamente a STATE_EXPLODED.   
   
 - Vector de Prueba 6 – Reinicio tras explosión  
     Estado Inicial: STATE_EXPLODED  
     Evento: Tocar el logo (pin_logo)  
     Resultado esperado: Reinicio del sistema  
-    Acción esperada: Se vuelve al estado STATE_CONFIG, se restablece el temporizador a 20 y se limpia la pantalla  
+    Acción esperada: Se vuelve al estado STATE_CONFIG, se restablece el temporizador a 20 y se limpia la pantalla
+    Resultado obtenido: Al tocar el logo, el sistema reinicia con éxito: vuelve al estado de configuración, el temporizador se establece en 20, y se limpia el display.
 
 - Vector de Prueba 7 – Permanencia en Config sin interacción  
     Estado Inicial: STATE_CONFIG  
     Evento: No hay interacción del usuario (ni botones ni gestos)  
     Resultado esperado: El valor del temporizador se mantiene sin cambios  
-    Acción esperada: Se sigue mostrando el mismo valor en pantalla sin ejecutar transiciones de estado  
+    Acción esperada: Se sigue mostrando el mismo valor en pantalla sin ejecutar transiciones de estado
+    Resultado obtenido: El sistema permanece en estado de configuración sin variaciones. El temporizador se mantiene estable mientras no hay entrada del usuario.
+
