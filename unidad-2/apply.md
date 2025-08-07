@@ -8,6 +8,7 @@
 ![Diagrama de estados](https://github.com/user-attachments/assets/56efb5f4-cc53-4f4a-a63d-79a91c50e4cb)  
 
 ### Actividad 5.  
+```javascript
 from microbit import *
 import music
 import utime
@@ -85,4 +86,4 @@ while True:
             current_state = STATE_CONFIG
             timer_value = 20
             display.clear()
-
+```
