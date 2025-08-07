@@ -104,5 +104,65 @@ while True:
    
 *2. La definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.*
 
+Vector 1: 
+
+Condicion Inicial: Time_set = 20.
+
+Evento: Suma uno al contador de tiempo time_set presionando 'a'. 
+
+Resultado esperado: time_set = 20 -> si presiono 'a' (if button_a.was_pressed()), time_set += 1, es decir, time_set = 21. 
+
+Resultado obtenido: El sistema pasa el vector.
+
+Vector 2: 
+
+Condicion Inicial: Time_set = 20.
+
+Evento: Resta uno al contador de tiempo time_set presionando 'b' (lo contrario al vector 1). 
+
+Resultado esperado: time_set = 20 -> si presiono 'b' (if button_b.was_pressed()), time_set -= 1, es decir, time_set = 19. 
+
+Resultado obtenido: El sistema tambien pasa el vector.
+
+Vector 3: 
+
+Condicion Inicial: STATE_SETTINGS
+
+Evento: Pasar al estado countdown para iniciar la bomba agitando el micro:bit (shake).
+
+Resultado esperado: STATE_SETTINGS -> si agito el micro:bit (if accelerometer.was_gesture('shake')), ir a STATE_COUNTDOWN
+
+Resultado obtenido: El sistema tambien pasa el vector nuevamente.
+
+Vector 4: 
+
+Condicion Inicial: STATE_COUNTDOWN
+
+Evento: Restar un segundo al time_stand durante la bomba
+
+Resultado esperado: time_stand = 20 -> si last_tick pasa los 1000 milisegundos (if utime.ticks_diff(utime.ticks_ms(), last_tick) >= 1000:), time_stand -= 1, es decir, en otras palabras, time_stand = 19.
+
+Resultado obtenido: El sistema funciona como indica el vector.
+
+Vector 5: 
+
+Condicion Inicial: STATE_COUNTDOWN
+
+Evento: Acabar la bomba (o detonarla) si time_stand == 0.
+
+Resultado esperado: time_stand = 20 -> si time_stand == 0, pasar a STATE_EXPLODED, mostrar (Image.SKULL) y sonar speaker (music.play(['A4:1','F4:1','C4:1'])).
+
+Resultado obtenido: El sistema funciona en base al vector.
+
+Vector 6:
+
+Condición Inicial: STATE_EXPLODED
+
+Evento: Pasar al estado settings oprimiendo el touch del micro:bit.
+
+Resultado esperado: STATE_EXPLODED -> si oprimo el touch del micro:bit (pin_logo.is_touched()), mandar programa a STATE_SETTINGS.
+
+Resultado obtenido: El sistema cumple con el vector.
+
 
 
