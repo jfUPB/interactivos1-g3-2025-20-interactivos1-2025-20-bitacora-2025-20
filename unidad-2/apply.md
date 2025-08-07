@@ -35,5 +35,74 @@ Implementa el código para la bomba temporizada usando mycropython y el micro:bi
 Reporta en un tu bitácora lo siguiente:
 
 *1. El código que implementa la bomba temporizada.*
+
+```Python
+
+from microbit import *
+import utime
+import music
+
+STATE_INIT       = 0
+STATE_SETTINGS   = 1
+STATE_COUNTDOWN  = 2
+STATE_EXPLODED   = 3
+
+
+current_state = STATE_INIT
+time_set      = 20  
+time_stand    = 20  
+last_tick     = 0    
+
+while True:
+    if current_state == STATE_INIT:
+        display.clear()
+        time_set = 20
+        display.show(str(time_set))
+        current_state = STATE_SETTINGS    
+
+    elif current_state == STATE_SETTINGS:
+        display.show(str(time_set))   
+
+        if button_a.was_pressed():
+            music.play(['C4'])
+            if time_set < 60:
+                time_set += 1
+            display.show(str(time_set))
+
+        if button_b.was_pressed():
+            music.play(['G3'])
+            if time_set > 10:
+                time_set -= 1
+            display.show(str(time_set))
+
+        if accelerometer.was_gesture('shake'):
+            music.play(['C4:2'])
+            time_stand = time_set
+            last_tick  = utime.ticks_ms()
+            current_state = STATE_COUNTDOWN
+
+    elif current_state == STATE_COUNTDOWN:
+        if utime.ticks_diff(utime.ticks_ms(), last_tick) >= 1000:
+            time_stand -= 1
+            last_tick = utime.ticks_ms()
+            display.scroll(str(time_stand))
+            music.play('C4:2')   
+
+        if time_stand == 0:
+            current_state = STATE_EXPLODED
+
+    elif current_state == STATE_EXPLODED:
+        display.show(Image.SKULL)
+        music.play(['A4:1','F4:1','C4:1'])
+        
+        if pin_logo.is_touched():
+            current_state = STATE_SETTINGS
+            display.clear()
+
+```
+
    
 *2. La definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.*
+
+
+
