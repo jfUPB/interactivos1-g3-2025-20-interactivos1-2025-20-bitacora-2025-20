@@ -29,7 +29,9 @@ Para volver a modo de configuración deberás tocar el botón touch.
 
 *1. Construye un diagrama detallado de la máquina de estados, incluyendo estados, eventos, transiciones y acciones.*
 
-### Actividad 6
+### Actividad 5
+
+<img width="6200" height="4032" alt="Diagrama Actividad 4" src="https://github.com/user-attachments/assets/04da0a82-1e56-4261-92f6-4f4131f1d095" />
 
 Implementa el código para la bomba temporizada usando mycropython y el micro:bit, incluyendo la funcionalidad básica: configuración del tiempo, cuenta regresiva y detonación.
 Reporta en un tu bitácora lo siguiente:
@@ -163,6 +165,7 @@ Evento: Pasar al estado settings oprimiendo el touch del micro:bit.
 Resultado esperado: STATE_EXPLODED -> si oprimo el touch del micro:bit (pin_logo.is_touched()), mandar programa a STATE_SETTINGS.
 
 Resultado obtenido: El sistema cumple con el vector.
+
 
 
 
