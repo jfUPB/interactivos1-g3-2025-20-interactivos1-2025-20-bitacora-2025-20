@@ -39,7 +39,7 @@ Una vez inicializado, el objeto permanece en este estado ejecutando las acciones
 
   ### *1. Codigo del semaforo*  
   
-python
+``` python
 from microbit import *
 import utime
 
@@ -73,6 +73,7 @@ while True:
     amarillo.off()
     verde.on()
     sleep(3000)
+```
 
 ### **2. los estados, eventos y acciones del codigo
 
@@ -216,6 +217,7 @@ Resultado real:
  La cara triste aparece.
 
  Se reinicia el temporizador correctamente.
+
 
 
 
