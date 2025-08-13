@@ -8,6 +8,9 @@
 * Puede encapsular los datos
 
 **Puedes ver cómo la técnica de programación con máquinas de estado y el uso de funciona no bloqueantes te permite que varios semáforos funcionen al mismo tiempo?**  
-Si, ya que una sola cpu se puede 
+Si, ya que se puede hacer un uso muy rapido de la cpu (ya que es solo una) y no se usan metodos que bloqueen mucho tiempo la cpu.  
+
+
+
 
 
