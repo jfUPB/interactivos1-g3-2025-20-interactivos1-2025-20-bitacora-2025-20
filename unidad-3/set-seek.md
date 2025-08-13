@@ -70,3 +70,32 @@ while True:
     semaforo2.update()
     semaforo3.update()
 ```
+inicio codigo bomba con objeto 
+```python
+from microbit import*
+import utime
+
+class Bomba:
+    def __init__(self,interval):
+        self.state= "Init"
+        self.interval = 20000
+        self.startTime = utime.ticks_ms()
+        pass
+
+    def update(self):
+        if self.state == "Init":
+            pass
+
+        if self.state == "Settings":
+            pass
+        if self.state == "Armed":
+            pass
+        if self.state == "Exploted":
+            pass
+
+
+
+
+while True:
+    Bomba
+```
