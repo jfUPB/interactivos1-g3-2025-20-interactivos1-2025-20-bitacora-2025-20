@@ -138,3 +138,5 @@ function arraysEqual(a, b) {
 }
 ```
 
+### Actividad 7.
+
