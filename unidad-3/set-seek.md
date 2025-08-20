@@ -8,7 +8,7 @@
 
 ### Modelado de la bomba 3.0
 
-Modelo — Bomba 3.0 (FSM)
+Modelo — Bomba 3.0 - Máquina de Estados Finitos (FSM)
 
 ##Estados
 CONFIG: Ajuste del tiempo (10–60 s).
@@ -76,5 +76,6 @@ Límite estricto: 10 ≤ time_set ≤ 60.
 | ARMED | Secuencia errónea | reset_seq(); flash("err") | ARMED |
 | ARMED | TICK (remaining<=5) | beep("panic"); blink_fast(); show_countdown(remaining) | ARMED |
 | BOOM | RESET | time_set=20; remaining=time_set; reset_seq(); show_time(time_set) | CONFIG |
+
 
 
