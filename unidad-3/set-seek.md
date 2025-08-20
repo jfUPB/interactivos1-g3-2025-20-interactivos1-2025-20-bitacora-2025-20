@@ -10,7 +10,7 @@
 
 *1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso (o en cristiano, hacer el diagrama del codigo que ya esta hecho)*
 
-[1755660727268-097f397a-4e89-4757-a1bf-8684318a86bdXD)_1](https://github.com/user-attachments/assets/d5068e4d-9c4d-48a7-9e9c-95c8a3d15a5c)
+<img width="1570" height="959" alt="image" src="https://github.com/user-attachments/assets/f21ef563-08b7-489d-9825-3c5f91eae774" />
 
 *2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:*
 
@@ -161,4 +161,5 @@ while True:
     bombTask.update()
 
 ```
+
 
