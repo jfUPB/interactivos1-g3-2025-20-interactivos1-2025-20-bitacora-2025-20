@@ -22,6 +22,17 @@
 
 *- Estado final*
 
+| hola | xd | luis | yo |
+| --- | --- | --- | --- |
+| 1 | 2 | 3 | 4 |
+
+
+
+
+
+
+
+
 //Este código tiene un error raro. Para buscar (dejo el codigo fallido por si algo, en caso de que antes de que el profesor evalue, no lo haya borrado):
 
 ``` py
@@ -164,6 +175,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
