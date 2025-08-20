@@ -15,8 +15,11 @@
 *2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:*
 
 *- Estado inicial*
+
 *- Evento disparador*
+
 *- Acciones*
+
 *- Estado final*
 
 //Este código tiene un error raro. Para buscar (dejo el codigo fallido por si algo, en caso de que antes de que el profesor evalue, no lo haya borrado):
@@ -161,6 +164,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
