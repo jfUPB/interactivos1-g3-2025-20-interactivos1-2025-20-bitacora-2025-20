@@ -24,9 +24,9 @@
 
 | Estado Inicial | Evento disparador | Acciones | Estado Final |
 | --- | --- | --- | --- |
-| CONFIG | Se oprime el botón 'A' | Aumenta +1 segundo al contador configurado | El programa pasa el vector |
-| CONFIG | Se oprime el botón 'B' | Disminuye -1 segundo al contador configurado | El programa tambien pasa el vector |
-| CONFIG | 2 | 3 | 4 |
+| CONFIG ( self.count = 20) | Se aumenta un segundo al contador | si event.read() == 'A', se limpia el evento y self.count = min(self.count+1,60), aumentandolo a 21 | El programa pasa el vector |
+| CONFIG ( self.count = 20) | Se disminuye un segundo al contador | si event.read() == 'B', se limpia el evento y self.count = max(10,self.count-1), haciendo que baje a 19 | El programa tambien pasa el vector |
+| CONFIG | La bomba es activada, pasando del estado CONFIG, al estado ARMED | 3 | El programa pasa por el vector|
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
@@ -185,6 +185,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
