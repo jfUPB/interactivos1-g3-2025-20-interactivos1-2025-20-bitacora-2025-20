@@ -12,6 +12,7 @@ let tiempo = 30;
 let inicioTiempo;
 
 let secuencia = ["A", "B", "A"];
+let contrasena = [" ", " ", " "];
 let indice = 0;
 
 function setup() {
@@ -86,4 +87,5 @@ function keyPressed() {
   }
 }
 ```
+
 
