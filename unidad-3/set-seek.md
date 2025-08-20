@@ -22,7 +22,7 @@
 
 *- Estado final*
 
-| hola | xd | luis | yo |
+| Estado Inicial | Evento disparador | Acciones | Estado Final |
 | --- | --- | --- | --- |
 | 1 | 2 | 3 | 4 |
 
@@ -175,6 +175,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
