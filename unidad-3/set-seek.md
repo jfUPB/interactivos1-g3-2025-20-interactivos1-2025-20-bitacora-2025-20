@@ -2,8 +2,24 @@
 
 ## 🔎 Fase: Set + Seek
 
+### Actividad 5
 
-Este código tiene un error raro. Para buscar:
+#### Es momento de modelar la bomba y definir vectores de prueba
+
+##### Ahora es momento de modelar la bomba con una máquina de estados y definir una tabla con vectores de prueba.
+
+*1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso (o en cristiano, hacer el diagrama del codigo que ya esta hecho)*
+
+[1755660727268-097f397a-4e89-4757-a1bf-8684318a86bdXD)_1](https://github.com/user-attachments/assets/d5068e4d-9c4d-48a7-9e9c-95c8a3d15a5c)
+
+*2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:*
+
+*- Estado inicial*
+*- Evento disparador*
+*- Acciones*
+*- Estado final*
+
+//Este código tiene un error raro. Para buscar (dejo el codigo fallido por si algo, en caso de que antes de que el profesor evalue, no lo haya borrado):
 
 ``` py
 from microbit import *
@@ -145,3 +161,4 @@ while True:
     bombTask.update()
 
 ```
+
