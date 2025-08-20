@@ -24,18 +24,18 @@
 
 | Estado Inicial | Evento disparador | Acciones | Estado Final |
 | --- | --- | --- | --- |
-| CONFIG ( self.count = 20) | Se aumenta un segundo al contador | si event.read() == 'A', se limpia el evento y self.count = min(self.count+1,60), aumentandolo a 21 | El programa pasa el vector |
-| CONFIG ( self.count = 20) | Se disminuye un segundo al contador | si event.read() == 'B', se limpia el evento y self.count = max(10,self.count-1), haciendo que baje a 19 | El programa tambien pasa el vector |
-| CONFIG | La bomba es activada, pasando del estado CONFIG, al estado ARMED | 3 | El programa pasa por el vector|
-| ARMED | 2 | 3 | 4 |
-| ARMED | 2 | 3 | 4 |
+| CONFIG ( self.count = 20) | Aumentar un segundo al contador | Si presiono 'A' (event.read() == 'A'), se limpia el evento y self.count = min(self.count+1,60), aumentandolo a 21 | El programa pasa el vector |
+| CONFIG ( self.count = 20) | Disminuir un segundo al contador | Si presiono 'B' (event.read() == 'B'), se limpia el evento y self.count = max(10,self.count-1), haciendo que baje a 19 | El programa tambien pasa el vector |
+| CONFIG | Activar la bomba y pasar al estado ARMED | Si agito el micro:bit, "shake" (event.read() == 'S':), la bomba dara cuenta atras| El programa pasa por el vector sin problemas |
+| ARMED | Oprimir 'A' acumulara al contador de la contraseña | Si presiono el botón 'A' (event.read() == 'A') durante la cuenta atras, mostrara la cara "SILLY" (display.show(Image.SILLY)) | El vector cumple con la prueba |
+| ARMED | Oprimir 'B' acumulara al contador de la contraseña | Si presiono el botón 'B' (event.read() == 'B') durante la cuenta atras, mostrara la cara "SURPRISED" (display.show(Image.SURPRISED) | El vector nuevamente cumple|
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
 | EXPLODED | 2 | 3 | 4 |
 
-
+Pequeña aclaración: En algunos vectores hice ligeras modificaciones al codigo para verificar que si funcionaran, cabe aclarar que estos no se veran reflejados en el diagrama ni aqui en el GitHub, son solo como digo, para verificación.
 
 
 
@@ -185,6 +185,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
