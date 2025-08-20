@@ -26,6 +26,8 @@
 | --- | --- | --- | --- |
 | CONFIG | 2 | 3 | 4 |
 | CONFIG | 2 | 3 | 4 |
+| CONFIG | 2 | 3 | 4 |
+| CONFIG | 2 | 3 | 4 |
 
 
 
@@ -176,6 +178,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
