@@ -24,7 +24,8 @@
 
 | Estado Inicial | Evento disparador | Acciones | Estado Final |
 | --- | --- | --- | --- |
-| 1 | 2 | 3 | 4 |
+| CONFIG | 2 | 3 | 4 |
+| CONFIG | 2 | 3 | 4 |
 
 
 
