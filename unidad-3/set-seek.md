@@ -23,11 +23,17 @@
 *- Estado final*
 
 | Estado Inicial | Evento disparador | Acciones | Estado Final |
+| --- | --- | --- | --- |
+| CONFIG | 2 | 3 | 4 |
+| CONFIG | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| ARMED | 2 | 3 | 4 |
+| EXPLODED | 2 | 3 | 4 |
 
-| CONFIG | 2 | 3 | 4 |
-| CONFIG | 2 | 3 | 4 |
-| CONFIG | 2 | 3 | 4 |
-| CONFIG | 2 | 3 | 4 |
 
 
 
@@ -178,6 +184,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
