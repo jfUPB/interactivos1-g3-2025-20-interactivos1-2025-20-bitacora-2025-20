@@ -24,7 +24,8 @@
 
 | Estado Inicial | Evento disparador | Acciones | Estado Final |
 | --- | --- | --- | --- |
-| CONFIG | 2 | 3 | 4 |
+| CONFIG | Se oprime el botón 'A' | Aumenta +1 segundo al contador configurado | El programa pasa el vector |
+| CONFIG | Se oprime el botón 'B' | Disminuye -1 segundo al contador configurado | El programa tambien pasa el vector |
 | CONFIG | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
 | ARMED | 2 | 3 | 4 |
@@ -184,6 +185,7 @@ while True:
     bombTask.update()
 
 ```
+
 
 
 
