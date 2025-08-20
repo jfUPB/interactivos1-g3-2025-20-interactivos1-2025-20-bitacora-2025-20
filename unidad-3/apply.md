@@ -4,6 +4,8 @@
 
 ### Actividad 06 - 20/08/2025
 
+[Enlace p5.js](https://editor.p5js.org/Valengp2006/sketches/9huujrxuJ)
+
 **Versión 1 código:**
 
 ```javascript
@@ -87,5 +89,6 @@ function keyPressed() {
   }
 }
 ```
+
 
 
