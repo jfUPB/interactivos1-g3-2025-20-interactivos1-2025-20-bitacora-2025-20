@@ -2,6 +2,8 @@
 
 ## 🛠 Fase: Apply
 
+### Actividad 06 - 20/08/2025
+
 **Versión 1 código:**
 
 ```javascript
@@ -84,3 +86,4 @@ function keyPressed() {
   }
 }
 ```
+
