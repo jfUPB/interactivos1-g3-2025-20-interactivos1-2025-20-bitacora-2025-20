@@ -12,77 +12,75 @@
 
 ```Javascript
 
-let state      = "CONFIG";
-let count      = 20;
-let password   = ['A', 'B', 'A'];
-let inputKeys  = [];
-let keyIndex   = 0;
+let state = "CONFIG";
+let count = 20;
+let password = ['A', 'B', 'A'];
+let inputKeys = [];
+let keyIndex = 0;
 let startTime;
 
 function setup() {
-  createCanvas(400, 400);
-  textSize(32);
-  startTime = millis();
+    createCanvas(400, 400);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    startTime = millis();
 }
 
 function draw() {
-  background(220);
-  textAlign(CENTER, CENTER);
+    background(220);
 
-  if (state === "CONFIG") {
-    text("Time: " + count, width / 2, height / 2);
 
-  } else if (state === "ARMED") {
-    if (millis() - startTime > 1000) {
-      startTime = millis();
-      count--;
-      if (count <= 0) {
-        state = "EXPLODED";
-      }
+    if (state == "CONFIG") {
+        text("Countdown: " + count, width / 2, height / 2);
+
+    } else if (state == "ARMED") {
+        if (millis() - startTime > 1000) {
+            startTime = millis();
+            count--;
+            if (count == 0) {
+                state = "EXPLODED";
+            }
+        }
+        text("Countdown: " + count, width / 2, height / 2);
+
+    } else if (state == "EXPLODED") {
+        text("💀", width / 2, height / 2);
     }
-    text("Time: " + count, width / 2, height / 2);
-
-  } else if (state === "EXPLODED") {
-    text("GAME OVER", width / 2, height / 2);
-  }
 }
 
 function keyPressed() {
-  // CONFIG: A suma, B resta, S activa
-  if (state === "CONFIG") {
-    if (key === 'A' || key === 'a') {
-      count = min(count + 1, 60);
-    } else if (key === 'B' || key === 'b') {
-      count = max(count - 1, 10);
-    } else if (key === 'S' || key === 's') {
-      startTime = millis();
-      state = "ARMED";
-    }
-  
+    if (state == "CONFIG") {
+        if (key == 'A' || key == 'a') {
+            count = min(count + 1, 60);
+        } else if (key == 'B' || key == 'b') {
+            count = max(count - 1, 10);
+        } else if (key == 'S' || key == 's') {
+            startTime = millis();
+            state = "ARMED";
+        }
 
-  } else if (state === "ARMED") {
-    if (key === 'A' || key === 'B') {
-      inputKeys[keyIndex++] = key;
-    }
-    if (keyIndex === password.length) {
-      let passOk = inputKeys.every((k, i) => k === password[i]);
-      if (passOk) {
-        count = 20;
-        state = "CONFIG";
-      }
+    } else if (state == "ARMED") {
+        if (key == 'A' || key == 'B') {
+            inputKeys[keyIndex++] = key;
+        }
+        if (keyIndex == password.length) {
+            let passOk = inputKeys.every((k, i) => k == password[i]);
+            if (passOk) {
+                count = 20;
+                state = "CONFIG";
+            }
 
-      keyIndex  = 0;
-      inputKeys = [];
-    }
+            keyIndex = 0;
+            inputKeys = [];
+        }
 
-
-  } else if (state === "EXPLODED") {
-    if (key === 'T' || key === 't') {
-      count     = 20;
-      startTime = millis();
-      state     = "CONFIG";
+    } else if (state == "EXPLODED") {
+        if (key == 'T' || key == 't') {
+            count = 20;
+            startTime = millis();
+            state = "CONFIG";
+        }
     }
-  }
 }
 
 ```
@@ -103,4 +101,5 @@ function keyPressed() {
 
    
 5. Código del micro:bit.
+
 
