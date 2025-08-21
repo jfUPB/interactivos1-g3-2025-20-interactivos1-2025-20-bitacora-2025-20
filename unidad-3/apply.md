@@ -3,7 +3,7 @@
 
 ## 🛠 Fase: Apply
 
-### Actividad 5 y 6
+### Actividad 05 y 06
 [link p5.js](https://editor.p5js.org/Ayepes2402/sketches/z07leb2iy)
 ```js
 let bombTask;
@@ -179,3 +179,4 @@ while True:
         display.show(Image.TRIANGLE)
         sleep(200)
 ```
+
