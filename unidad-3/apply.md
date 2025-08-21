@@ -153,7 +153,7 @@ function keyPressed() {
   else if (key === 'T') event.set('T');
 }
 ```
-```js
+```py
 #Imports go at the top
 from microbit import *
 
@@ -179,4 +179,5 @@ while True:
         display.show(Image.TRIANGLE)
         sleep(200)
 ```
+
 
