@@ -140,6 +140,7 @@ function arraysEqual(a, b) {
 
 ### Actividad 7.
 
+
 micro:bit:   
 ```javascript
 from microbit import *
@@ -286,3 +287,4 @@ function arraysEqual(a, b) {
 ```
 Mi codigo:
 https://editor.p5js.org/mafora12/sketches/q9fz93iFa 
+
