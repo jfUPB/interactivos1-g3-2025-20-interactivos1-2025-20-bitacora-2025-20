@@ -152,7 +152,7 @@ uart.init(baudrate=115200)
 display.show(Image.SILLY)
 
 while True:
-    display.show(Image.HAPPY)
+    display.show(Image.SILLY)
     if button_a.was_pressed():
         uart.write('A')
         display.show(Image.TRIANGLE)
@@ -173,3 +173,4 @@ while True:
 * Link editor p5.js
 
 [Link para el Editor de p5.js](https://editor.p5js.org/alejogonzdav41/sketches/0CdhgIbQO)
+
