@@ -102,4 +102,25 @@ function keyPressed() {
    
 5. Código del micro:bit.
 
+```Python
+
+from microbit import *
+
+uart.init(baudrate=115200)
+display.show(Image.SILLY)
+
+while True:
+    if button_a.is_pressed():
+        uart.write('A')
+        sleep(300)
+    if button_b.is_pressed():
+        uart.write('B')
+        sleep(300)
+    if accelerometer.was_gesture('shake'):
+        uart.write('S')
+        sleep(300)
+    if pin_logo.is_touched():
+        uart.write('T')
+        sleep(300)
+``` 
 
