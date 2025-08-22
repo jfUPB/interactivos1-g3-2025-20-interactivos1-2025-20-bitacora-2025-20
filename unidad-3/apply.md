@@ -97,7 +97,6 @@ function keyPressed() {
 1. Código p5.js
 
 ```Javascript
-
 let state = "CONFIG";
 let count = 20;
 let password = ['A', 'B', 'A'];
@@ -108,81 +107,81 @@ let port;
 let connectBtn;
 
 function setup() {
-  createCanvas(400, 400);
-  textAlign(CENTER, CENTER);
-  textSize(32);
-  startTime = millis();
-  port = createSerial();
-  connectBtn = createButton('Conectar micro:bit');
-  connectBtn.position(80, 300);
-  connectBtn.mousePressed(() => port.open());;
+    createCanvas(400, 400);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    startTime = millis();
+    port = createSerial();
+    connectBtn = createButton('Conectar micro:bit');
+    connectBtn.position(80, 300);
+    connectBtn.mousePressed(() => port.open());;
 }
 
 function draw() {
-  background(220);
+    background(220);
 
-  if (port.availableBytes() > 0) {
-    let dataRx = port.read(1);
-    if (dataRx) {
-      handleInput(dataRx);     }
-  }
-
-  if (state == "CONFIG") {
-    text("Countdown: " + count, width / 2, height / 2);
-
-  } else if (state == "ARMED") {
-    if (millis() - startTime > 1000) {
-      startTime = millis();
-      count--;
-      if (count == 0) {
-        state = "EXPLODED";
-      }
+    if (port.availableBytes() > 0) {
+        let dataRx = port.read(1);
+        if (dataRx) {
+            handleInput(dataRx);
+        }
     }
-    text("Countdown: " + count, width / 2, height / 2);
 
-  } else if (state == "EXPLODED") {
-    text("💀", width / 2, height / 2);
-  }
+    if (state == "CONFIG") {
+        text("Countdown: " + count, width / 2, height / 2);
+
+    } else if (state == "ARMED") {
+        if (millis() - startTime > 1000) {
+            startTime = millis();
+            count--;
+            if (count == 0) {
+                state = "EXPLODED";
+            }
+        }
+        text("Countdown: " + count, width / 2, height / 2);
+
+    } else if (state == "EXPLODED") {
+        text("💀", width / 2, height / 2);
+    }
 }
 
 function keyPressed() {
-  handleInput(key);
+    handleInput(key);
 }
 
 function handleInput(input) {
-  if (state == "CONFIG") {
-    if (input == 'A' || input == 'a') {
-      count = min(count + 1, 60);
-    } else if (input == 'B' || input == 'b') {
-      count = max(count - 1, 10);
-    } else if (input == 'S' || input == 's') {
-      startTime = millis();
-      state = "ARMED";
-    }
+    if (state == "CONFIG") {
+        if (input == 'A' || input == 'a') {
+            count = min(count + 1, 60);
+        } else if (input == 'B' || input == 'b') {
+            count = max(count - 1, 10);
+        } else if (input == 'S' || input == 's') {
+            startTime = millis();
+            state = "ARMED";
+        }
 
-  } else if (state == "ARMED") {
-    if (input == 'A' || input == 'B') {
-      inputKeys[keyIndex++] = input;
-    }
-    if (keyIndex == password.length) {
-      let passOk = inputKeys.every((k, i) => k == password[i]);
-      if (passOk) {
-        count = 20;
-        state = "CONFIG";
-      }
-      keyIndex = 0;
-      inputKeys = [];
-    }
+    } else if (state == "ARMED") {
+        if (input == 'A' || input == 'B') {
+            inputKeys[keyIndex++] = input;
+        }
+        if (keyIndex == password.length) {
+            let passOk = inputKeys.every((k, i) => k == password[i]);
+            if (passOk) {
+                count = 20;
+                state = "CONFIG";
+            }
+            keyIndex = 0;
+            inputKeys = [];
+        }
 
-  } else if (state == "EXPLODED") {
-    if (input == 'T' || input == 't') {
-      count = 20;
-      startTime = millis();
-      state = "CONFIG";
+    } else if (state == "EXPLODED") {
+        if (input == 'T' || input == 't') {
+            count = 20;
+            startTime = millis();
+            state = "CONFIG";
+        }
     }
-  }
 }
-
 ```
    
 2. Enlace al editor de p5.js con tu código.
@@ -212,6 +211,7 @@ while True:
         uart.write('T')
         sleep(300)
 ``` 
+
 
 
 
