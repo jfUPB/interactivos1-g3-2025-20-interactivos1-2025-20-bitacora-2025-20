@@ -159,4 +159,129 @@ function keyPressed() {
 
 <img width="476" height="355" alt="image" src="https://github.com/user-attachments/assets/d1c9e01b-6b39-42f4-bedf-6ffcdf9c0dcc" />
 
+## Acitivad 7
+
+### Bomba en p5.js + controles del micro:bit
+
+````
+
+/**
+}
+break;
+case this.STATE.EXPLODED:
+if (ev === 'T') { this.count = 20; this.lastTick = millis(); this.state = this.STATE.CONFIG; }
+break;
+}
+}
+update() {
+if (this.state === this.STATE.ARMED) {
+const now = millis();
+if (now - this.lastTick >= 1000) { this.lastTick = now; eventQueue.push('TIMER'); }
+}
+}
+render() {
+background(10);
+textAlign(CENTER,CENTER); noStroke();
+
+
+fill(255); textSize(20); text('BOMBA 2.0 — p5 + micro:bit (Serial)', width/2, 30);
+textSize(16); text(`Estado: ${this.state}`, width/2, 70);
+
+
+textSize(80);
+if (this.state === 'EXPLODED') { fill(255,80,80); text('💀', width/2, height/2); }
+else { fill(230); text(this.count.toString(), width/2, height/2); }
+
+
+fill(180); textSize(14);
+const conn = port && port.opened();
+text(`Serial: ${conn ? 'Conectado' : 'Desconectado'} — Teclado: A B S T`, width/2, height - 30);
+}
+}
+
+
+let bomb;
+
+
+function setup() {
+createCanvas(520, 360);
+bomb = new BombFSM();
+
+
+port = createSerial();
+connectBtn = createButton('Conectar micro:bit');
+connectBtn.position(20, 20);
+connectBtn.mousePressed(() => {
+if (!port.opened()) { port.open('MicroPython', 115200); connectionInitialized = false; }
+else { port.close(); }
+});
+}
+
+
+function draw() {
+// Inicialización de Serial (una vez abierto)
+if (port && port.opened() && !connectionInitialized) {
+port.clear();
+connectionInitialized = true;
+}
+
+
+// Lectura no bloqueante del puerto (micro:bit envía caracteres sueltos)
+if (port && port.opened()) {
+let inByte = port.read(); // suele devolver string con 1 char si hay datos
+if (inByte && typeof inByte === 'string' && inByte.length > 0) {
+const c = inByte.charAt(0).toUpperCase();
+if ('ABST'.includes(c)) eventQueue.push(c);
+}
+}
+
+
+// FSM
+bomb.update();
+while (eventQueue.length > 0) bomb.processEvent(eventQueue.shift());
+bomb.render();
+
+
+// UI botón
+if (connectBtn) connectBtn.html(port && port.opened() ? 'Desconectar' : 'Conectar micro:bit');
+}
+
+
+function keyPressed() {
+const k = key.toUpperCase();
+if ('ABST'.includes(k)) eventQueue.push(k);
+}
+
+````
+
+## Código del micro:bit (control por Serial)
+
+````
+
+# MicroPython — Control remoto simple por Serial
+# Envía 'A','B','S','T' cuando se activan los sensores/botones
+from microbit import *
+
+
+uart.init(baudrate=115200)
+
+
+def send(ch):
+uart.write(ch)
+
+
+while True:
+if button_a.was_pressed():
+send('A')
+if button_b.was_pressed():
+send('B')
+if accelerometer.was_gesture('shake'):
+send('S')
+if pin_logo.is_touched():
+send('T')
+sleep(10)
+
+````
+
+
 
