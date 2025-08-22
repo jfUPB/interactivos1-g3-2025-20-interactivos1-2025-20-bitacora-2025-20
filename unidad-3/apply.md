@@ -92,7 +92,7 @@ function keyPressed() {
 
 #### Vas a practicar de nuevo la técnica de máquina de estados y eventos genéricos, pero esta vez vas a controlar la bomba desde el micro:bit y desde p5.js. TEN PRESENTE que la bomba estará corriendo en p5.js, pero deberás controlarla también desde los botones del micro:bit mediante el puerto serial.
 
-*De antemano voy a ser honesto con esta actividad. Debido a que el tiempo de la clase del Apply se me fue haciendo la actividad 6, no tuve tiempo de llevar a cabo esta actividad cuando se debia (se que es un error mio y no voy a ganar nada sermoneando como en este momento jejeje, pero igual prefiero aclararlo de antemano) por lo que lo que se vera de codigo tanto de Python como p5.js en esta actividad es como he estdado pensando en como podria funcionar usando los botones del serial (aunque no tenga el serial a la mano).*
+*NOTA: De antemano voy a ser honesto con esta actividad. Debido a que el tiempo de la clase del Apply se me fue haciendo la actividad 6, no tuve tiempo de llevar a cabo esta actividad cuando se debia (se que es un error mio y no voy a ganar nada sermoneando como en este momento jejeje, pero igual prefiero aclararlo de antemano) por lo que lo que se vera de codigo tanto de Python como p5.js en esta actividad es como he estdado pensando en como podria funcionar usando los botones del serial (aunque no tenga el serial a la mano).*
 
 1. Código p5.js
 
@@ -125,5 +125,6 @@ while True:
         uart.write('T')
         sleep(300)
 ``` 
+
 
 
