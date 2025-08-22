@@ -96,13 +96,51 @@ function keyPressed() {
 
 1. Código p5.js
 
+```Javascript
 
+let state = "CONFIG";
+let count = 20;
+let password = ['A', 'B', 'A'];
+let inputKeys = [];
+let keyIndex = 0;
+let startTime;
+let port;
+let connectBtn;
+
+function setup() {
+  createCanvas(400, 400);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  startTime = millis();
+  port = createSerial();
+  connectBtn = createButton('Conectar micro:bit');
+  connectBtn.position(80, 300);
+  connectBtn.mousePressed(() => port.open());;
+}
+
+function draw() {
+  background(220);
+
+  if (port.availableBytes() > 0) {
+    let dataRx = port.read(1);
+    if (dataRx) {
+      handleInput(dataRx);     }
+  }
+
+  if (state == "CONFIG") {
+    text("Countdown: " + count, width / 2, height / 2);
+
+  } else if (state == "ARMED") {
+    if (millis() - startTime > 1000) {
+      startTime = millis();
+
+```
    
-3. Enlace al editor de p5.js con tu código.
+2. Enlace al editor de p5.js con tu código.
 
-
+[ENLANCE AL P5.JS DE ESTA IMPROVISACIÓN](https://editor.p5js.org/pinwinasio480/sketches/OxuP-D5fl)
    
-5. Código del micro:bit.
+3. Código del micro:bit.
 
 ```Python
 
@@ -125,6 +163,7 @@ while True:
         uart.write('T')
         sleep(300)
 ``` 
+
 
 
 
