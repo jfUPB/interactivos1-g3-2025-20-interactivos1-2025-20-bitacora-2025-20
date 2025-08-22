@@ -182,10 +182,6 @@ const PASSWORD = ['A','B','A'];
 let keySequence = [];  
 
 // ------------------------------
-// Serial
-let serial; 
-
-// ------------------------------
 // Funciones auxiliares
 function showTime(t) {
   textSize(32);
@@ -209,16 +205,6 @@ function setup() {
   textSize(32);
   textAlign(CENTER, CENTER);
   last_time = millis();
-
-  // --- Serial setup ---
-  serial = createSerial();
-
-  serial.on("list", (ports) => print("Puertos disponibles:", ports));
-  serial.on("connected", () => serial.requestPort());
-  serial.on("open", () => print("Puerto abierto"));
-  serial.on("data", gotData);
-  serial.on("close", () => print("Puerto cerrado"));
-  serial.on("error", (err) => print("Error de serial:", err));
 }
 
 function draw() {
@@ -227,7 +213,7 @@ function draw() {
   if (current_state === STATE_CONFIG) {
     showTime(timer_value);
     textSize(16);
-    text("Presiona A/B (o botones micro:bit) para ajustar\nS para iniciar", width/2, height/2 + 50);
+    text("Presiona A/B para ajustar\nS para iniciar", width/2, height/2 + 50);
   } 
   else if (current_state === STATE_ARMED) {
     let current_time = millis();
@@ -258,16 +244,7 @@ function keyPressed() {
 }
 
 // ------------------------------
-// Evento serial (Micro:bit)
-function gotData() {
-  let data = serial.readLine().trim();
-  if (data.length > 0) {
-    processInput(data);
-  }
-}
-
-// ------------------------------
-// Procesar entrada (teclado o Micro:bit)
+// Procesar entrada (teclado)
 function processInput(k) {
   if (current_state === STATE_CONFIG) {
     if (k === 'A') timer_value = min(timer_value + 1, max_time);
@@ -308,4 +285,4 @@ function arraysEqual(a, b) {
 }
 ```
 Mi codigo:
-[https://editor.p5js.org/ ](https://editor.p5js.org/mafora12/sketches/IMcuTpksYo)
+https://editor.p5js.org/mafora12/sketches/q9fz93iFa 
