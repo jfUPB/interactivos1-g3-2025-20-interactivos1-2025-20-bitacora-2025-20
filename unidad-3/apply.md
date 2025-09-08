@@ -3,218 +3,175 @@
 
 ## 🛠 Fase: Apply
 
-### Actividad 06
-### Crear la bomba en p5.js
+**Actividad 6 y 7**
 
-#### En esta actividad vas a transferir la técnica de programación con máquinas de estado a p5.js.
-
-#### Crea la bomba versión 2.0 en p5.js. No olvides que al aplicar la técnica de máquinas de estado en micro:bit se evitaba colocar acciones por fuera de los eventos. En el caso de p5.js será necesario que tengas acciones por fuera de eventos porque es necesario dibujar el canvas en cada frame.
-
-```Javascript
-
-let state = "CONFIG";
-let count = 20;
-let password = ['A', 'B', 'A'];
-let inputKeys = [];
-let keyIndex = 0;
-let startTime;
-
-function setup() {
-    createCanvas(400, 400);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    startTime = millis();
-}
-
-function draw() {
-    background(220);
-
-
-    if (state == "CONFIG") {
-        text("Countdown: " + count, width / 2, height / 2);
-
-    } else if (state == "ARMED") {
-        if (millis() - startTime > 1000) {
-            startTime = millis();
-            count--;
-            if (count == 0) {
-                state = "EXPLODED";
-            }
-        }
-        text("Countdown: " + count, width / 2, height / 2);
-
-    } else if (state == "EXPLODED") {
-        text("💀", width / 2, height / 2);
-    }
-}
-
-function keyPressed() {
-    if (state == "CONFIG") {
-        if (key == 'A' || key == 'a') {
-            count = min(count + 1, 60);
-        } else if (key == 'B' || key == 'b') {
-            count = max(count - 1, 10);
-        } else if (key == 'S' || key == 's') {
-            startTime = millis();
-            state = "ARMED";
-        }
-
-    } else if (state == "ARMED") {
-        if (key == 'A' || key == 'B') {
-            inputKeys[keyIndex++] = key;
-        }
-        if (keyIndex == password.length) {
-            let passOk = inputKeys.every((k, i) => k == password[i]);
-            if (passOk) {
-                count = 20;
-                state = "CONFIG";
-            }
-
-            keyIndex = 0;
-            inputKeys = [];
-        }
-
-    } else if (state == "EXPLODED") {
-        if (key == 'T' || key == 't') {
-            count = 20;
-            startTime = millis();
-            state = "CONFIG";
-        }
-    }
-}
-
-```
-
-*1. El código fuente de la bomba en p5.js. No olvides el propósito de esta evaluación: utilizar la técnica de máquina de estados que estamos trabajando en el curso.*
-
-### Actividad 07
-### Bomba en p5.js + controles del micro:bit
-
-#### Vas a practicar de nuevo la técnica de máquina de estados y eventos genéricos, pero esta vez vas a controlar la bomba desde el micro:bit y desde p5.js. TEN PRESENTE que la bomba estará corriendo en p5.js, pero deberás controlarla también desde los botones del micro:bit mediante el puerto serial.
-
-*NOTA: De antemano voy a ser honesto con esta actividad. Debido a que el tiempo de la clase del Apply se me fue haciendo la actividad 6, no tuve tiempo de llevar a cabo esta actividad cuando se debia (se que es un error mio y no voy a ganar nada sermoneando como en este momento jejeje, pero igual prefiero aclararlo de antemano) por lo que lo que se vera de codigo tanto de Python como p5.js en esta actividad es como he estdado pensando en como podria funcionar usando los botones del serial (aunque no tenga el serial a la mano).*
-
-1. Código p5.js
-
-```Javascript
-let state = "CONFIG";
-let count = 20;
-let password = ['A', 'B', 'A'];
-let inputKeys = [];
-let keyIndex = 0;
-let startTime;
+* Codigo p5.js
+```js
+let bombTask;
+let serialTask;
+let event;
 let port;
 let connectBtn;
 
-function setup() {
-    createCanvas(400, 400);
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    startTime = millis();
-    port = createSerial();
-    connectBtn = createButton('Conectar micro:bit');
-    connectBtn.position(80, 300);
-    connectBtn.mousePressed(() => port.open());;
+function setup(){
+  createCanvas(700,700);
+  textAlign(CENTER,CENTER);
+  textSize(28);
+
+  port = createSerial();
+  connectBtn = createButton('CONECTAR AL MICROBIT');
+  connectBtn.position(150,250);
+  connectBtn.mousePressed(connectBtnClick);
+
+  event = new BombEvent();
+  bombTask = new BombTask();
+  serialTask = new SerialTask();
 }
 
-function draw() {
-    background(220);
+function draw(){
+  background(0);
 
-    if (port.availableBytes() > 0) {
-        let dataRx = port.read(1);
-        if (dataRx) {
-            handleInput(dataRx);
-        }
+  serialTask.update();
+  bombTask.update();
+
+  bombTask.display();
+}
+
+
+class BombEvent {
+  constructor(){
+    this.value = null;
+  }
+  set(val){ this.value = val; }
+  clear(){ this.value = null; }
+  read(){ return this.value; }
+}
+
+
+class SerialTask {
+  update(){
+    if(port.availableBytes() > 0){
+      let dataRx = port.read(1);
+      if(dataRx === 'A') event.set('A');
+      else if(dataRx === 'B') event.set('B');
+      else if(dataRx === 'S') event.set('S');
+      else if(dataRx === 'T') event.set('T');
     }
+    if (!port.opened()) connectBtn.html('Connect to micro:bit');
+    else connectBtn.html('Disconnect');
+  }
+}
 
-    if (state == "CONFIG") {
-        text("Countdown: " + count, width / 2, height / 2);
-
-    } else if (state == "ARMED") {
-        if (millis() - startTime > 1000) {
-            startTime = millis();
-            count--;
-            if (count == 0) {
-                state = "EXPLODED";
-            }
-        }
-        text("Countdown: " + count, width / 2, height / 2);
-
-    } else if (state == "EXPLODED") {
-        text("💀", width / 2, height / 2);
+class BombTask {
+  constructor(){
+    this.PASSWORD = ['A','B','A'];
+    this.key = [];
+    this.count = 20;
+    this.startTime = millis();
+    this.state = 'CONFIG';
+  }
+  update(){
+    if(this.state === 'CONFIG'){
+      if(event.read() === 'A'){
+        event.clear();
+        this.count = min(this.count + 1, 60);
+      }
+      else if(event.read() === 'B'){
+        event.clear();
+        this.count = max(this.count - 1, 10);
+      }
+      else if(event.read() === 'S'){
+        event.clear();
+        this.startTime = millis();
+        this.state = 'ARMED';
+      }
     }
+    else if(this.state === 'ARMED'){
+      if(millis() - this.startTime > 1000){
+        this.count--;
+        this.startTime = millis();
+        if(this.count <= 0){
+          this.state = 'EXPLODED';
+        }
+      }
+      if(event.read() === 'A' || event.read() === 'B'){
+        this.key.push(event.read());
+        event.clear();
+        if(this.key.length === this.PASSWORD.length){
+          if(this.key.join('') === this.PASSWORD.join('')){
+            this.state = 'CONFIG';
+            this.count = 20;
+          }
+          this.key = [];
+        }
+      }
+    }
+    else if(this.state === 'EXPLODED'){
+      if(event.read() === 'T'){
+        event.clear();
+        this.state = 'CONFIG';
+        this.count = 20;
+        this.startTime = millis();
+      }
+    }
+  }
+  display(){
+    fill(255);
+    if(this.state === 'CONFIG'){
+      text(`CONFIG\n${this.count}`, width/2, height/2);
+    }
+    else if(this.state === 'ARMED'){
+      text(`ARMED\n${this.count}`, width/2, height/2);
+    }
+    else if(this.state === 'EXPLODED'){
+      fill(255,0,0);
+      text("EXPLODED", width/2, height/2);
+    }
+  }
+}
+function connectBtnClick(){
+  if(!port.opened()){
+    port.open('MicroPython',115200);
+  } else {
+    port.close();
+  }
 }
 
 function keyPressed() {
-    handleInput(key);
-}
-
-function handleInput(input) {
-    if (state == "CONFIG") {
-        if (input == 'A' || input == 'a') {
-            count = min(count + 1, 60);
-        } else if (input == 'B' || input == 'b') {
-            count = max(count - 1, 10);
-        } else if (input == 'S' || input == 's') {
-            startTime = millis();
-            state = "ARMED";
-        }
-
-    } else if (state == "ARMED") {
-        if (input == 'A' || input == 'B') {
-            inputKeys[keyIndex++] = input;
-        }
-        if (keyIndex == password.length) {
-            let passOk = inputKeys.every((k, i) => k == password[i]);
-            if (passOk) {
-                count = 20;
-                state = "CONFIG";
-            }
-            keyIndex = 0;
-            inputKeys = [];
-        }
-
-    } else if (state == "EXPLODED") {
-        if (input == 'T' || input == 't') {
-            count = 20;
-            startTime = millis();
-            state = "CONFIG";
-        }
-    }
+  if (key === 'A') event.set('A');
+  else if (key === 'B') event.set('B');
+  else if (key === 'S') event.set('S');
+  else if (key === 'T') event.set('T');
 }
 ```
-   
-2. Enlace al editor de p5.js con tu código.
-
-[ENLANCE AL P5.JS DE ESTA IMPROVISACIÓN](https://editor.p5js.org/pinwinasio480/sketches/OxuP-D5fl)
-   
-3. Código del micro:bit.
-
-```Python
-
+* Codigo Micro.bit
+```js
 from microbit import *
 
 uart.init(baudrate=115200)
 display.show(Image.SILLY)
 
 while True:
-    if button_a.is_pressed():
+    display.show(Image.SILLY)
+    if button_a.was_pressed():
         uart.write('A')
-        sleep(300)
-    if button_b.is_pressed():
+        display.show(Image.TRIANGLE)
+        sleep(200)
+    if button_b.was_pressed():
         uart.write('B')
-        sleep(300)
+        display.show(Image.DIAMOND)
+        sleep(200)
     if accelerometer.was_gesture('shake'):
         uart.write('S')
-        sleep(300)
+        display.show(Image.SKULL)
+        sleep(200)
     if pin_logo.is_touched():
         uart.write('T')
-        sleep(300)
-``` 
+        display.show(Image.SILLY)
+        sleep(200)
+```
+* Link editor p5.js
 
-
-
-
-
+[Link para el Editor de p5.js](https://editor.p5js.org/alejogonzdav41/sketches/0CdhgIbQO)
 
 
