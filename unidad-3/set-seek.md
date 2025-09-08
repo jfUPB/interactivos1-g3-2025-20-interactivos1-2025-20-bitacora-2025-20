@@ -2,38 +2,50 @@
 
 ## 🔎 Fase: Set + Seek
 
+### Actividad 5
 
-<img width="1024" height="768" alt="Simple Flowchart Infographic Graph" src="https://github.com/user-attachments/assets/53c4845f-6876-4813-88c5-32bb1040a894" />
+### Es momento de modelar la bomba y definir vectores de prueba
+
+#### Ahora es momento de modelar la bomba con una máquina de estados y definir una tabla con vectores de prueba.
+
+*1. Construye el modelo de la bomba 3.0. Como ya tienes el código puedes tener un modelo muy preciso (o en cristiano, hacer el diagrama del codigo que ya esta hecho)*
+
+<img width="1717" height="953" alt="image" src="https://github.com/user-attachments/assets/5c49f3f7-8d85-4fe3-b326-8b57f7eed598" />
+
+*2. Crear una tabla con los vectores de prueba. La tabla debe tener 4 columnas por vector y puedes agrupar vectores en un gran vector. Las columnas son:*
+
+*- Estado inicial*
+
+*- Evento disparador*
+
+*- Acciones*
+
+*- Estado final*
+
+| Estado Inicial | Evento disparador | Acciones | Estado Final |
+| --- | --- | --- | --- |
+| CONFIG ( self.count = 20) | Aumentar un segundo al contador | Si presiono 'A' (event.read() == 'A'), se limpia el evento y self.count = min(self.count+1,60), aumentandolo a 21 | El programa pasa el vector |
+| CONFIG ( self.count = 20) | Disminuir un segundo al contador | Si presiono 'B' (event.read() == 'B'), se limpia el evento y self.count = max(10,self.count-1), haciendo que baje a 19 | El programa tambien pasa el vector |
+| CONFIG | Activar la bomba y pasar al estado ARMED | Si agito el micro:bit, "shake" (event.read() == 'S':), la bomba dara cuenta atras y pasara al estado ARMED (self.state = 'ARMED') | El programa pasa por el vector sin problemas |
+| ARMED | Reducir un segundo cada que pasa el intervalo de tiempo | Si el intervalo pasa los 1000 milisegundos, la bomba ira reduciendo -1 segundo (utime.ticks_diff(utime.ticks_ms(),self.startTime) > 1000)  | El programa funciona con lo que solicita el vector |
+| ARMED | Oprimir 'A' acumulara al contador de la contraseña | Si presiono el botón 'A' (event.read() == 'A') durante la cuenta atras, mostrara la cara "SILLY" (display.show(Image.SILLY)) | El vector cumple con la prueba |
+| ARMED | Oprimir 'B' acumulara al contador de la contraseña | Si presiono el botón 'B' (event.read() == 'B') durante la cuenta atras, mostrara la cara "SURPRISED" (display.show(Image.SURPRISED) | El vector nuevamente cumple|
+| ARMED (A, B, A acumulado) | Desactivar la bomba y devolverse al estado CONFIG| Si tras oprimir la combinación, A, B, A, (passIsOK == True), regresara a CONFIG con el contador de 20 segundos predeterminado (self.state = 'CONFIG') | El programa cumple con el vector |
+| ARMED | Detonar la bomba y pasar al estado EXPLODED | Si el contador es igual a 0 (self.count == 0), mostrara en el micro:bit una calavera en señal de game over (display.show(Image.SKULL)) y el programa pasara al estado EXPLODED (self.state = 'EXPLODED') | El vector nuevamente vuelve a cumplir |
+| EXPLODED | Volver a la configuración (al estado CONFIG) tras explotar la bomba | Si se oprime el touch del micro:bit (event.read() == 'T'), además de limpiar el evento, este el estado actual ahora sera CONFIG (self.state = 'CONFIG') | El programa nuevamente cumple con el vector |
+
+##### *Nota: En algunos vectores (dos en total) hice ligeras modificaciones al codigo para verificar que si funcionaran, cabe aclarar que estos no se veran reflejados en el diagrama ni aqui en el codigo de GitHub, son solo como digo, para verificación.*
 
 
-**Vectores de prueba:**
 
-- A, B, S, T: evento recibido (vía botón o puerto serie).
-- tick: ha pasado ≥1 s (utime.ticks_diff(...) > 1000).
-- —: no hay evento.
 
-| Estado inicial | Evento disparador | Acciones esperadas | Estado final |
-|:--------------:|:-----------------:|:------------------:|:------------:|
-| CONFIG  | — | Ninguna acción visible | CONFIG |
-| CONFIG  | A | `count=min(21,60)`; `display.show(21)` | CONFIG |
-| CONFIG  | A | `count=min(60,60)=60`; `display.show(60)` | CONFIG |
-| CONFIG  | A | `count` permanece 60; `display.show(60)` | CONFIG |
-| CONFIG  | B | `count=max(10,19)=19`; `display.show(19)` | CONFIG |
-| CONFIG  | B | `count` permanece 10; `display.show(10)` | CONFIG |
-| CONFIG  | S | `startTime=now`; `display.show(k)` | ARMED |
-| ARMED  | — (<1 s) | Ninguna | ARMED |
-| ARMED | tick (≥1 s) | `count=19`; `display.show(19)`; `startTime=now` | ARMED |
-| ARMED  | tick (≥1 s) | `count=0`; `display.show(Image.SKULL)`; pasar a EXPLODED | EXPLODED |
-| ARMED  | A | `key[0]='A'`; `keyindex=1` | ARMED |
-| ARMED  | B | `key[1]='B'`; `keyindex=2` | ARMED |
-| ARMED  | A | `key[2]='A'`; `keyindex=3` → comparar con `PASSWORD` → correcto | CONFIG (reinicio) |
-| ARMED  | B (clave incorrecta) | `key[2]='B'`; `keyindex=3` → comparación falla → `keyindex=0` | ARMED |
-| ARMED  | Entrada no A/B (ej. S o T) | Sin acción sobre clave ni `count` | ARMED |
-| EXPLODED | T | `count=20`; `display.show(20)`; `startTime=now` | CONFIG |
-| EXPLODED | — | Ninguna (permanece calavera) | EXPLODED |
-| CONFIG | Entrada serial ‘A’ | Igual que botón A: `count++` con tope 60 | CONFIG |
-| CONFIG | Entrada serial ‘B’ | Igual que botón B: `count--` con piso 10 | CONFIG |
-| CONFIG | Entrada serial ‘S’ | Igual que botón S: armar bomba | ARMED |
+
+
+
+
+
+
+
 
 
 

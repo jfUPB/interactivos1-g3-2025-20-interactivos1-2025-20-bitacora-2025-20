@@ -2,25 +2,34 @@
 
 ## 🛠 Fase: Apply
 
-### Actividad 05: 23/07/2025
+### Actividad 5
 
-El sistema físico interactivo que creamos une las aplicaciones **p5.js** y **micro:bit editor** para lograr que el computador (micro:bit) siga las intrucciones dadas en el software p5.js para hacer que al mantener presionado el botón A el software muestre en la pantalla un cuadrado rojo, de lo contrario muestra un cuadrado de color verde. 
+En tu bitácora: explica cómo funciona el sistema físico interactivo que acabamos de crear.
 
-Usando condicionales y ciclos, en el lado del software de dibujo, se logra que la duración del color rojo en la pantalla coincida con el tiempo que está presionado, en lugar de solo aparecer por menos de un segundo; por otro lado, en el micro:bit editor se usa el comando sleep(100) para lograr que se mantenga la imagen durante mas tiempo o se "duerma" el computador durante 100 milisegundos. De igual forma, se sabe que es necesario, conectar el micro:bit al p5.js para que pueda funcionar, ya que de lo contrario no detectaria el computador. Además, se hace uso de bibliotecas en el software para lograr que funcione correctamente.
+Antes de explicar el funcionamiento del sistema interactivo visto en clase, es importante destacar cuales son los inputzs y outputs del mismo:
 
-Por otro lado, es posible verificar si el micro:bit esta conectado al equipo mirando el color del cuadrado proyectadfo en la pantalla, ya que mientras esté desconectado este será de color blanco.
+Inputs: El boton que oprime el usuario ("A"), y la información serial.
+Outputs: El boton de "Connect to micro:bit/Disconnect" y lo visual (color del cuadrado).
 
-### Actividad 06:
+Ya con esto, el funcionamiento es simple, cuando se activa el sistema, aparecera un cuadrado blanco, al conectar el micro:bit, si el usuario oprime el boton a
+el cuadrado se volvera rojo e indicara que se hizo con una 'A', al hacer algo opuesto a esto, se señalara con una 'N' mientras el cuadrado se vuelve verde,
+en si, se encarga de indicar el boton oprimido, evidenciarlo con el color del cuadrado (el output da respuesta) y dar cool down para cada mensaje, debido a que, cada que enviamos 
+una acción con el botón o contrario, el sistema lo detecta una vez, considerando timing y posibles problemas.
 
-[Ver sketch interactivo](https://editor.p5js.org/Valengp2006/sketches/1b5wKQ4j7)
+### Actividad 6
 
-#### Código en p5.js
+Escribe el enlace a tu programa en el editor de p5.js.
 
-```javascript
+[Mi codigo P5.JS DE ACTIVIDAD 6](https://editor.p5js.org/pinwinasio480/sketches/K-A8Z8I7Q)
+
+Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+
+``` js
+
 let port;
 let connectBtn;
 let connectionInitialized = false;
-let x = 100;
+let circleX = 200;
 
 function setup() {
   createCanvas(400, 400);
@@ -42,15 +51,14 @@ function draw() {
   if (port.availableBytes() > 0) {
     let dataRx = port.read(1);
     if (dataRx == "A") {
-      x -= 10;
+      circleX -= 10;
     } else if (dataRx == "B") {
-      x += 10;
+      circleX += 10;
     }
   }
 
   ellipseMode(CENTER);
-  fill("red");
-  ellipse(x, height / 2, 50, 50);
+  ellipse(circleX, height / 2, 50, 50);
 
   if (!port.opened()) {
     connectBtn.html("Connect to micro:bit");
@@ -67,19 +75,26 @@ function connectBtnClick() {
     port.close();
   }
 }
-```
-#### Código en micro:bit editor
 
-```python
+```
+
+Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
+
+```Python
+
 from microbit import *
 
 uart.init(baudrate=115200)
 display.show(Image.SILLY)
 
 while True:
+
     if button_a.is_pressed():
         uart.write('A')
     if button_b.is_pressed():
         uart.write('B')
+
+    sleep(100)
 ```
+      
 

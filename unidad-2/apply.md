@@ -3,124 +3,168 @@
 
 ## 🛠 Fase: Apply
 
-### Actividad 04 - 06/08/2025
 
-**Diagrama máquina de estados:**
+### Actividad 4
 
-|     Estado     |         Evento (input)         |               Acción               |   Estado siguiente   |
-|:--------------:|:------------------------------:|:----------------------------------:|:--------------------:|
-|    `CONFIG`    |    Botón A (UP)                | Aumentar tiempo inicial (+1 s)     |       `CONFIG`       |
-|    `CONFIG`    |    Botón B (DOWN)              | Disminuir tiempo inicial (–1 s)    |       `CONFIG`       |
-|    `CONFIG`    |    Acelerómetro: *shake*       | Iniciar cuenta regresiva           |      `COUNTDOWN`     |
-|  `COUNTDOWN`   | 1 segundo transcurrido         | Restar 1 segundo al contador       | `COUNTDOWN` o `EXPLODE` |
-|  `COUNTDOWN`   | Tiempo == 0                    | Mostrar calavera y activar buzzer  |      `EXPLODE`       |
-|  `COUNTDOWN`   | Toque en botón touch           | Detener bomba, volver a configuración |    `CONFIG`      |
-|   `EXPLODE`    | Toque en botón touch           | Silenciar explosión, volver a configuración | `CONFIG`    |
+#### Diseño de la lógica de una bomba temporizada
 
+Diseña la máquina de estados para solucionar el siguiente problema:
 
-## Actividad 05
+En un escape room se requiere construir una aplicación para controlar una bomba temporizada. El circuito de control de la bomba está compuesto por cuatro sensores, denominados UP (botón A), DOWN (botón B), touch (botón de touch) y ARMED (el gesto de shake de acelerómetro). Tiene dos actuadores o dispositivos de salida que serán un display (la pantalla de LEDs) y un speaker.
 
-**Código bomba temporizada**
+El controlador funciona así:
 
-```python
+Inicia en modo de configuración, es decir, sin hacer cuenta regresiva aún, la bomba está desarmada. El valor inicial del conteo regresivo es de 20 segundos.
+
+En el modo de configuración, los pulsadores UP y DOWN permiten aumentar o disminuir el tiempo inicial de la bomba.
+
+El tiempo se puede programar entre 10 y 60 segundos con cambios de 1 segundo. No olvides usar utime.ticks_ms() para medir el tiempo. Además, 1 segundo equivale a 1000 milisegundos.
+
+Hacer shake (ARMED) arma la bomba, es decir, inicia el conteo regresivo.
+
+Una vez armada la bomba, comienza la cuenta regresiva que será visualizada en la pantalla de LED
+
+La bomba explotará (speaker) cuando el tiempo llegue a cero.
+
+Para volver a modo de configuración deberás tocar el botón touch.
+
+*1. Construye un diagrama detallado de la máquina de estados, incluyendo estados, eventos, transiciones y acciones.*
+
+<img width="6200" height="4032" alt="Diagrama Actividad 4 Bomba" src="https://github.com/user-attachments/assets/ba675343-8f6c-4337-b02f-c6c99b76b753" />
+
+### Actividad 5
+
+Implementa el código para la bomba temporizada usando mycropython y el micro:bit, incluyendo la funcionalidad básica: configuración del tiempo, cuenta regresiva y detonación.
+Reporta en un tu bitácora lo siguiente:
+
+*1. El código que implementa la bomba temporizada.*
+
+```Python
+
 from microbit import *
 import utime
+import music
 
-# Estados
-CONFIG = 0
-COUNTDOWN = 1
-EXPLODE = 2
+STATE_INIT       = 0
+STATE_SETTINGS   = 1
+STATE_COUNTDOWN  = 2
+STATE_EXPLODED   = 3
 
-# Estado inicial
-state = CONFIG
-countdown_time = 20
-last_tick = utime.ticks_ms()
 
-# Límites del temporizador
-MIN_TIME = 10
-MAX_TIME = 60
-
-def show_number(n):
-    display.show(str(n))  # Mostrar número directamente en pantalla
-
-def explode():
-    for _ in range(5):
-        display.show(Image.SKULL)
-        sleep(200)
-        display.clear()
-        sleep(200)
+current_state = STATE_INIT
+time_set      = 20  
+time_stand    = 20  
+last_tick     = 0    
 
 while True:
-    if state == CONFIG:
-        display.show(Image.ASLEEP)
+    if current_state == STATE_INIT:
+        display.clear()
+        time_set = 20
+        display.show(str(time_set))
+        current_state = STATE_SETTINGS    
 
-        if button_a.was_pressed() and countdown_time < MAX_TIME:
-            countdown_time += 1
-            show_number(countdown_time)
-            sleep(1000)  # Espera un segundo para que se vea el número
+    elif current_state == STATE_SETTINGS:
+        display.show(str(time_set))   
 
-        elif button_b.was_pressed() and countdown_time > MIN_TIME:
-            countdown_time -= 1
-            show_number(countdown_time)
-            sleep(1000)
+        if button_a.was_pressed():
+            music.play(['C4'])
+            if time_set < 60:
+                time_set += 1
+            display.show(str(time_set))
 
-        elif accelerometer.was_gesture('shake'):
-            state = COUNTDOWN
-            show_number(countdown_time)  # Mostrar inmediatamente el número actual
+        if button_b.was_pressed():
+            music.play(['G3'])
+            if time_set > 10:
+                time_set -= 1
+            display.show(str(time_set))
+
+        if accelerometer.was_gesture('shake'):
+            music.play(['C4:2'])
+            time_stand = time_set
+            last_tick  = utime.ticks_ms()
+            current_state = STATE_COUNTDOWN
+
+    elif current_state == STATE_COUNTDOWN:
+        if utime.ticks_diff(utime.ticks_ms(), last_tick) >= 1000:
+            time_stand -= 1
             last_tick = utime.ticks_ms()
+            display.scroll(str(time_stand))
+            music.play('C4:2')   
 
-    elif state == COUNTDOWN:
-        now = utime.ticks_ms()
-        if utime.ticks_diff(now, last_tick) >= 1000:
-            countdown_time -= 1
-            last_tick = now
-            if countdown_time > 0:
-                show_number(countdown_time)
-            else:
-                state = EXPLODE
-                explode()
+        if time_stand == 0:
+            current_state = STATE_EXPLODED
 
-        if pin_logo.is_touched():
-            state = CONFIG
-            countdown_time = 20
-
-    elif state == EXPLODE:
+    elif current_state == STATE_EXPLODED:
         display.show(Image.SKULL)
+        music.play(['A4:1','F4:1','C4:1'])
+        
         if pin_logo.is_touched():
-            state = CONFIG
-            countdown_time = 20
+            current_state = STATE_SETTINGS
+            display.clear()
+
 ```
+   
+*2. La definición de los vectores de prueba básicos que permiten verificar el correcto funcionamiento del programa.*
 
-**Vectores de prueba**
+Vector 1: 
 
-**1) Aumentar el tiempo de configuración:**
+Condicion Inicial: Time_set = 20.
 
-- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 20 segundos.
-- Evento generado: Presionar el botón A.
-- Resultado esperado: El tiempo aumenta a 21 segundos y la pantalla muestra el número 21 luego de presionar una sola vez el botón A.
-- Resultado obtenido: El tiempo aumento de 20 a 21 segundos luego de presionar el botón; este número también se ve en la pantalla.
+Evento: Suma uno al contador de tiempo time_set presionando 'a'. 
 
-**2) Disminuir el tiempo de configuración:**
+Resultado esperado: time_set = 20 -> si presiono 'a' (if button_a.was_pressed()), time_set += 1, es decir, time_set = 21. 
 
-- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 20 segundos.
-- Evento generado: Presionar el botón B.
-- Resultado esperado: El tiempo disminuye a 19 segundos y la pantalla muestra el número 19 luego de presionar una sola vez el botón B.
-- Resultado obtenido: El tiempo disminuyó de 20 a 19 segundos luego de presionar el botón; este número también se ve en la pantalla.
+Resultado obtenido: El sistema pasa el vector.
 
-**3) No disminuir el tiempo por debajo del mínimo**
+Vector 2: 
 
-- Condición inicial: El sistema inicia en el estado CONFIG con un tiempo de 10 segundos.
-- Evento generado: Presionar varias veces el botón B.
-- Resultado esperado: El tiempo no baja de 10 segundos.
-- Resultado obtenido: No se muestra cambio alguno a un número menor a 10.
+Condicion Inicial: Time_set = 20.
 
-**4) Iniciar cuenta regresiva:**
+Evento: Resta uno al contador de tiempo time_set presionando 'b' (lo contrario al vector 1). 
 
-- Condición inicial: El sistema está en el estado CONFIG con tiempo de 20 segundos
-- Evento generado: Agitar ek micro:bit (shake).
-- Resultado esperado: Se inicia la cuenta regresiva.
-- Resultado obtenido: Aparece cada segundo en pantalla de forma descendente hasta llegar a 0, luego "explota".
+Resultado esperado: time_set = 20 -> si presiono 'b' (if button_b.was_pressed()), time_set -= 1, es decir, time_set = 19. 
 
+Resultado obtenido: El sistema tambien pasa el vector.
+
+Vector 3: 
+
+Condicion Inicial: STATE_SETTINGS
+
+Evento: Pasar al estado countdown para iniciar la bomba agitando el micro:bit (shake).
+
+Resultado esperado: STATE_SETTINGS -> si agito el micro:bit (if accelerometer.was_gesture('shake')), ir a STATE_COUNTDOWN
+
+Resultado obtenido: El sistema tambien pasa el vector nuevamente.
+
+Vector 4: 
+
+Condicion Inicial: STATE_COUNTDOWN
+
+Evento: Restar un segundo al time_stand durante la bomba
+
+Resultado esperado: time_stand = 20 -> si last_tick pasa los 1000 milisegundos (if utime.ticks_diff(utime.ticks_ms(), last_tick) >= 1000:), time_stand -= 1, es decir, en otras palabras, time_stand = 19.
+
+Resultado obtenido: El sistema funciona como indica el vector.
+
+Vector 5: 
+
+Condicion Inicial: STATE_COUNTDOWN
+
+Evento: Acabar la bomba (o detonarla) si time_stand == 0.
+
+Resultado esperado: time_stand = 20 -> si time_stand == 0, pasar a STATE_EXPLODED, mostrar (Image.SKULL) y sonar speaker (music.play(['A4:1','F4:1','C4:1'])).
+
+Resultado obtenido: El sistema funciona en base al vector.
+
+Vector 6:
+
+Condición Inicial: STATE_EXPLODED
+
+Evento: Pasar al estado settings oprimiendo el touch del micro:bit.
+
+Resultado esperado: STATE_EXPLODED -> si oprimo el touch del micro:bit (pin_logo.is_touched()), mandar programa a STATE_SETTINGS.
+
+Resultado obtenido: El sistema cumple con el vector.
 
 
 

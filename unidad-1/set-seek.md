@@ -2,145 +2,76 @@
 
 ## 🔎 Fase: Set + Seek
 
-### Actividad 01 - 16/07/2025
+### Actividad 1
 
-#### ¿Qué es un sistema físico interactivo?
+¿Qué es un sistema físico interactivo?
 
-Es un sistema que percibe información del entorno físico mediante **sensores** (inputs), procesa esa información, y responde a ella mediante **actuadores** (outputs), generando una **interacción dinámica** con el usuario o el entorno.
+Se trata de un sistema que desde inputs y outputs por medio de la interacción del usuario, este responderá en tiempo real a las acciones que realice el mismo basado en la programación y configuración que este tenga de ambas partes.
 
-#### ¿Cómo se relacionan los sistemas físicos interactivos con mi perfil profesional?
+Algunos ejemplos son Mario Kart Home Circuit, siendo un sistema que permite usar juguetes de personajes como Mario o Luigi (se pueden usar más de uno al mismo tiempo), cabe destacar que dichos juguetes vienen con una cámara integrada (input) la cual envía la información que reciba al ver las líneas de meta a la nintendo switch (input por la detección de sensores y botones del joycon y output por la cámara y como muestra a los oponentes).
 
-Los sistemas físicos interactivos se relacionan con **mi perfil profesional** porque me permiten crear productos donde el usuario interactúa con el mundo **físico y digital al mismo tiempo**.  Esto es fundamental para desarrollar **videojuegos, instalaciones, interfaces** o **experiencias educativas** que respondan a acciones reales mediante sensores y actuadores.
+Otro ejemplo similar es el de ProCreate in Ipad, aquí el input, la tablet desde la app de ProCreate, mientras que el usuario dibuja líneas o círculos (las acciones del usuario también cuentan como input), el output, es decir, la pantalla del computador, mostrará lo que haya hecho el usuario de una forma diferente, pasando de ver solo líneas curvas y círculos, tallos de una flor junto a los mismos pétalos, moviéndose de forma animada.
 
-### Actividad 02 - 18/07/2025
+¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
 
-Un **artista generativo** utiliza **herramientas autónomas** para la elaboración de usas obras, **programando el código** para que herramientas como los plotters pinten con base a la introducción codificada por el usuario. Es conocido como una forma contemporánea del arte, en donde este se encuentra en el código detrás de la obra que en la pintura en si.
+Dentro de mi perfil profesional, los sistemas físicos interactivos pueden ser de utilidad para aplicar mejoras o de plano tener una mejor capacidad de hacer prototipos de un proyecto, aunque a primera vista da la impresión de que solo serviria en la línea de Experiencias interactivas, en casos como los de Mario Kart y ProCreate estos sistemas también son de mucha utilidad en Videojuegos o Animación digital, incluso son bastante útiles yo en un futuro darle al usuario una experiencia más dinámica y especial.
 
-El **diseño generativo** es comunmente usado por las marcas actualmente. Se enfoca en la entrega de una aplicación que puede ser usada por los diseñadores para ser aplicados en diferentes tipos de piezas, permitiendo elementos de variabilidad en el diseño según el contexto y la necesidad.
+### Actividad 2
 
-#### ¿Qué es el arte/diseño generativo entonces?
+¿Qué es el diseño/arte generativo?
 
-Se refiere a cualquier práctica del ámbito artistico en el que el artista hace uso de un sistema el cual tiene funcionalidad con cierta autonomía.
+El diseño, o también llamado arte generativo, es la práctica artística en la que un artista y/o diseñador por medio de un sistema, algoritmo, reglas, variabilidad, aleatoriedad y un sistema autónomo, puede ayudar a la creación o complementación de obras de arte de diferente tipo. Entre algunos ejemplos, se encuentra el Plotter, una máquina que gracias a la ayuda de indicaciones que le da un código (programa), además de la introducción de IA o algoritmo, puede generar pinturas que se diferencien entre sí.
 
-### Actividad 03
+Otro caso es el del logotipo de Philharmonie Luxembourg, el cual no hace uso de piezas estáticas como uno pensaría, sino que por medio de un sistema, logra que haya volumen en el logotipo al ritmo de la musica o cancion que esté tocando el artista, teniendo variaciones, como si de los LEDS de un DJ se tratara, siendo algo que generalmente o en muchos casos, un diseñador gráfico no llegaría a ese nivel.
 
-#### Inputs (Entradas)
+¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
 
-**micro:bit:**
-- Botón A
-- Botón B 
-- Sensor de acelerómetro (cuando se detecta el gesto de sacudir - shake)
-- Puerto de comunicación (USB)
-- Botón "Send Love" en la interfaz de p5.js
+En un perfil profesional como el de un Ingeniero en Diseño de Entretenimiento Digital (IDED), el cual es mi caso por ejemplo, gracias a la ayuda de algoritmos y sistemas como fueron mostrados en los ejemplos de clase como el Plotter, permite crear y experimentar con las obras que yo pueda hacer, ya sea para volverlas más dinámicas o acelerar un proceso que puede llegar a ser tardío, pasando de estar demasiadas horas probando combinaciones de por ejemplo replicar un cuadro pero con diferencias notables, a tenerlo listo en cuestión de minutos o menos horas.
 
-**Computador**
-- Serial (USB)
+### Actividad 3
 
-#### Proceso
+En este sistemas físico interactivo identifica los inputs, outputs y el proceso
 
-- El programa en la micro:bit detecta si se presionan los botones A o B, o si se sacude el dispositivo.
-- Según el evento detectado, la micro:bit envía un carácter por el USB al computador:  
-  - `'A'` si se presiona el botón A  
-  - `'B'` si se presiona el botón B  
-  - `'C'` si se sacude
-- En el navegador, p5.js recibe este dato a través del puerto serial y cambia el color de un círculo en pantalla dependiendo del valor recibido.
+INPUTS:
 
+- Microchip: Los botones y el acelerómetro del microchip, así como el mismo puerto de comunicación USB, además del botón de "Send love".
+- Computador: El serial/USB.
 
-#### Outputs (Salidas):
+OUTPUTS:
 
-**micro:bit:**
-  - Puerto de comunicación (USB)
+- Microchip: El puerto de comunicación USB, el display (en este caso, reacciona al input con el botón de send love para mandar información).
+- Computador: Los datos que el usuario envíe por el serial y lo que muestra el computador.
 
-**p5.js:**
-- Cambio del color del círculo central
-- Texto con el carácter recibido en el centro del círculo
+PROCESO:
 
-**Computador:**
-- Display
-- Datos enviados por el serial
+El microchip lee los inputs y la página responde a esos inputs. También es la parte en la que el input genera los outputs.
 
-### Actividad 04
+### Actividad 4
 
-[Enlace al editor](https://editor.p5js.org/Valengp2006/sketches/OSpyB6vzc)
+Escribe el enlace a tu programa en el editor de p5.js.
 
-#### Animación con figuras que cambian de forma, color y dirección
+[Mi código de p5.js](https://editor.p5js.org/pinwinasio480/sketches/pIeeSax4q)
 
-Este sketch en **p5.js** implementa un sistema visual interactivo que simula el movimiento de dos figuras que rebotan dentro del lienzo, cambian de color de forma progresiva y modifican su forma cada vez que colisionan con los bordes del lienzo.
-
-#### Código
-
-```javascript
-// Figura 1
-let x1 = 100, y1 = 100, dx1 = 2, dy1 = 1.5, tipo1 = 0, size1 = 50;
-let r1 = 100, g1 = 150, b1 = 255;
-
-// Figura 2
-let x2 = 300, y2 = 200, dx2 = -2, dy2 = 2.2, tipo2 = 1, size2 = 40;
-let r2 = 255, g2 = 100, b2 = 180;
+Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
 
 function setup() {
   createCanvas(400, 400);
-  background(220); 
 }
 
 function draw() {
-
-  // Dibujar figura 1
-  fill(r1, g1, b1);
-  dibujarFigura(x1, y1, tipo1, size1);
-
-  // Dibujar figura 2
-  fill(r2, g2, b2);
-  dibujarFigura(x2, y2, tipo2, size2);
-
-  // Rebote y cambio de forma (figura 1)
-  let reboteX1 = (x1 <= 0 || x1 >= width) * 1;
-  let reboteY1 = (y1 <= 0 || y1 >= height) * 1;
-  dx1 *= 1 - 2 * reboteX1;
-  dy1 *= 1 - 2 * reboteY1;
-  tipo1 = (reboteX1 + reboteY1) * int(random(3)) + tipo1 * (1 - (reboteX1 + reboteY1));
-
-  // Rebote y cambio de forma (figura 2)
-  let reboteX2 = (x2 <= 0 || x2 >= width) * 1;
-  let reboteY2 = (y2 <= 0 || y2 >= height) * 1;
-  dx2 *= 1 - 2 * reboteX2;
-  dy2 *= 1 - 2 * reboteY2;
-  tipo2 = (reboteX2 + reboteY2) * int(random(3)) + tipo2 * (1 - (reboteX2 + reboteY2));
-
-  // Movimiento
-  x1 += dx1;
-  y1 += dy1;
-  x2 += dx2;
-  y2 += dy2;
-
-  // Cambio de color constante
-  r1 = (r1 + 1) % 256;
-  g1 = (g1 + 2) % 256;
-  b1 = (b1 + 3) % 256;
-
-  r2 = (r2 + 3) % 256;
-  g2 = (g2 + 2) % 256;
-  b2 = (b2 + 1) % 256;
+  background(120, 10);
+  square(random(100, 250), random(150,350), random(25,50));
+  ellipse(random(50, 50), random(200,250), random(50,75));
+  point(random(350, 350), random(200,250), random(50,75));
+  let x = 100 * cos(frameCount * 0.05) + 180;
+  let y = 50;
+  line(75, y, x, y);
+  circle(x, y, 20);
 }
 
-// Función para dibujar una figura según su tipo
-function dibujarFigura(x, y, tipo, size) {
-  let formas = [
-    () => ellipse(x, y, size),
-    () => rectMode(CENTER) || rect(x, y, size, size),
-    () => triangle(
-      x, y - size / 2,
-      x - size / 2, y + size / 2,
-      x + size / 2, y + size / 2
-    )
-  ];
-  noStroke();
-  formas[tipo % 3]();
-}
-```
+Muestra una captura de pantalla del resultado de tu programa
 
-#### GIF del resultado final
+<img width="497" height="497" alt="image" src="https://github.com/user-attachments/assets/8abb448f-636b-45a7-94eb-cbe8015655f4" />
 
-![Resultado final](https://github.com/user-attachments/assets/5cf643a9-8c3c-434f-a1e1-3caea7ac1a3d)
 
 
