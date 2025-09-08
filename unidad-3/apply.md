@@ -3,356 +3,286 @@
 
 ## 🛠 Fase: Apply
 
-# Actividad 6 
-```
-let port;
-let connectBtn;
-let connectionInitialized = false;
 
-let validChars = "ABST";
+## Actividad 6
 
-let bombaArmada = false;     
-let secuencia = "";           
-const secuenciaCorrecta = "ABA";
+### Crear la bomba en p5.js
+
+````
+
+/**
+ * Bomba 2.0 en p5.js — Máquina de Estados (CONFIG, ARMED, EXPLODED)
+ * Controles con teclado:
+ * - A: ++count (máx 60) en CONFIG; parte de clave en ARMED
+ * - B: --count (mín 10) en CONFIG; parte de clave en ARMED
+ * - S: armar (pasar a ARMED)
+ * - T: reset desde EXPLODED
+ * Temporizador: 1s en ARMED (no bloqueante, usando millis())
+ */
+
+let eventQueue = [];
+
+class BombFSM {
+  constructor() {
+    this.STATE = { CONFIG: 'CONFIG', ARMED: 'ARMED', EXPLODED: 'EXPLODED' };
+    this.state = this.STATE.CONFIG;
+
+    this.count = 20;            // [10..60]
+    this.lastTick = millis();   // para TIMER de 1s
+
+    this.PASSWORD = ['A','B','A'];
+    this.key = new Array(this.PASSWORD.length).fill('');
+    this.keyindex = 0;
+  }
+
+  // Procesa eventos genéricos
+  processEvent(ev) {
+    if (!ev) return;
+
+    switch (this.state) {
+      case this.STATE.CONFIG:
+        if (ev === 'A') {
+          this.count = Math.min(this.count + 1, 60);
+        } else if (ev === 'B') {
+          this.count = Math.max(this.count - 1, 10);
+        } else if (ev === 'S') {
+          this.lastTick = millis();
+          this.state = this.STATE.ARMED;
+        }
+        break;
+
+      case this.STATE.ARMED:
+        if (ev === 'TIMER') {
+          this.count -= 1;
+          if (this.count <= 0) {
+            this.count = 0;
+            this.state = this.STATE.EXPLODED;
+          }
+        } else if (ev === 'A' || ev === 'B') {
+          this.key[this.keyindex] = ev;
+          this.keyindex++;
+          if (this.keyindex === this.PASSWORD.length) {
+            // Validar clave
+            let ok = true;
+            for (let i = 0; i < this.PASSWORD.length; i++) {
+              if (this.key[i] !== this.PASSWORD[i]) { ok = false; break; }
+            }
+            if (ok) {
+              this.count = 20;
+              this.keyindex = 0;
+              this.state = this.STATE.CONFIG;
+            } else {
+              this.keyindex = 0;
+            }
+          }
+        }
+        break;
+
+      case this.STATE.EXPLODED:
+        if (ev === 'T') {
+          this.count = 20;
+          this.lastTick = millis();
+          this.state = this.STATE.CONFIG;
+        }
+        break;
+    }
+  }
+
+  // Genera el evento TIMER cada 1 segundo
+  update() {
+    if (this.state === this.STATE.ARMED) {
+      const now = millis();
+      if (now - this.lastTick >= 1000) {
+        this.lastTick = now;
+        eventQueue.push('TIMER');
+      }
+    }
+  }
+
+  // Dibujo en canvas (acciones fuera de eventos)
+  render() {
+    background(20);
+    textAlign(CENTER, CENTER);
+    noStroke();
+
+    fill(255);
+    textSize(20);
+    text('BOMBA 2.0 — FSM en p5.js', width/2, 30);
+
+    textSize(16);
+    text(`Estado: ${this.state}`, width/2, 70);
+
+    textSize(80);
+    if (this.state === this.STATE.EXPLODED) {
+      fill(255, 80, 80);
+      text('💀', width/2, height/2);
+    } else {
+      fill(200);
+      text(this.count.toString(), width/2, height/2);
+    }
+
+    fill(180);
+    textSize(14);
+    text('Teclado: A(+), B(-), S(armar), T(reset)', width/2, height - 30);
+  }
+}
+
+let bomb;
 
 function setup() {
-  createCanvas(400, 400);
-  background(220);
-  port = createSerial();
-  connectBtn = createButton("Connect to micro:bit");
-  connectBtn.position(80, 300);
-  connectBtn.mousePressed(connectBtnClick);
+  createCanvas(420, 320);
+  bomb = new BombFSM();
 }
 
 function draw() {
-  background(220);
-  if (port.opened() && !connectionInitialized) {
-    port.clear();
-    connectionInitialized = true;
+  // 1) Actualización no bloqueante (TIMER)
+  bomb.update();
+
+  // 2) Consumir eventos en cola
+  while (eventQueue.length > 0) {
+    const ev = eventQueue.shift();
+    bomb.processEvent(ev);
   }
 
-  textAlign(CENTER);
-  text("Press A,B,S,T to simulate micro:bit keys", width / 2, height / 2);
-
-  if (bombaArmada) {
-    text("Bomba ARMADA! Ingresa secuencia ABA para desactivar", width / 2, height / 2 + 30);
-  }
-
-  if (!port.opened()) {
-    connectBtn.html("Connect to micro:bit");
-  } else {
-    connectBtn.html("Disconnect");
-  }
+  // 3) Dibujar
+  bomb.render();
 }
+
+// Capturar eventos de teclado
+function keyPressed() {
+  const k = key.toUpperCase();
+  if ('ABST'.includes(k)) eventQueue.push(k);
+}
+
+
+````
+
+
+<img width="476" height="355" alt="image" src="https://github.com/user-attachments/assets/d1c9e01b-6b39-42f4-bedf-6ffcdf9c0dcc" />
+
+## Acitivad 7
+
+### Bomba en p5.js + controles del micro:bit
+
+````
+
+/**
+}
+break;
+case this.STATE.EXPLODED:
+if (ev === 'T') { this.count = 20; this.lastTick = millis(); this.state = this.STATE.CONFIG; }
+break;
+}
+}
+update() {
+if (this.state === this.STATE.ARMED) {
+const now = millis();
+if (now - this.lastTick >= 1000) { this.lastTick = now; eventQueue.push('TIMER'); }
+}
+}
+render() {
+background(10);
+textAlign(CENTER,CENTER); noStroke();
+
+
+fill(255); textSize(20); text('BOMBA 2.0 — p5 + micro:bit (Serial)', width/2, 30);
+textSize(16); text(`Estado: ${this.state}`, width/2, 70);
+
+
+textSize(80);
+if (this.state === 'EXPLODED') { fill(255,80,80); text('💀', width/2, height/2); }
+else { fill(230); text(this.count.toString(), width/2, height/2); }
+
+
+fill(180); textSize(14);
+const conn = port && port.opened();
+text(`Serial: ${conn ? 'Conectado' : 'Desconectado'} — Teclado: A B S T`, width/2, height - 30);
+}
+}
+
+
+let bomb;
+
+
+function setup() {
+createCanvas(520, 360);
+bomb = new BombFSM();
+
+
+port = createSerial();
+connectBtn = createButton('Conectar micro:bit');
+connectBtn.position(20, 20);
+connectBtn.mousePressed(() => {
+if (!port.opened()) { port.open('MicroPython', 115200); connectionInitialized = false; }
+else { port.close(); }
+});
+}
+
+
+function draw() {
+// Inicialización de Serial (una vez abierto)
+if (port && port.opened() && !connectionInitialized) {
+port.clear();
+connectionInitialized = true;
+}
+
+
+// Lectura no bloqueante del puerto (micro:bit envía caracteres sueltos)
+if (port && port.opened()) {
+let inByte = port.read(); // suele devolver string con 1 char si hay datos
+if (inByte && typeof inByte === 'string' && inByte.length > 0) {
+const c = inByte.charAt(0).toUpperCase();
+if ('ABST'.includes(c)) eventQueue.push(c);
+}
+}
+
+
+// FSM
+bomb.update();
+while (eventQueue.length > 0) bomb.processEvent(eventQueue.shift());
+bomb.render();
+
+
+// UI botón
+if (connectBtn) connectBtn.html(port && port.opened() ? 'Desconectar' : 'Conectar micro:bit');
+}
+
 
 function keyPressed() {
-  let keyValue = key.toUpperCase();
-  if (validChars.includes(keyValue)) {
-    console.log(keyValue);
-    port.write(keyValue);
-
-    if (bombaArmada) {
-      secuencia += keyValue;
-      if (secuencia.length > 3) {
-        secuencia = secuencia.slice(-3); 
-      }
-
-      if (secuencia === secuenciaCorrecta) {
-        bombaArmada = false;
-        secuencia = "";
-        console.log("Bomba Desactivada we");
-      }
- 
-    } else {
-      if (keyValue === 'S') {
-        bombaArmada = true;
-        secuencia = "";
-        console.log("Bomba Activada we");
-      }
-    }
-  }
+const k = key.toUpperCase();
+if ('ABST'.includes(k)) eventQueue.push(k);
 }
 
-function connectBtnClick() {
-  if (!port.opened()) {
-    port.open("MicroPython", 115200);
-    connectionInitialized = false;
-  } else {
-    port.close();
-  }
-}
-```
+````
 
-# Actividad 7
-Codigo microbit
-```
+## Código del micro:bit (control por Serial)
+
+````
+
+# MicroPython — Control remoto simple por Serial
+# Envía 'A','B','S','T' cuando se activan los sensores/botones
 from microbit import *
-import utime
-import radio
-
-display.clear()
-
-class Event:
-    def __init__(self):
-        self.value = 0
-
-    def write(self,value):
-        self.value = value
-
-    def read(self):
-        return self.value
-
-    def clear(self):
-        self.value = 0
-
-class MicroBitSensors():
-    def __init__(self):
-        pass
-
-    def update(self):
-        if button_a.was_pressed():
-            event.write("A")
-        if button_b.was_pressed():
-            event.write("B")
-        if accelerometer.was_gesture("shake"):
-            event.write("S")
-        if pin_logo.is_touched():
-            event.write("T")
-
-class RemoteTask:
-    def __init__(self):
-        uart.init(baudrate=115200)
-
-    def update(self):
-        if uart.any():
-            data = uart.read(1)
-            if data:
-                if data[0] == ord('A'):
-                    event.write("A")
-                if data[0] == ord('B'):
-                    event.write("B")
-                if data[0]== ord('S'):
-                    event.write("S")
-                if data[0] == ord('T'):
-                    event.write("T")
 
 
-class RadioRemote:
-    def __init__(self):
-        radio.config(group=69)
-        radio.on
-
-    def update(self):
-        message = radio.receive()
-        if message:
-            if message == "A":
-                event.write("A")
-            elif message == "B":
-                event.write("B")
-            elif message == "S":
-                event.write("S")
-            elif message == "T":
-                event.write("T")
+uart.init(baudrate=115200)
 
 
-class BombTask:
-    def __init__(self):
-        self.PASSWORD = ['A','B','A']
-        self.key = ['']*len(self.PASSWORD)
-        self.keyindex = 0
-        self.count = 20
-        self.startTime = utime.ticks_ms()
-        self.state = 'CONFIG'
-        display.clear()
-        display.show(self.count,wait=False)
+def send(ch):
+uart.write(ch)
 
-    def update(self):
-        if self.state == 'CONFIG':
-            if event.read()== "A":
-                event.clear()
-                self.count = min(self.count+1,60)
-                display.show(self.count,wait=False)
-
-            if event.read()== "B":
-                event.clear()
-                self.count = max(10,self.count-1)
-                display.show(self.count, wait=False)
-
-            if event.read()== "S":
-                event.clear()
-                self.startTime = utime.ticks_ms()
-                self.state = 'ARMED'
-
-        elif self.state == 'ARMED':
-            if utime.ticks_diff(utime.ticks_ms(),self.startTime) > 1000:
-                self.startTime = utime.ticks_ms()
-                self.count = self.count - 1
-                display.show(self.count,wait=False)
-                if self.count == 0:
-                    display.show(Image.SKULL)
-                    self.state = 'EXPLODED'
-
-            if event.read()== "A":
-                event.clear()
-                self.key[self.keyindex] = 'A'
-                self.keyindex = self.keyindex + 1
-
-            if event.read()== "B":
-                event.clear()
-                self.key[self.keyindex] = 'B'
-                self.keyindex = self.keyindex + 1
-
-            if self.keyindex == len(self.key):
-
-                passIsOK = True
-                for i in range(len(self.key)):
-                    if self.key[i] != self.PASSWORD[i]:
-                        passIsOK = False
-                        break;
-                if passIsOK == True:
-                    self.count = 20
-                    display.show(self.count,wait=False)
-                    self.keyindex = 0
-                    self.state = 'CONFIG'
-                else:
-                    self.keyindex = 0
-
-        elif self.state == 'EXPLODED':
-            if event.read()== "T":
-                event.clear()
-                self.count = 20
-                display.show(self.count,wait=False)
-                self.startTime = utime.ticks_ms()
-                self.state = 'CONFIG'
-
-bombTask = BombTask()
-event = Event()
-sensors = MicroBitSensors()
-remoteTask = RemoteTask()
-radioRemote = RadioRemote()
 
 while True:
-    radioRemote.update()
-    remoteTask.update()
-    sensors.update()
-    bombTask.update()
-```
-Codigo p5js
-```
-let bomb
-let btnA, btnB, btnS, btnT
+if button_a.was_pressed():
+send('A')
+if button_b.was_pressed():
+send('B')
+if accelerometer.was_gesture('shake'):
+send('S')
+if pin_logo.is_touched():
+send('T')
+sleep(10)
 
-function setup() {
-  createCanvas(400, 200)
-  textAlign(CENTER, CENTER)
-  textSize(32)
-  bomb = new BombTask()
+````
 
-  btnA = createButton('A')
-  btnA.position(50, height + 50)
-  btnA.mousePressed(() => bomb.handleEvent('A'))
 
-  btnB = createButton('B')
-  btnB.position(120, height + 50)
-  btnB.mousePressed(() => bomb.handleEvent('B'))
 
-  btnS = createButton('S')
-  btnS.position(190, height + 50)
-  btnS.mousePressed(() => bomb.handleEvent('S'))
-
-  btnT = createButton('T')
-  btnT.position(260, height + 50)
-  btnT.mousePressed(() => bomb.handleEvent('T'))
-}
-
-function draw() {
-  background(0)
-  bomb.update()
-  fill(255)
-  if (bomb.state === 'EXPLODED') {
-    text("💀", width / 2, height / 2)
-  } else {
-    text(bomb.count, width / 2, height / 2)
-  }
-}
-
-class BombTask {
-  constructor() {
-    this.PASSWORD = ['A', 'B', 'A']
-    this.key = Array(this.PASSWORD.length).fill('')
-    this.keyindex = 0
-    this.count = 20
-    this.startTime = millis()
-    this.state = 'CONFIG'
-  }
-
-  _reset_key() {
-    this.keyindex = 0
-    for (let i = 0; i < this.key.length; i++) {
-      this.key[i] = ''
-    }
-  }
-
-  _append_key(k) {
-    if (this.keyindex < this.key.length) {
-      this.key[this.keyindex] = k
-      this.keyindex += 1
-    }
-  }
-
-  _check_password() {
-    for (let i = 0; i < this.key.length; i++) {
-      if (this.key[i] !== this.PASSWORD[i]) return false
-    }
-    return true
-  }
-
-  handleEvent(now_event) {
-    if (this.state === 'CONFIG') {
-      if (now_event === 'A') {
-        this.count = min(this.count + 1, 60)
-      } else if (now_event === 'B') {
-        this.count = max(10, this.count - 1)
-      } else if (now_event === 'S') {
-        this._reset_key()
-        this.startTime = millis()
-        this.state = 'ARMED'
-      }
-    } else if (this.state === 'ARMED') {
-      if (now_event === 'A') this._append_key('A')
-      else if (now_event === 'B') this._append_key('B')
-
-      if (this.keyindex === this.key.length) {
-        if (this._check_password()) {
-          this.count = 20
-          this._reset_key()
-          this.state = 'CONFIG'
-        } else {
-          this._reset_key()
-        }
-      }
-    } else if (this.state === 'EXPLODED') {
-      if (now_event === 'T') {
-        this.count = 20
-        this.startTime = millis()
-        this._reset_key()
-        this.state = 'CONFIG'
-      }
-    }
-  }
-
-  update() {
-    if (this.state === 'ARMED') {
-      if (millis() - this.startTime >= 1000) {
-        this.startTime = millis()
-        this.count -= 1
-        if (this.count <= 0) {
-          this.state = 'EXPLODED'
-        }
-      }
-    }
-  }
-}
-```
-link 
-https://editor.p5js.org/Changua666/sketches/NUW155hsM
