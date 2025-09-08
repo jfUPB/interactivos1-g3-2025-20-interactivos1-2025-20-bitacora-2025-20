@@ -2,102 +2,73 @@
 
 ## 🔎 Fase: Set + Seek
 
-### Actividad 1
+### Actividad 01  
 
 **¿Qué es un sistema físico interactivo?**
 
-Un sistema fisico interactivo es el que tiene tanto una parte fisica como una digital que por medio de computación, electrónica y mecanismos físicos en tiempo real consigue interactuar con las personas por medio de sensores o procesos computacionales.
+Es una experiencia interactiva que cuenta con un código y un usuario, y su desarrollo depende directamente de las acciones que este realice. Por ejemplo, permite generar una canción a partir de dibujos, crear figuras utilizando ritmos musicales, o incluso controlar un personaje con el movimiento de la mano.  
 
-¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
+**¿Cómo podrías aplicar lo que has visto en tu perfil profesional?**
 
-A nivel profesional los sistemas fisicos interactivos se vuelven fundamentales, esto porque mas allá de programar, crear video juegos o hacer animaciones, lo que buscamos es crear un producto o una experiencia para las personas, cosa que se nos facilita mucho más atraves de estos sistemas.
+Como estudiante de Ingeniería en Diseño de Entretenimiento Digital, este tipo de herramientas me resulta especialmente útil para crear experiencias interactivas aplicables en eventos, museos y muchos otros espacios. Las experiencias que involucran activamente al usuario no solo captan mejor su atención, sino que también ofrecen una forma innovadora y atractiva de aprender o entretenerse.  
 
-### Actividad 2
 
-¿Qué es el diseño/arte generativo?
+### Actividad 02  
 
-Algoritmo, reglas, sistema autonomo, variabilidad. En cuanto al diseño, se aplica mucho para marketing o branding, se parece mas a un estudiante de IDED que a un artista grafico porque no entrega algo rigido, si no algo con variabilidad e interactivo. Es una practica artistica o de diseño en el que el artista utiliza un sistemas con cierto grado de autonomía, las reglas pueden ser software o programas que le ayudaran al sistema a ejecutar la pieza que deseo hacer.
+**¿Qué es el diseño/arte generativo?**
 
-¿Cómo podrías aplicar lo que has visto en tu perfil profesional?
+Es una práctica utilizada por ejemplo por artistas y diseñadores que consiste en emplear un sistema autónomo para la creación de una obra. En este enfoque, se utiliza un programa que ejecuta la pieza deseada de forma independiente. El creador diseña el proceso (código), mientras que el sistema autónomo genera el resultado.En este está presenta la aleatoriedad, algoritmos y reglas y este puede ser usado en marcketing.  
 
-Se podría aplicar de una infinidad de formas, sabiendo ya que puede ser un concepto utilizado tanto para generar obras de arte o para el diseño de un logo ligado a lo interactivo, se abren las posibilidades para aplicarlo de manera profesional, sea para una empresa o para un evento, el diseño o arte generativo nos permite llevar más allá lo que podría ser un simple apartado visual para las personas.
+**¿Cómo podrías aplicar lo que has visto en tu perfil profesional?**
 
-### Actividad 3
+En la ingeniería en diseño de entretenimiento digital, considero que el diseño generativo permite crear contenido dinámico e interactivo mediante algoritmos y reglas definidas. Se puede aplicar en videojuegos para generar niveles o personajes de forma procedural (un ejemplo es que algunos juegos utilizan una "semilla" para generar el mundo), en animaciones para automatizar movimientos, y en narrativas interactivas que responden al usuario o algún sonido (tal como se mostró en clase con el logo que variaba según la canción). Este enfoque combina creatividad y programación locual es bastante usado en la carrera y será necesario a futuro, ademas permite desarrollar experiencias personalizadas y escalables sin diseñar cada elemento manualmente.
 
-Inputs
 
-Depende de como se mire, del Microbit los inputs son los botones, el puerto y el acelerometro.  
-Mientras que para el computador es el puerto USB.
+### Actividad 03  
 
-Outputs
+**Inputs:**  
+Microbit: A y B (Botones), Aceleron, Puerto USB y el Display
+Computador: Puerto USB
 
-Del Microbit son el puerto y el display.  
-Del computador es el Cable, el boton de "Send love" y la pantalla.
+**Outputs:**  
+MicroBit: Puerto USB (Serial)
+Computador: Cable, Boton "Send love" y Pantalla
 
-Proceso
+**Proceso:**    
+MicroBit: lee los inputs  
+Computador: Datos enviados por el puerto USB y la pantalla  
 
-El Microbit lee los inputs.  
-Del computador son los datos enviados por el puerto USB y la pantalla
 
-### Actividad 4
+### Actividad 04  
 
-Escribe el enlace a tu programa en el editor de p5.js.
-
-[Código p5.js](https://editor.p5js.org/alejogonzdav41/sketches/lhBSbsggE)
-
-Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
-
+* Escribe el enlace a tu programa en el editor de p5.js.  
+[Código p5.js](https://editor.p5js.org/Ayepes2402/sketches/VXM4SUZSL)  
+* Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
+  
 ``` js
-let t = 0;
-
 function setup() {
   createCanvas(600, 400);
-  background(240);
-  frameRate(10);
+  background(255);
   noStroke();
 }
 
 function draw() {
-  dibujarFiguraAleatoria();
-  t += 0.1;
-}
+  let x = random(width);
+  let y = random(height);
 
-function dibujarFiguraAleatoria() {
-  let tipo = int(random(3));
+ 
+  let r = sin(frameCount * 0.01) * 127 + 128;
+  let g = cos(frameCount * 0.01) * 127 + 128;
+  let b = random(100, 255);
+  fill(r, g, b, 100);
 
-  let col = color(
-    127 + 127 * sin(t + random(PI)),
-    127 + 127 * cos(t + random(PI)),
-    127 + 127 * sin(t + random(TWO_PI)),
-    random(100, 255)
-  );
-  fill(col);
-
-  let x = width / 2 + cos(t + random(-PI, PI)) * random(50, width / 2);
-  let y = height / 2 + sin(t + random(-PI, PI)) * random(50, height / 2);
-
-  let size = 20 + 30 * abs(sin(t + random(PI)));
   
-  switch (tipo) {
-    case 0:
-      ellipse(x, y, size, size);
-      break;
-    case 1:
-      rect(x, y, size, size);
-      break;
-    case 2:
-      triangle(
-        x, y,
-        x + size, y,
-        x + size / 2, y - size
-      );
-      break;
-  }
+  let size = random(10, 30);
+  ellipse(x, y, size, size);
 }
 ```
 
-Muestra una captura de pantalla del resultado de tu programa.
-
-<img width="746" height="493" alt="image" src="https://github.com/user-attachments/assets/e5270c4c-00ed-4a67-8385-e71e3454403e" />
+* Muestra una captura de pantalla del resultado de tu programa.  
+  <img width="448" height="298" alt="image" src="https://github.com/user-attachments/assets/83a57549-72de-455d-b7fb-e70fd63dea1c" />
 
 

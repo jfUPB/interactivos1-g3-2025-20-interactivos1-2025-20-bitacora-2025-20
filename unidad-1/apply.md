@@ -2,31 +2,36 @@
 
 ## 🛠 Fase: Apply
 
+### Actividad 05
+* Input microbit: boton A
+* Output microbit: Mensaje
+* Proceso: Al undir el boton A se envia el mensaje
+* Input p5.js: boton, informacion del serial
+* Output p5.js: boton, el cuadro verde y rojo
+* Proceso: si recibe una "A" se pinta de rojo 
 
-## Actividad 5
+Se podria decir que este codigo sirve para ir variando de colores dependiendo de si se unde un boton o no.
 
-* Input Microbit: Boton A
-* Output Microbit: Mensaje
-* Proceso: Cuando se presiona el boton A se envia el mensaje
-* Input p5: Boton, informacion serial
-* Output p5: Boton, cuadro que cambia entre verde y rojo
-* Proceso: Si recibe algo de un "A" cambia el color
+### Actividad 6
 
-  El codigo se utiliza para cambiar el color del recuadro al presionar el boton
+https://editor.p5js.org/Ayepes2402/sketches/X8WaNgrqv
 
-## Actividad 6
-
-# Escribe el enlace a tu programa en el editor de p5.js.
-
-https://editor.p5js.org/alejogonzdav41/sketches/aJg-BAAgc
-
-# Copia el código de tu programa en la bitácora (recuerda insertarlo usando markdown y el lenguaje javascript).
 ```
-  let port;
+from microbit import *
+
+uart.init(baudrate=115200)
+
+while True:
+      if button_a.was_pressed():
+          uart.write('A')
+      elif  button_a.was_pressed():
+              uart.write('B')
+```
+```
+ let port;
   let connectBtn;
   let connectionInitialized = false;
-x=200
-
+x=200;
   function setup() {
     createCanvas(400, 400);
     background(220);
@@ -38,8 +43,7 @@ x=200
 
   function draw() {
     background(220);
-    circle(x,200,50)
-
+circle(x, 200, 50);
     if (port.opened() && !connectionInitialized) {
       port.clear();
       connectionInitialized = true;
@@ -48,13 +52,13 @@ x=200
     if (port.availableBytes() > 0) {
       let dataRx = port.read(1);
       if (dataRx == "A") {
-        x-=5
+       x-=5; 
       } else if (dataRx == "B") {
-        x+=5
+     x+=5;
       }
     }
 
-
+    
     if (!port.opened()) {
       connectBtn.html("Connect to micro:bit");
     } else {
@@ -70,16 +74,5 @@ x=200
       port.close();
     }
   }
-```
-# Copia el código del micro:bit en la bitácora (recuerda insertarlo usando markdown y el lenguaje python).
-```
-from microbit import *
-
-uart.init(baudrate=115200)
-
-while True:
-      if button_a.was_pressed():
-          uart.write('A')
-          uart.write('B')
 ```
 

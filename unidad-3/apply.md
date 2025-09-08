@@ -3,9 +3,8 @@
 
 ## 🛠 Fase: Apply
 
-**Actividad 6 y 7**
-
-* Codigo p5.js
+### Actividad 05 y 06
+[link p5.js](https://editor.p5js.org/Ayepes2402/sketches/z07leb2iy)
 ```js
 let bombTask;
 let serialTask;
@@ -14,13 +13,14 @@ let port;
 let connectBtn;
 
 function setup(){
-  createCanvas(700,700);
+  createCanvas(500,500);
   textAlign(CENTER,CENTER);
-  textSize(28);
+  textSize(32);
 
+  // Puerto serial
   port = createSerial();
-  connectBtn = createButton('CONECTAR AL MICROBIT');
-  connectBtn.position(150,250);
+  connectBtn = createButton('Connect To Microbit');
+  connectBtn.position(130,300);
   connectBtn.mousePressed(connectBtnClick);
 
   event = new BombEvent();
@@ -57,10 +57,13 @@ class SerialTask {
       else if(dataRx === 'S') event.set('S');
       else if(dataRx === 'T') event.set('T');
     }
+
+    // Actualizar texto del botón según estado del puerto
     if (!port.opened()) connectBtn.html('Connect to micro:bit');
     else connectBtn.html('Disconnect');
   }
 }
+
 
 class BombTask {
   constructor(){
@@ -70,6 +73,7 @@ class BombTask {
     this.startTime = millis();
     this.state = 'CONFIG';
   }
+
   update(){
     if(this.state === 'CONFIG'){
       if(event.read() === 'A'){
@@ -86,6 +90,7 @@ class BombTask {
         this.state = 'ARMED';
       }
     }
+
     else if(this.state === 'ARMED'){
       if(millis() - this.startTime > 1000){
         this.count--;
@@ -94,6 +99,7 @@ class BombTask {
           this.state = 'EXPLODED';
         }
       }
+
       if(event.read() === 'A' || event.read() === 'B'){
         this.key.push(event.read());
         event.clear();
@@ -106,6 +112,7 @@ class BombTask {
         }
       }
     }
+
     else if(this.state === 'EXPLODED'){
       if(event.read() === 'T'){
         event.clear();
@@ -115,6 +122,7 @@ class BombTask {
       }
     }
   }
+
   display(){
     fill(255);
     if(this.state === 'CONFIG'){
@@ -129,6 +137,7 @@ class BombTask {
     }
   }
 }
+
 function connectBtnClick(){
   if(!port.opened()){
     port.open('MicroPython',115200);
@@ -144,22 +153,22 @@ function keyPressed() {
   else if (key === 'T') event.set('T');
 }
 ```
-* Codigo Micro.bit
-```js
+```py
+#Imports go at the top
 from microbit import *
 
 uart.init(baudrate=115200)
-display.show(Image.SILLY)
+display.show(Image.TRIANGLE)
 
 while True:
-    display.show(Image.SILLY)
+    display.show(Image.TRIANGLE)
     if button_a.was_pressed():
         uart.write('A')
-        display.show(Image.TRIANGLE)
+        display.show(Image.ARROW_N)
         sleep(200)
     if button_b.was_pressed():
         uart.write('B')
-        display.show(Image.DIAMOND)
+        display.show(Image.ARROW_S)
         sleep(200)
     if accelerometer.was_gesture('shake'):
         uart.write('S')
@@ -167,11 +176,9 @@ while True:
         sleep(200)
     if pin_logo.is_touched():
         uart.write('T')
-        display.show(Image.SILLY)
+        display.show(Image.TRIANGLE)
         sleep(200)
 ```
-* Link editor p5.js
 
-[Link para el Editor de p5.js](https://editor.p5js.org/alejogonzdav41/sketches/0CdhgIbQO)
 
 
