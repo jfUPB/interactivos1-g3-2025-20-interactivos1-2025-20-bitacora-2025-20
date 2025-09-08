@@ -2,64 +2,55 @@
 
 ## 🛠 Fase: Apply
 
+### Actividad 05: 23/07/2025
 
-### Actividad 5  
-Si oprimo el cuadro en el canva esta blanco y al conctarse al micro:bit se vuelve verde. Si oprimo el boton A del micro:bit se vueleve el cuadro rojo y si lo dejo de oprimir se vuelve verde.  
+El sistema físico interactivo que creamos une las aplicaciones **p5.js** y **micro:bit editor** para lograr que el computador (micro:bit) siga las intrucciones dadas en el software p5.js para hacer que al mantener presionado el botón A el software muestre en la pantalla un cuadrado rojo, de lo contrario muestra un cuadrado de color verde. 
 
-- Imput: botón A, información del serial
-- Output: Programa, lo visual
-- Procesador:  si recibo un A lo pinto rojo si dejo de hundir esta verde (programa)
+Usando condicionales y ciclos, en el lado del software de dibujo, se logra que la duración del color rojo en la pantalla coincida con el tiempo que está presionado, en lugar de solo aparecer por menos de un segundo; por otro lado, en el micro:bit editor se usa el comando sleep(100) para lograr que se mantenga la imagen durante mas tiempo o se "duerma" el computador durante 100 milisegundos. De igual forma, se sabe que es necesario, conectar el micro:bit al p5.js para que pueda funcionar, ya que de lo contrario no detectaria el computador. Además, se hace uso de bibliotecas en el software para lograr que funcione correctamente.
 
-### Actividad 6
-[codigo p5](https://editor.p5js.org/mafora12/sketches/lXU1OAV6-)  
+Por otro lado, es posible verificar si el micro:bit esta conectado al equipo mirando el color del cuadrado proyectadfo en la pantalla, ya que mientras esté desconectado este será de color blanco.
 
-Codigo p5:  
+### Actividad 06:
+
+[Ver sketch interactivo](https://editor.p5js.org/Valengp2006/sketches/1b5wKQ4j7)
+
+#### Código en p5.js
 
 ```javascript
 let port;
 let connectBtn;
 let connectionInitialized = false;
-
-let circleX = 200; 
-let moveStep = 10; 
+let x = 100;
 
 function setup() {
   createCanvas(400, 400);
   background(220);
-
   port = createSerial();
-
   connectBtn = createButton("Connect to micro:bit");
-  connectBtn.position(80, 350);
+  connectBtn.position(80, 300);
   connectBtn.mousePressed(connectBtnClick);
 }
 
 function draw() {
   background(220);
 
-
   if (port.opened() && !connectionInitialized) {
     port.clear();
     connectionInitialized = true;
   }
 
-  
   if (port.availableBytes() > 0) {
-    let dataRx = port.read(1); 
-
-    if (dataRx === "A") {
-      circleX -= moveStep;
-    } else if (dataRx === "B") {
-      circleX += moveStep;
+    let dataRx = port.read(1);
+    if (dataRx == "A") {
+      x -= 10;
+    } else if (dataRx == "B") {
+      x += 10;
     }
   }
 
-
-  circleX = constrain(circleX, 25, width - 25);
-
-  fill("pink");
-  ellipse(circleX, height / 2, 50, 50);
-
+  ellipseMode(CENTER);
+  fill("red");
+  ellipse(x, height / 2, 50, 50);
 
   if (!port.opened()) {
     connectBtn.html("Connect to micro:bit");
@@ -76,23 +67,19 @@ function connectBtnClick() {
     port.close();
   }
 }
-
 ```
+#### Código en micro:bit editor
 
-Codigo micro:bit :  
-```py
+```python
 from microbit import *
 
 uart.init(baudrate=115200)
-display.show(Image.GIRAFFE)
+display.show(Image.SILLY)
 
 while True:
     if button_a.is_pressed():
         uart.write('A')
-    elif button_b.is_pressed():
+    if button_b.is_pressed():
         uart.write('B')
-    else:
-        uart.write('N')
-    
-    sleep(100)
 ```
+

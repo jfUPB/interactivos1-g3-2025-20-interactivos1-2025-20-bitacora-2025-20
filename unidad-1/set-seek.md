@@ -2,82 +2,145 @@
 
 ## 🔎 Fase: Set + Seek
 
-### Actividad 1
+### Actividad 01 - 16/07/2025
+
+#### ¿Qué es un sistema físico interactivo?
+
+Es un sistema que percibe información del entorno físico mediante **sensores** (inputs), procesa esa información, y responde a ella mediante **actuadores** (outputs), generando una **interacción dinámica** con el usuario o el entorno.
+
+#### ¿Cómo se relacionan los sistemas físicos interactivos con mi perfil profesional?
+
+Los sistemas físicos interactivos se relacionan con **mi perfil profesional** porque me permiten crear productos donde el usuario interactúa con el mundo **físico y digital al mismo tiempo**.  Esto es fundamental para desarrollar **videojuegos, instalaciones, interfaces** o **experiencias educativas** que respondan a acciones reales mediante sensores y actuadores.
+
+### Actividad 02 - 18/07/2025
+
+Un **artista generativo** utiliza **herramientas autónomas** para la elaboración de usas obras, **programando el código** para que herramientas como los plotters pinten con base a la introducción codificada por el usuario. Es conocido como una forma contemporánea del arte, en donde este se encuentra en el código detrás de la obra que en la pintura en si.
+
+El **diseño generativo** es comunmente usado por las marcas actualmente. Se enfoca en la entrega de una aplicación que puede ser usada por los diseñadores para ser aplicados en diferentes tipos de piezas, permitiendo elementos de variabilidad en el diseño según el contexto y la necesidad.
+
+#### ¿Qué es el arte/diseño generativo entonces?
+
+Se refiere a cualquier práctica del ámbito artistico en el que el artista hace uso de un sistema el cual tiene funcionalidad con cierta autonomía.
+
+### Actividad 03
+
+#### Inputs (Entradas)
+
+**micro:bit:**
+- Botón A
+- Botón B 
+- Sensor de acelerómetro (cuando se detecta el gesto de sacudir - shake)
+- Puerto de comunicación (USB)
+- Botón "Send Love" en la interfaz de p5.js
+
+**Computador**
+- Serial (USB)
+
+#### Proceso
+
+- El programa en la micro:bit detecta si se presionan los botones A o B, o si se sacude el dispositivo.
+- Según el evento detectado, la micro:bit envía un carácter por el USB al computador:  
+  - `'A'` si se presiona el botón A  
+  - `'B'` si se presiona el botón B  
+  - `'C'` si se sacude
+- En el navegador, p5.js recibe este dato a través del puerto serial y cambia el color de un círculo en pantalla dependiendo del valor recibido.
 
 
-¿Qué es un sistema físico interactivo?  
+#### Outputs (Salidas):
 
-   Es un objeto que al sentir una acción o interaccion del usuario, lo procesa y lo convierte en una proyección.
-   Tiene una entrada física que se denomina input, un procesador y una salida denominada output. ósea, Es un sistema que responde a una acción que uno hace. Por ejemplo, cuando uno toca algo,
-   mueve un sensor o presiona un botón, el sistema lo detecta (eso sería el input), lo procesa con un código o una lógica, y luego hace algo como mostrar una luz, cambiar de color o hacer un sonido (eso sería el output).
-   
-¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
-   
-En diseño gráfico o como ingeniera de entretenimiento digital, estos sistemas pueden hacer que las experiencias sean más inmersivas.
-Por ejemplo, puedo crear una instalación donde las ilustraciones se crren a partir de la interacción de alguien, o una animación que reaccione cuando el público interactúe. 
-Eso haría que mi trabajo conecte más con las personas y tenga un toque único, generando mayor capacidad de recordaciòn en las personas o publicos.
+**micro:bit:**
+  - Puerto de comunicación (USB)
 
-### Actividad 2  
+**p5.js:**
+- Cambio del color del círculo central
+- Texto con el carácter recibido en el centro del círculo
 
-¿Qué es el diseño/arte generativo? 
+**Computador:**
+- Display
+- Datos enviados por el serial
 
-Consiste en trabajar con elementos variables bajo ciertas reglas pero con aleatoriedad. Es cualquier práctica de diseño en la que el artista o diseñador 
-utiliza un sistema con un conjunto de reglas (ya sea en lenguaje natural, software o máquinas) para ejecutar una pieza de diseño o arte.
-Este proceso, relativamente autónomo, le da un toque único y distintivo a la obra, debido a que aunque no es algo hecho directamente por un ser humano, el codigo que 
-se crea si lo es, teniendo una nueva forma de diseñar con la ventaja de tener miles de posibilidades ´para las obras de diseño o arte.
+### Actividad 04
 
-¿Cómo podrías aplicar lo que has visto en tu perfil profesional?  
-Como diseñadora, puedo usar esto para crear patrones, fondos, ilustraciones o animaciones que no se repiten y se vean diferentes cada vez. 
-Esto me ayudaría a ofrecer cosas más creativas y distintas en mis proyectos, usando herramientas nuevas como el código para crear diseño.
-facilitando la creación de piezas graficas o interacciones mas dinamicas y emocionantes.
+[Enlace al editor](https://editor.p5js.org/Valengp2006/sketches/OSpyB6vzc)
 
-### Actividad 3  
+#### Animación con figuras que cambian de forma, color y dirección
 
-Cuales son los inputs, outputs y el proceso:  
-Browser:  
-  - Inputs: Los botones y el acelerometro, writes, el cable (USB) , Display
-  - output: el cable (USB) 
-  - Proceso: el código que lee esas acciones y decide qué hacer con ellas.
-    
-Computador:  
-  - Input: el cable (USB) , el Boton "send love"
-  - Output: Datos y pantalla del computador
-  - Proceso: el código que está en el computador recibe eso, lo entiende y reacciona.
+Este sketch en **p5.js** implementa un sistema visual interactivo que simula el movimiento de dos figuras que rebotan dentro del lienzo, cambian de color de forma progresiva y modifican su forma cada vez que colisionan con los bordes del lienzo.
 
-### Actividad 4  
-
-Enlace  
-
-[mi codigo](https://editor.p5js.org/mafora12/sketches/eHb6skJjE)   
-
-Codigo:  
+#### Código
 
 ```javascript
+// Figura 1
+let x1 = 100, y1 = 100, dx1 = 2, dy1 = 1.5, tipo1 = 0, size1 = 50;
+let r1 = 100, g1 = 150, b1 = 255;
+
+// Figura 2
+let x2 = 300, y2 = 200, dx2 = -2, dy2 = 2.2, tipo2 = 1, size2 = 40;
+let r2 = 255, g2 = 100, b2 = 180;
+
 function setup() {
-  createCanvas(500, 500);
-  background(230, 200, 255); 
+  createCanvas(400, 400);
+  background(220); 
 }
 
 function draw() {
-  
-  fill(1080, 200, 255, 20);
+
+  // Dibujar figura 1
+  fill(r1, g1, b1);
+  dibujarFigura(x1, y1, tipo1, size1);
+
+  // Dibujar figura 2
+  fill(r2, g2, b2);
+  dibujarFigura(x2, y2, tipo2, size2);
+
+  // Rebote y cambio de forma (figura 1)
+  let reboteX1 = (x1 <= 0 || x1 >= width) * 1;
+  let reboteY1 = (y1 <= 0 || y1 >= height) * 1;
+  dx1 *= 1 - 2 * reboteX1;
+  dy1 *= 1 - 2 * reboteY1;
+  tipo1 = (reboteX1 + reboteY1) * int(random(3)) + tipo1 * (1 - (reboteX1 + reboteY1));
+
+  // Rebote y cambio de forma (figura 2)
+  let reboteX2 = (x2 <= 0 || x2 >= width) * 1;
+  let reboteY2 = (y2 <= 0 || y2 >= height) * 1;
+  dx2 *= 1 - 2 * reboteX2;
+  dy2 *= 1 - 2 * reboteY2;
+  tipo2 = (reboteX2 + reboteY2) * int(random(3)) + tipo2 * (1 - (reboteX2 + reboteY2));
+
+  // Movimiento
+  x1 += dx1;
+  y1 += dy1;
+  x2 += dx2;
+  y2 += dy2;
+
+  // Cambio de color constante
+  r1 = (r1 + 1) % 256;
+  g1 = (g1 + 2) % 256;
+  b1 = (b1 + 3) % 256;
+
+  r2 = (r2 + 3) % 256;
+  g2 = (g2 + 2) % 256;
+  b2 = (b2 + 1) % 256;
+}
+
+// Función para dibujar una figura según su tipo
+function dibujarFigura(x, y, tipo, size) {
+  let formas = [
+    () => ellipse(x, y, size),
+    () => rectMode(CENTER) || rect(x, y, size, size),
+    () => triangle(
+      x, y - size / 2,
+      x - size / 2, y + size / 2,
+      x + size / 2, y + size / 2
+    )
+  ];
   noStroke();
-  rect(0, 0, width, height);
-
-  let x = 100 * cos(frameCount * 0.05) + 200;
-  let y = 50 * sin(frameCount * 0.1) + 200;
-
-  let w = 20 + 5 * sin(frameCount * 0.2);
-  let h = 10 + 2.5 * sin(frameCount * 0.2);
-
-  
-  fill(255, 90, 200, 200); 
-  noStroke();
-  ellipse(x, y, w, h);
+  formas[tipo % 3]();
 }
 ```
 
-Imagen:  
+#### GIF del resultado final
 
-<img width="627" height="650" alt="image" src="https://github.com/user-attachments/assets/7c0455d1-67e7-4921-9565-fdda558ad639" />
+![Resultado final](https://github.com/user-attachments/assets/5cf643a9-8c3c-434f-a1e1-3caea7ac1a3d)
+
 
